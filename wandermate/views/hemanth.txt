@@ -1,0 +1,327 @@
+<div class="guide-item">
+  <div class="shadow-effect">
+    <div class="rot-card-container">
+      <div class="rot-card">
+          <div class="rot-front">
+              <div class="cover">
+                  <img src='https://demos.creative-tim.com/argon-design-system-pro/assets/img/ill/linth3.svg'/>
+              </div>
+              <div class="user">
+                  <img class="img-circle" src="./rotating-card/images/image1.jpeg"/>
+              </div>
+              <div class="content">
+                  <div class="main2">
+                      <h3 class="name">d.name</h3>
+                      <p class="profession">d.age</p>
+                      <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p>
+                  </div>
+              </div>
+          </div> <!-- end front panel -->
+          <div class="rot-back">
+              <div class="header">
+                  <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+              </div>
+              <div class="content">
+                  <div class="main2">
+                      <h4 class="text-center" style="font-weight:">Languages:</h4>
+                      <p class="text-center">d.language</p>
+
+                      <div class="stats-container">
+                          <div class="stats">
+                              <h4>d.age</h4>
+                              <p>
+                                  Age
+                              </p>
+                          </div>
+                          <div class="stats">
+                              <h4>d.rating</h4>
+                              <p>
+                                  Rating
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div> <!-- end back panel -->
+      </div> <!-- end card -->
+  </div> <!-- end card-container -->
+  </div>
+  <div class="testimonial-name"><a href="/"><span style="color:white;font-size:1.3em !important">BOOK</span></a></div>
+</div>
+<!--END OF TESTIMONIAL 1 -->
+<!--TESTIMONIAL 2 -->
+<div class="guide-item">
+  <div class="shadow-effect">
+    <div class="rot-card-container">
+      <div class="rot-card">
+          <div class="rot-front">
+              <div class="cover">
+                  <img src="./rotating-card/images/image1.jpeg"/>
+              </div>
+              <div class="user">
+                  <img class="img-circle" src="./rotating-card/images/image1.jpeg"/>
+              </div>
+              <div class="content">
+                  <div class="main2">
+                      <h3 class="name">d.name</h3>
+                      <p class="profession">d.age</p>
+                      <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p>
+                  </div>
+              </div>
+          </div> <!-- end front panel -->
+          <div class="rot-back">
+              <div class="header">
+                  <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+              </div>
+              <div class="content">
+                  <div class="main2">
+                      <h4 class="text-center" style="font-weight:">Languages:</h4>
+                      <p class="text-center">d.language</p>
+
+                      <div class="stats-container">
+                          <div class="stats">
+                              <h4>d.age</h4>
+                              <p>
+                                  Age
+                              </p>
+                          </div>
+                          <div class="stats">
+                              <h4>d.rating</h4>
+                              <p>
+                                  Rating
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div> <!-- end back panel -->
+      </div> <!-- end card -->
+  </div> <!-- end card-container -->
+  </div>
+  <div class="testimonial-name">ANNA ITURBE</div>
+</div>
+<!--END OF TESTIMONIAL 2 -->
+<!--TESTIMONIAL 3 -->
+<div class="guide-item">
+  <div class="shadow-effect">
+    <div class="rot-card-container">
+      <div class="rot-card">
+          <div class="rot-front">
+              <div class="cover">
+                  <img src="./rotating-card/images/image1.jpeg"/>
+              </div>
+              <div class="user">
+                  <img class="img-circle" src="./rotating-card/images/image1.jpeg"/>
+              </div>
+              <div class="content">
+                  <div class="main2">
+                      <h3 class="name">d.name</h3>
+                      <p class="profession">d.age</p>
+                      <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p>
+                  </div>
+              </div>
+          </div> <!-- end front panel -->
+          <div class="rot-back">
+              <div class="header">
+                  <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+              </div>
+              <div class="content">
+                  <div class="main2">
+                      <h4 class="text-center" style="font-weight:">Languages:</h4>
+                      <p class="text-center">d.language</p>
+
+                      <div class="stats-container">
+                          <div class="stats">
+                              <h4>d.age</h4>
+                              <p>
+                                  Age
+                              </p>
+                          </div>
+                          <div class="stats">
+                              <h4>d.rating</h4>
+                              <p>
+                                  Rating
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div> <!-- end back panel -->
+      </div> <!-- end card -->
+  </div> <!-- end card-container -->
+  </div>
+  <div class="testimonial-name">LARA ATKINSON</div>
+</div>
+<!--END OF TESTIMONIAL 3 -->
+<!--TESTIMONIAL 4 -->
+<div class="guide-item">
+  <div class="shadow-effect">
+    <div class="rot-card-container">
+      <div class="rot-card">
+          <div class="rot-front">
+              <div class="cover">
+                  <img src="./rotating-card/images/image1.jpeg"/>
+              </div>
+              <div class="user">
+                  <img class="img-circle" src="./rotating-card/images/image1.jpeg"/>
+              </div>
+              <div class="content">
+                  <div class="main2">
+                      <h3 class="name">d.name</h3>
+                      <p class="profession">d.age</p>
+                      <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p>
+                  </div>
+              </div>
+          </div> <!-- end front panel -->
+          <div class="rot-back">
+              <div class="header">
+                  <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+              </div>
+              <div class="content">
+                  <div class="main2">
+                      <h4 class="text-center" style="font-weight:">Languages:</h4>
+                      <p class="text-center">d.language</p>
+
+                      <div class="stats-container">
+                          <div class="stats">
+                              <h4>d.age</h4>
+                              <p>
+                                  Age
+                              </p>
+                          </div>
+                          <div class="stats">
+                              <h4>d.rating</h4>
+                              <p>
+                                  Rating
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div> <!-- end back panel -->
+      </div> <!-- end card -->
+  </div> <!-- end card-container -->
+</div>
+  <div class="testimonial-name">IAN OWEN</div>
+</div>
+<!--END OF TESTIMONIAL 4 -->
+<!--TESTIMONIAL 5 -->
+<div class="guide-item">
+  <div class="shadow-effect">
+    <div class="rot-card-container">
+      <div class="rot-card">
+          <div class="rot-front">
+              <div class="cover">
+                  <img src="./rotating-card/images/image1.jpeg"/>
+              </div>
+              <div class="user">
+                  <img class="img-circle" src="./rotating-card/images/image1.jpeg"/>
+              </div>
+              <div class="content">
+                  <div class="main2">
+                      <h3 class="name">d.name</h3>
+                      <p class="profession">d.age</p>
+                      <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p>
+                  </div>
+              </div>
+          </div> <!-- end front panel -->
+          <div class="rot-back">
+              <div class="header">
+                  <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+              </div>
+              <div class="content">
+                  <div class="main2">
+                      <h4 class="text-center" style="font-weight:">Languages:</h4>
+                      <p class="text-center">d.language</p>
+
+                      <div class="stats-container">
+                          <div class="stats">
+                              <h4>d.age</h4>
+                              <p>
+                                  Age
+                              </p>
+                          </div>
+                          <div class="stats">
+                              <h4>d.rating</h4>
+                              <p>
+                                  Rating
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div> <!-- end back panel -->
+      </div> <!-- end card -->
+  </div> <!-- end card-container -->
+</div>
+  <a href='/' style="font-color:'white'"><div class="testimonial-name">BOOK</div></a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-lg-3">
+  <div class="card card-blog card-background" data-animation="zooming">
+    <div class="full-background" style="background-image: url('https://demos.creative-tim.com/argon-design-system-pro/assets/img/sections/ashim.jpg')"></div>
+    <a href="javascript:;">
+      <div class="card-body">
+        <div class="content-bottom">
+          <h6 class="card-category text-white opacity-8" style="font-weight:450;font-size:12px">AI at the Edge</h6>
+          <h5 class="card-title" style="font-weight:500;font-size:19px">Research Byte</h5>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="col-lg-3">
+  <div class="card card-blog card-background" data-animation="zooming">
+    <div class="full-background" style="background-image: url('https://demos.creative-tim.com/argon-design-system-pro/assets/img/sections/odin.jpg"></div>
+    <a href="javascript:;">
+      <div class="card-body">
+        <div class="content-bottom">
+          <h6 class="card-category text-white opacity-8" style="font-weight:450;font-size:12px">AI at the Edge</h6>
+          <h5 class="card-title" style="font-weight:500;font-size:19px">Research Byte</h5>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="col-lg-3">
+  <div class="card card-blog card-background" data-animation="zooming">
+    <div class="full-background" style="background-image: url('https://demos.creative-tim.com/argon-design-system-pro/assets/img/sections/dane.jpg"></div>
+    <a href="javascript:;">
+      <div class="card-body">
+        <div class="content-bottom">
+          <h6 class="card-category text-white opacity-8" style="font-weight:450;font-size:12px">AI at the Edge</h6>
+          <h5 class="card-title" style="font-weight:500;font-size:19px">Research Byte</h5>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

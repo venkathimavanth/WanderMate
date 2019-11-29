@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="../css/guideprofile.css"> -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <style >
+
+    /*! CSS Used from: https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css */
+    html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+    body{margin:0;}
+    header,nav{display:block;}
+    a{background-color:transparent;}
+    a:active,a:hover{outline:0;}
+    h1{margin:.67em 0;font-size:2em;}
+    @media print{
+    *,:after,:before{color:#000!important;text-shadow:none!important;background:0 0!important;-webkit-box-shadow:none!important;box-shadow:none!important;}
+    a,a:visited{text-decoration:underline;}
+    a[href]:after{content:" (" attr(href) ")";}
+    a[href^="#"]:after{content:"";}
+    .navbar{display:none;}
+    }
+    *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+    :after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+    html{font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+    body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#fff;}
+    a{color:#337ab7;text-decoration:none;}
+    a:focus,a:hover{color:#23527c;text-decoration:underline;}
+    a:focus{outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
+    h1{font-family:inherit;font-weight:500;line-height:1.1;color:inherit;}
+    h1{margin-top:20px;margin-bottom:10px;}
+    h1{font-size:36px;}
+    .text-danger{color:#a94442;}
+    ul{margin-top:0;margin-bottom:10px;}
+    .container-fluid{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
+    .nav{padding-left:0;margin-bottom:0;list-style:none;}
+    .nav>li{position:relative;display:block;}
+    .nav>li>a{position:relative;display:block;padding:10px 15px;}
+    .nav>li>a:focus,.nav>li>a:hover{text-decoration:none;background-color:#eee;}
+    .navbar{position:relative;min-height:50px;margin-bottom:20px;border:1px solid transparent;}
+    @media (min-width:768px){
+    .navbar{border-radius:4px;}
+    }
+    .navbar-nav{margin:7.5px -15px;}
+    .navbar-nav>li>a{padding-top:10px;padding-bottom:10px;line-height:20px;}
+    @media (min-width:768px){
+    .navbar-nav{float:left;margin:0;}
+    .navbar-nav>li{float:left;}
+    .navbar-nav>li>a{padding-top:15px;padding-bottom:15px;}
+    }
+    @media (min-width:768px){
+    .navbar-right{float:right!important;margin-right:-15px;}
+    }
+    .navbar-default{background-color:#f8f8f8;border-color:#e7e7e7;}
+    .navbar-default .navbar-nav>li>a{color:#777;}
+    .navbar-default .navbar-nav>li>a:focus,.navbar-default .navbar-nav>li>a:hover{color:#333;background-color:transparent;}
+    .container-fluid:after,.container-fluid:before,.nav:after,.nav:before,.navbar:after,.navbar:before{display:table;content:" ";}
+    .container-fluid:after,.nav:after,.navbar:after{clear:both;}
+    /*! CSS Used from: https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css */
+    .zmdi{display:inline-block;font:normal normal normal 14px/1 'Material-Design-Iconic-Font';font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+    .zmdi-link:before{content:'\f18e';}
+    .zmdi-settings:before{content:'\f1c6';}
+    .zmdi-info-outline:before{content:'\f1f7';}
+    .zmdi-notifications:before{content:'\f1fe';}
+    .zmdi-comment-more:before{content:'\f260';}
+    .zmdi-view-dashboard:before{content:'\f31c';}
+    .zmdi-widgets:before{content:'\f328';}
+    .zmdi-calendar:before{content:'\f332';}
+    .zmdi-link:before{content:'\f18e';}
+    .zmdi-settings:before{content:'\f1c6';}
+    .zmdi-info-outline:before{content:'\f1f7';}
+    .zmdi-notifications:before{content:'\f1fe';}
+    .zmdi-comment-more:before{content:'\f260';}
+    .zmdi-view-dashboard:before{content:'\f31c';}
+    .zmdi-widgets:before{content:'\f328';}
+    .zmdi-calendar:before{content:'\f332';}
+    /*! CSS Used from: Embedded */
+    body{overflow-x:hidden;font-family:'Roboto', sans-serif;font-size:16px;}
+    #viewport{padding-left:250px;-webkit-transition:all 0.5s ease;-moz-transition:all 0.5s ease;-o-transition:all 0.5s ease;transition:all 0.5s ease;}
+    #content{width:100%;position:relative;margin-right:0;}
+    #sidebar{z-index:1000;position:fixed;left:250px;width:250px;height:100%;margin-left:-250px;overflow-y:auto;background:#37474F;-webkit-transition:all 0.5s ease;-moz-transition:all 0.5s ease;-o-transition:all 0.5s ease;transition:all 0.5s ease;}
+    #sidebar header{background-color:#263238;font-size:20px;line-height:52px;text-align:center;}
+    #sidebar header a{color:#fff;display:block;text-decoration:none;}
+    #sidebar header a:hover{color:#fff;}
+    #sidebar .nav a{background:none;border-bottom:1px solid #455A64;color:#CFD8DC;font-size:14px;padding:16px 24px;}
+    #sidebar .nav a:hover{background:none;color:#ECEFF1;}
+    #sidebar .nav a i{margin-right:16px;}
+    /*! CSS Used fontfaces */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+body {
+  overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+/* Toggle Styles */
+
+#viewport {
+  padding-left: 250px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#content {
+  width: 100%;
+  position: relative;
+  margin-right: 0;
+}
+
+/* Sidebar Styles */
+
+#sidebar {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 250px;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #37474F;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#sidebar header {
+  background-color: #263238;
+  font-size: 20px;
+  line-height: 52px;
+  text-align: center;
+}
+
+#sidebar header a {
+  color: #fff;
+  display: block;
+  text-decoration: none;
+}
+
+#sidebar header a:hover {
+  color: #fff;
+}
+
+#sidebar .nav{
+
+}
+
+#sidebar .nav a{
+  background: none;
+  border-bottom: 1px solid #455A64;
+  color: #CFD8DC;
+  font-size: 14px;
+  padding: 16px 24px;
+}
+
+#sidebar .nav a:hover{
+  background: none;
+  color: #ECEFF1;
+}
+
+#sidebar .nav a i{
+  margin-right: 16px;
+}
+    </style>
+  </head>
+  <body>
+    <div id="viewport">
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <header>
+      <a href="#">Wandermate Admin</a>
+    </header>
+    <ul class="nav">
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-view-dashboard"></i> Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-link"></i> Shortcuts
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-widgets"></i> Overview
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-calendar"></i> Events
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-info-outline"></i> About
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-settings"></i> Services
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-comment-more"></i> Contact
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- Content -->
+  <div id="content">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#"><i class="zmdi zmdi-notifications text-danger"></i>
+            </a>
+          </li>
+          <li><a href="#">Test User</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+<%-body%>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

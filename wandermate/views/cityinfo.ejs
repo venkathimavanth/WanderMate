@@ -1,0 +1,284 @@
+
+<head>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- <link rel="stylesheet" href="https://demos.creative-tim.com/argon-design-system-pro/assets/css/argon-design-system.min.css?v=1.0.0"> -->
+<link rel="stylesheet" href="../css/test.css">
+
+<style >
+
+
+  /*! CSS Used from: https://demos.creative-tim.com/argon-design-system-pro/assets/css/nucleo-icons.css */
+  .ni{display:inline-block;font:normal normal normal 14px/1 NucleoIcons;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  .ni-favourite-28::before{content:"\ea34";}
+  .ni-watch-time::before{content:"\ea5d";}
+  *,:after,:before{box-sizing:border-box;}
+  section{display:block;}
+  h2,h4{margin-top:0;margin-bottom:.5rem;}
+  p{margin-top:0;margin-bottom:1rem;}
+  a{color:#5e72e4;background-color:transparent;}
+  a,a:hover{text-decoration:none;}
+  a:hover{color:#233dd2;cursor:pointer}
+  img{border-style:none;}
+  img{vertical-align:middle;}
+  h2,h4{margin-bottom:.5rem;font-family:inherit;font-weight:400;line-height:1.5;color:#32325d;}
+  h2{font-size:2rem;}
+  h4{font-size:1.5rem;}
+  .container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
+  @media (min-width:576px){
+  .container{max-width:540px;}
+  }
+  @media (min-width:768px){
+  .container{max-width:720px;}
+  }
+  @media (min-width:992px){
+  .container{max-width:960px;}
+  }
+  @media (min-width:1200px){
+  .container{max-width:1040px;}
+  }
+  .row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px;}
+  .col-12,.col-lg-4,.col-md-6,.col-md-10{position:relative;width:100%;padding-right:15px;padding-left:15px;}
+  .col-12{flex:0 0 100%;max-width:100%;}
+  @media (min-width:768px){
+  .col-md-6{flex:0 0 50%;max-width:50%;}
+  .col-md-10{flex:0 0 83.333333%;max-width:83.333333%;}
+  }
+  @media (min-width:992px){
+  .col-lg-4{flex:0 0 33.333333%;max-width:33.333333%;}
+  }
+  .card{display:flex;flex-direction:column;min-width:0;word-wrap:break-word;background-color:#fff;background-clip:border-box;border:.0625rem solid rgba(0,0,0,.05);border-radius:.25rem;}
+  .card-body{flex:1 1 auto;padding:1.5rem;}
+  .card-title{margin-bottom:1.25rem;}
+  .card-footer{padding:1.25rem 1.5rem;background-color:#f6f9fc;border-top:.0625rem solid rgba(0,0,0,.05);}
+  .card-footer:last-child{border-radius:0 0 0.1875rem 0.1875rem;}
+  .rounded{border-radius:.25rem!important;}
+  .shadow{box-shadow:0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07)!important;}
+  .mb-5{margin-bottom:3rem!important;}
+  @media print{
+  *,:after,:before{text-shadow:none!important;box-shadow:none!important;}
+  a:not(.btn){text-decoration:underline;}
+  img{page-break-inside:avoid;}
+  h2,p{orphans:3;widows:3;}
+  h2{page-break-after:avoid;}
+  .container{min-width:992px!important;}
+  }
+  .opacity-8{opacity:.8!important;}
+  [class*=shadow]{transition:all .15s ease;}
+  .avatar{color:#fff;background-color:#adb5bd;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;border-radius:50%;height:48px;width:48px;}
+  .card{position:relative;}
+  .card.card-plain{background:transparent;box-shadow:none;border:none;}
+  .mx-auto{margin-right:auto!important;}
+  .mx-auto{margin-left:auto!important;}
+  p{font-size:2rem;}
+  .p1{font-size:1.5rem !important;}
+  p{font-weight:300;line-height:1.7;}
+  .card-blog{overflow:hidden;}
+  .card-blog.card-plain .card-body{padding:15px 0;}
+  .card-blog .card-image .img{width:100%;background-size:cover;background-position:50% 50%;}
+  .card-body .card-footer{position:relative;bottom:0;left:0;background-color:transparent!important;width:100%;color:#fff;padding:5px 0 0!important;border-top:none!important;}
+  .stats{font-size:.8em;}
+  .stats i{margin-right:5px;position:relative;top:2px;}
+  .stats.stats-right{float:right;line-height:30px;position:relative;}
+  .author{position:relative;display:inline-block;text-align:left;}
+  .author .avatar{width:30px;height:30px;overflow:hidden;border-radius:50%;margin-right:5px;}
+  .card{margin-bottom:30px;box-shadow:0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);border:0;}
+  .card .card-title{margin-bottom:.5rem;}
+  .card .card-footer{background-color:#fff;}
+  .sections-page [class*=blogs-]{padding:80px 0;}
+  .blogs-5 .card .card-footer .author,.blogs-5 .card .card-footer .stats{color:#172b4d;}
+</style>
+
+</head>
+
+<h1><%=place.name%></h1>
+<%if(place){%>
+<br>
+<h2 data-toggle="modal" data-target="#about" >about</h2>
+    <%if(place.about){%>
+      <p><%=place.about%></p>
+    <%}%>
+    <h2 data-toggle="modal" data-target="#history">History</h2>
+        <%if(place.history){%>
+          <p><%=place.history%></p>
+        <%}%>
+
+
+<br>
+<a data-toggle="modal" data-target="#thingstodo"> <h2>Things to do</h2></a>
+    <%if(place.thingstodo.length!=0){%>
+        <section class="blogs-5">
+                <div class="container">
+                  <div class="row">
+
+                    <div class="col-md-10 mx-auto">
+                      <div class="row">
+                        <%for(var i=0;i<place.thingstodo.length;i++){%>
+
+                        <div class="col-lg-4 col-md-6">
+                          <div class="card card-blog card-plain">
+                            <div class="card-image shadow">
+                              <a href="javascript:;">
+                                <img class="img rounded" style="height:150px" src="<%=place.thingstodo[i].img%>">
+                              </a>
+                            </div>
+                            <div class="card-body">
+                              <h4 class="card-title">
+                                <a href="javascript:;"><%=place.thingstodo[i].title%></a>
+                              </h4>
+                              <p class="card-description p1">
+                                <%=place.thingstodo[i].description%>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+  <%}%>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </section>
+
+
+    <%}%>
+
+
+
+
+    <%}%>
+
+
+    <div class="modal fade bd-example-modal-sm" id="thingstodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <form method="post" action="/admin/thingstodo?id=<%= place.id %>" method="post" enctype="multipart/form-data" >
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Things to do</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+                <div class=row>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+                        </div>
+                        <input class="form-control" name="title" id="title" placeholder="Title" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="input-group input-group-merge">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+              </div>
+              <textarea name="description" rows="8" cols="60"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="fileUpload blue-btn btn width100">
+    <span>Upload your Location Picture</span>
+    <input type="file" name="userPhoto" id="newsimg" class="uploadlogo" />
+    </div>
+          </div>
+        </div>
+
+
+      </div>
+
+                <input type="submit" id="submit" class="btn btn-sm btn-default float-right" style="background-color: #2DCE89;border-color:#2DCE89">
+
+            </div>
+        </div>
+        </div>
+      </div>
+    </form>
+    </div>
+
+
+    <div class="modal fade bd-example-modal-lg" id="about" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <form method="post" action="/admin/about?id=<%= place.id %>" method="post" enctype="multipart/form-data" >
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">About</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="input-group input-group-merge">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+              </div>
+              <textarea name="about" rows="8" cols="100"><%=place.about%></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+                <input type="submit" id="submit" class="btn btn-sm btn-default float-right" style="background-color: #2DCE89;border-color:#2DCE89">
+
+            </div>
+        </div>
+        </div>
+      </div>
+    </form>
+    </div>
+
+
+    <div class="modal fade bd-example-modal-lg" id="history" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <form method="post" action="/admin/history?id=<%= place.id %>" method="post" enctype="multipart/form-data" >
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">History</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="input-group input-group-merge">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+              </div>
+              <textarea name="history" rows="8" cols="100"><%=place.history%></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+                <input type="submit" id="submit" class="btn btn-sm btn-default float-right" style="background-color: #2DCE89;border-color:#2DCE89">
+
+            </div>
+        </div>
+        </div>
+      </div>
+    </form>
+    </div>

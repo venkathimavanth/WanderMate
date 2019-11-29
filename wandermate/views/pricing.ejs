@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>
+    API Pricing
+  </title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
+  <!-- Extra details for Live View on GitHub Pages -->
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../reddy/pricing.css">
+  <!-- <link href="https://demos.creative-tim.com/material-kit-pro/assets/css/material-kit.min.css?v=2.2.0" rel="stylesheet"> -->
+  <!-- Google Tag Manager -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-NKDMSK6"></script><script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
+  </script>
+  <style>
+  .btn-leaf{
+    background-color: #fff;
+    color:#5DAF36;
+  }
+  .btn-leaf:hover{
+    background-color: #fff;
+    color:#5DAF36;
+  }
+  </style>
+  <!-- https://demos.creative-tim.com/material-kit-pro/assets/img/bg2.jpg -->
+  <!-- End Google Tag Manager -->
+<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/38/11/intl/en_gb/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/38/11/intl/en_gb/util.js"></script></head>
+<body class="pricing sidebar-collapse" style="overflow-x:hidden">
+  <div class="container" id="errorlist" style="display:none"></div>
+  <div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiS4_zT1-rlAhX76eAKHXwVDUEQjRx6BAgBEAQ&url=https%3A%2F%2Fwallpaperscraft.com%2Fdownload%2Fgarden_trees_lawn_148789%2F3840x2160&psig=AOvVaw2dR8ejDv8Aa8ItKc3r-YwV&ust=1573854542074164'); transform: translate3d(0px, 678.333px, 0px);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+          <h1 class="title">Let's get started</h1>
+          <h4>To get started, you will need to choose a plan for your needs. You can opt in for the monthly of annual options and go with one fo the three listed below.</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="pricing-2">
+        <div class="row">
+          <div class="col-md-6 ml-auto mr-auto text-center">
+            <ul class="nav nav-pills" id="prices">
+              <li class="nav-item">
+                <a class="nav-link active show" href="#monthly" data-toggle="tab">Monthly</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#yearly" data-toggle="tab">Yearly</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <div class="tab-content">
+        <div class="tab-pane show active" id ="monthly">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card card-pricing card-plain">
+                <div class="card-body">
+                  <h6 class="card-category text-info">Guide Only</h6>
+                  <h1 class="card-title"><small>&#8377;</small>0<small>/mo</small></h1>
+                  <ul>
+                    <li><b>1</b> Project</li>
+                    <li><b>5</b> Team Members</li>
+                    <li><b>55</b> Personal Contacts</li>
+                    <li><b>5.000</b> Messages</li>
+                  </ul>
+                  <a class="btn btn-rose btn-raised btn-round" onclick="request('guide-only','0')">
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-pricing card-raised bg-rose">
+                <div class="card-body">
+                  <h6 class="card-category text-info">Trending News</h6>
+                  <h1 class="card-title"><small>&#8377;</small>300<small>/mo</small></h1>
+                  <ul>
+                    <li><b>500</b> Projects</li>
+                    <li><b>50</b> Team Members</li>
+                    <li><b>125</b> Personal Contacts</li>
+                    <li><b>15.000</b> Messages</li>
+                  </ul>
+                  <a class="btn btn-white btn-raised btn-round"  onclick="request('news','300')">
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-pricing card-plain">
+                <div class="card-body">
+                  <h6 class="card-category text-info">Tour Plans</h6>
+                  <h1 class="card-title"><small>&#8377;</small>0<small>/mo</small></h1>
+                  <ul>
+                    <li><b>1000</b> Projects</li>
+                    <li><b>100</b> Team Members</li>
+                    <li><b>550</b> Personal Contacts</li>
+                    <li><b>50.000</b> Messages</li>
+                  </ul>
+                  <a class="btn btn-rose btn-raised btn-round"  onclick="request('tour-plans','0')">
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id ="yearly">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card card-pricing card-plain">
+                  <div class="card-body">
+                    <h6 class="card-category text-info">Guide Only</h6>
+                    <h1 class="card-title"><small>&#8377;</small>1<small>/mo</small></h1>
+                    <ul>
+                      <li><b>1</b> Project</li>
+                      <li><b>5</b> Team Members</li>
+                      <li><b>55</b> Personal Contacts</li>
+                      <li><b>5.000</b> Messages</li>
+                    </ul>
+                    <a class="btn btn-rose btn-raised btn-round" onclick="request('guide-only','0')">
+                      Get Started
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card card-pricing card-raised bg-rose">
+                  <div class="card-body">
+                    <h6 class="card-category text-info">Trending News</h6>
+                    <h1 class="card-title"><small>&#8377;</small>1500<small>/mo</small></h1>
+                    <ul>
+                      <li><b>500</b> Projects</li>
+                      <li><b>50</b> Team Members</li>
+                      <li><b>125</b> Personal Contacts</li>
+                      <li><b>15.000</b> Messages</li>
+                    </ul>
+                    <a class="btn btn-white btn-raised btn-round"  onclick="request('news','1500')">
+                      Get Started
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card card-pricing card-plain">
+                  <div class="card-body">
+                    <h6 class="card-category text-info">Tour Plans</h6>
+                    <h1 class="card-title"><small>&#8377;</small>0<small>/mo</small></h1>
+                    <ul>
+                      <li><b>1000</b> Projects</li>
+                      <li><b>100</b> Team Members</li>
+                      <li><b>550</b> Personal Contacts</li>
+                      <li><b>50.000</b> Messages</li>
+                    </ul>
+                    <a class="btn btn-rose btn-raised btn-round"  onclick="request('tour-plans','0')">
+                      Get Started
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div id="buying" style="display:none">
+      <div class="container">
+        <h3 style="margin-left:30%;padding-bottom:2%">Please enter your E-mail ID</h3>
+        <form>
+          <div class="row">
+            <div class="col-12" style="margin-left:30%;padding-bottom:2%">
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" style="width:25%">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12" style="margin-left:29%;padding-bottom:2%">
+              <button type="button" name="temporary" id="verify" class="btn btn-round btn-leaf">Check</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="plan" id="plan" style="width:25%" hidden>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="type" id="type" style="width:25%" hidden>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="cost" id="cost" style="width:25%" hidden>
+          </div>
+        </form>
+      </div>
+    </div>
+      <hr>
+      <div class="features-2">
+        <div class="text-center">
+          <h3 class="title">Frequently Asked Questions</h3>
+        </div>
+        <div class="row">
+          <div class="col-md-4 ml-auto">
+            <div class="info info-horizontal">
+              <div class="icon icon-info">
+                <i class="material-icons">card_membership</i>
+              </div>
+              <div class="description">
+                <h4 class="info-title">Can I cancel my subscription?</h4>
+                <p>Yes, you can cancel and perform other actions on your subscriptions via the My Account page. </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mr-auto">
+            <div class="info info-horizontal">
+              <div class="icon icon-success">
+                <i class="material-icons">card_giftcard</i>
+              </div>
+              <div class="description">
+                <h4 class="info-title">Is there any discount for an annual subscription?</h4>
+                <p>Yes, we offer a 40% discount if you choose annual subscription for any plan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 ml-auto">
+            <div class="info info-horizontal">
+              <div class="icon icon-success">
+                <i class="material-icons">attach_money</i>
+              </div>
+              <div class="description">
+                <h4 class="info-title">Which payment methods do you take?</h4>
+                <p>WooCommerce comes bundled with PayPal (for accepting credit card and PayPal account payments), BACS, and cash on delivery for accepting payments. </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mr-auto">
+            <div class="info info-horizontal">
+              <div class="icon icon-rose">
+                <i class="material-icons">question_answer</i>
+              </div>
+              <div class="description">
+                <h4 class="info-title">Any other questions we can answer?</h4>
+                <p>We are happy to help you. Contact us.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <nav class="float-left">
+        <ul>
+          <li>
+            <a href="https://www.creative-tim.com">
+              Creative Tim
+            </a>
+          </li>
+          <li>
+            <a href="https://creative-tim.com/presentation">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="http://blog.creative-tim.com">
+              Blog
+            </a>
+          </li>
+          <li>
+            <a href="https://www.creative-tim.com/license">
+              Licenses
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright float-right">
+        ©
+        <script>
+          document.write(new Date().getFullYear())
+        </script>2019, made with <i class="material-icons">favorite</i> by
+        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+      </div>
+    </div>
+  </footer>
+  <!--   Core JS Files   -->
+  <script src="https://demos.creative-tim.com/material-kit-pro/assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="https://demos.creative-tim.com/material-kit-pro/assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="https://demos.creative-tim.com/material-kit-pro/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+  <script src="https://demos.creative-tim.com/material-kit-pro/assets/js/plugins/moment.min.js"></script>
+  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+  <script src="https://demos.creative-tim.com/material-kit-pro/assets/js/material-kit.min.js?v=2.2.0" type="text/javascript"></script>
+  <script>
+
+  $(document).ready(function(){
+    $('#prices a').click(function(e){
+      e.preventDefault();
+      $(this).tab('show');
+    });
+});
+  </script>
+  <script type="text/javascript">
+    function request(type,price){
+      console.log('hello there...')
+      var main_elem = document.getElementById("buying")
+      var form = main_elem.getElementsByTagName('form')[0]
+      console.log(form.elements['temporary'])
+      var name = type.concat(',',price)
+      form.elements['type'].value = type
+      form.elements['cost'].value = price
+      main_elem.style.display = 'block'
+      // if(main_elem.forms[0])
+      // {
+      //     console.log('Hi there')
+      //     main_elem.forms.remove()
+      // }
+      // else
+      // {
+      //   console.log('Bye there')
+      //   var form = document.createElement('form')
+      //   form.setAttribute('method','POST')
+      //   var div1 = document.createElement('div')
+      //   div1.className="form-group"
+      //   var input1 = document.createElement('input')
+      //   input1.setAttribute('type','email')
+      //   input1.setAttribute('id','email')
+      //   input1.setAttribute('name','email')
+      //   input1.setAttribute('class','form-control')
+      //   input1.setAttribute('placeholder','Email')
+      //   div1.appendChild(input1)
+      //   var input2 = document.createElement('input')
+      //   input2.setAttribute('type','submit')
+      //   input2.setAttribute('id','check')
+      //   input2.setAttribute('name',name)
+      //   form.appendChild(div1)
+      //   form.appendChild(input2)
+      //   main_elem.appendChild(form)
+      // }
+    }
+</script>
+<script type="text/javascript">
+        $('#verify').click(function (){
+              console.log('heloo');
+              console.log($("ul.nav-pills > li > a").attr('href'));
+              console.log($(this).attr('name').split(',')[0]);
+              var plan1 = $("ul.nav-pills > li > a").attr('href').replace("#","");
+              var main_elem = document.getElementById("buying");
+              var form = main_elem.getElementsByTagName('form')[0];
+              form.elements['plan'].value = plan1;
+              $.ajax({
+              url: '/pricing/API',
+              method: 'POST',
+              cache: false,
+              data: {
+                email: $('#email').val(),
+                plan: $("ul.nav-pills > li > a").attr('href').replace("#", ""),
+                type: $('#type').val(),
+                cost:$('#cost').val()
+              },
+              success: function () {
+                $('#errorlist').css('display', 'none');
+                alert('Your subscription was successful. You\'ve been sent a mail');
+              },
+              error: function(data){
+                console.log(data['responseJSON']['0'].msg);
+                var errorlist = document.getElementById('errorlist');
+                errorlist.style.display = 'block';
+                var div = document.createElement('div');
+                div.className = 'row';
+                var col = document.createElement('div');
+                col.className = 'alert alert-danger';
+                col.innerHTML = '<li>' + data['responseJSON']['0'].msg + '</li>';
+                div.appendChild(col);
+                errorlist.appendChild(div);
+              }
+          });
+        });
+      </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <title>Login</title>
+    <link rel="stylesheet" href="/signup/style.css">
+  </head>
+  <body>
+    <br><br><br>
+
+<form method="post"  enctype="multipart/form-data">
+
+<% include ./partials/messages.ejs %>
+  <div class="container register">
+                  <div class="row">
+                      <div class="col-md-3 register-left">
+                        <div id="profile-container">
+<image id="profileImage" src="data:image/png;base64,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" />
+
+</div>
+<input id="imageUpload" type="file"
+name="userPhoto" placeholder="Photo" required="" capture>
+                          <!-- <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/> -->
+                          <!-- <input type="file" name="userPhoto" value="fileupload" id="fileupload"> -->
+
+                          <h3>Welcome</h3>
+                          <p>You are 30 seconds away from a memorable trip</p>
+                          <a href="/users/login"><input type="button" name="" value="Login"/></a><br/>
+                      </div>
+                      <div class="col-md-9 register-right">
+                          <div class="tab-content" id="myTabContent">
+                              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                  <h3 class="register-heading">Register as User</h3>
+                                  <div class="row register-form">
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                            <input type="text" class="form-control" name="name" placeholder="Name" value="<%= typeof name != 'undefined' ? name:'' %>"   required />
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="text" class="form-control" name="username" placeholder="Username" value="<%= typeof username != 'undefined' ? username:'' %>" required />
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="password" class="form-control" name="password" placeholder="Password" suggested= "new-password" value="<%= typeof password != 'undefined' ? password:'' %>" required />
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="password" class="form-control" name="password1" placeholder="Confirm Password" suggested= "new-password" value="<%= typeof password1 != 'undefined' ? password1:'' %>" required />
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                            <input type="email" name="email" class="form-control" placeholder="Email" value="<%= typeof email != 'undefined' ? email:'' %>" required />
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="text" name="phone_number" class="form-control" placeholder="Phone Number" required value="<%= typeof phone_number != 'undefined' ? phone_number:'' %>" />
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="text" name="city"  class="form-control" placeholder="City" value="<%= typeof city != 'undefined' ? city:'' %>" required />
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="text" name="state" class="form-control" placeholder="State" value="<%= typeof state != 'undefined' ? state:'' %>" required />
+
+                                          </div>
+
+                                          <input type="submit" class="btnRegister"  name='button' value="Register"/>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+<!--
+  <input type="text" name="name" placeholder="Name" value="<%= typeof name != 'undefined' ? name:'' %>"   required />
+  <input type="text" name="username" placeholder="Username" value="<%= typeof username != 'undefined' ? username:'' %>" required />
+  <input type="password" name="password" placeholder="Password" suggested= "new-password" value="<%= typeof password != 'undefined' ? password:'' %>" required />
+  <input type="password" name="password1" placeholder="Confirm Password" suggested= "new-password" value="<%= typeof password1 != 'undefined' ? password1:'' %>" required />
+  <input type="email" name="email" placeholder="Email" value="<%= typeof email != 'undefined' ? email:'' %>" required />
+  <input type="text" name="phone_number" placeholder="Phone Number" required value="<%= typeof phone_number != 'undefined' ? phone_number:'' %>" />
+  <input type="text" name="city" placeholder="City" value="<%= typeof city != 'undefined' ? city:'' %>" required />
+  <input type="text" name="state" placeholder="State" value="<%= typeof state != 'undefined' ? state:'' %>" required />
+  <input type="file" name="userPhoto" value="fileupload" id="fileupload"> <label for="fileupload"> Select a file to upload</label>
+
+
+<button type="submit" name="button">submit</button> -->
+</form>
+<script type="text/javascript">
+$("#profileImage").click(function(e) {
+$("#imageUpload").click();
+});
+
+function fasterPreview( uploader ) {
+if ( uploader.files && uploader.files[0] ){
+$('#profileImage').attr('src',
+window.URL.createObjectURL(uploader.files[0]) );
+}
+}
+
+$("#imageUpload").change(function(){
+fasterPreview( this );
+});
+
+</script>
+
+  </body>
+</html>

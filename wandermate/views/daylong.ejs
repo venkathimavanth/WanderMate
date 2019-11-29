@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="https://argon-dashboard-pro-nodejs.creative-tim.com/css/argon.min.css?v=1.0.0"> -->
+<link rel="stylesheet" href="../../css/singleplace.css">
+  </head>
+  <body>
+<form  method="post" enctype="multipart/form-data">
+
+
+      <div class="row" style="width:100%;margin-top:10%;">
+        <div class="col-lg-6" style="margin-left:20%">
+          <div class="card-wrapper">
+            <!-- Input groups -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header">
+                <h3 class="mb-0">Place details</h3>
+              </div>
+              <!-- Card body -->
+              <div class="card-body">
+
+                  <!-- Input groups with icon -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="input-group input-group-merge">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+                          </div>
+                          <input class="form-control" name="cost" placeholder="Cost" type="text">
+                          <div class="input-group-append">
+                            <span class="input-group-text"><small class="font-weight-bold">USD</small></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="input-group input-group-merge">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-globe"></i></span>
+                          </div>
+                          <input class="form-control" placeholder="City" name="city" type="text">
+                        </div>
+                      </div>
+
+                  </div>
+
+              </div>
+
+                  <div class="row">
+                    <div class="col-6 col-md-6">
+                      <div class="form-group">
+                        <div class="input-group input-group-merge">
+                          <input class="form-control" name="opentime"  type="time" list="limittimeslist" step="600">
+                          <datalist id="limittimeslist">
+                            <option open time</option>
+                              <option value="00:00"></option>
+                              <option value="00:30"></option>
+                              <option value="01:00"></option>
+                              <option value="01:30"></option>
+                              <option value=02:00></option>
+                              <option value=02:30></option>
+                              <option value=03:00></option>
+                              <option value=03:30></option>
+                              <option value=04:00></option>
+                              <option value=04:30></option>
+                              <option value=05:00></option>
+                              <option value=05:30></option>
+                              <option value=06:00></option>
+                              <option value=06:30></option>
+                              <option value=07:00></option>
+                              <option value=07:30></option>
+                              <option value=08:00></option>
+                              <option value=08:30></option>
+                              <option value=09:00></option>
+                              <option value="09:30"></option>
+                              <option value="10:00"></option>
+                              <option value="10:30"></option>
+                              <option value="11:00"></option>
+                              <option value="11:30"></option>
+                              <option value="12:00"></option>
+                              <option value="12:30"></option>
+                              <option value="13:00"></option>
+                              <option value="13:30"></option>
+                              <option value="14:00"></option>
+                              <option value="14:30"></option>
+                              <option value="15:00"></option>
+                              <option value="15:30"></option>
+                              <option value="16:00"></option>
+                              <option value="16:30"></option>
+                              <option value="17:00"></option>
+                              <option value="17:30"></option>
+                              <option value="18:00"></option>
+                              <option value="18:30"></option>
+                              <option value="19:00"></option>
+                              <option value="19:30"></option>
+                              <option value="20:00"></option>
+                              <option value="20:30"></option>
+                              <option value="21:00"></option>
+                              <option value="21:30"></option>
+                              <option value="22:00"></option>
+                              <option value="22:30"></option>
+                              <option value="23:00"></option>
+                              <option value="23:30"></option>
+
+
+
+           </datalist>
+
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                      <div class="form-group">
+                        <div class="input-group input-group-merge">
+                          <input class="form-control" name="closetime"  type="time" list="limittimeslist" step="600">
+                          <datalist id="limittimeslist">
+                            <option open time</option>
+                              <option value="00:00"></option>
+                              <option value="00:30"></option>
+                              <option value="01:00"></option>
+                              <option value="01:30"></option>
+                              <option value=02:00></option>
+                              <option value=02:30></option>
+                              <option value=03:00></option>
+                              <option value=03:30></option>
+                              <option value=04:00></option>
+                              <option value=04:30></option>
+                              <option value=05:00></option>
+                              <option value=05:30></option>
+                              <option value=06:00></option>
+                              <option value=06:30></option>
+                              <option value=07:00></option>
+                              <option value=07:30></option>
+                              <option value=08:00></option>
+                              <option value=08:30></option>
+                              <option value=09:00></option>
+                              <option value="09:30"></option>
+                              <option value="10:00"></option>
+                              <option value="10:30"></option>
+                              <option value="11:00"></option>
+                              <option value="11:30"></option>
+                              <option value="12:00"></option>
+                              <option value="12:30"></option>
+                              <option value="13:00"></option>
+                              <option value="13:30"></option>
+                              <option value="14:00"></option>
+                              <option value="14:30"></option>
+                              <option value="15:00"></option>
+                              <option value="15:30"></option>
+                              <option value="16:00"></option>
+                              <option value="16:30"></option>
+                              <option value="17:00"></option>
+                              <option value="17:30"></option>
+                              <option value="18:00"></option>
+                              <option value="18:30"></option>
+                              <option value="19:00"></option>
+                              <option value="19:30"></option>
+                              <option value="20:00"></option>
+                              <option value="20:30"></option>
+                              <option value="21:00"></option>
+                              <option value="21:30"></option>
+                              <option value="22:00"></option>
+                              <option value="22:30"></option>
+                              <option value="23:00"></option>
+                              <option value="23:30"></option>
+
+
+
+           </datalist>
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                    <button type="submit" class="btn btn-success" name="button">create trip</button>
+                    </div>
+                    <div class="col">
+                      <div class="fileUpload blue-btn btn width100">
+  <span>Upload your Location Picture</span>
+  <input type="file" name="photo" class="uploadlogo" />
+</div>
+
+                    </div>
+
+                  </div>
+                  <!-- Input groups with icon -->
+            </div>
+            <!-- Dropdowns -->
+            <!-- Datepicker -->
+            <!-- Text editor -->
+          </div>
+        </div>
+</form>
+<script type="text/javascript">
+$(document).ready(function($) {
+
+// Upload btn on change call function
+$(".uploadlogo").change(function() {
+  var filename = readURL(this);
+  $(this).parent().children('span').html(filename);
+});
+
+// Read File and return value
+function readURL(input) {
+  var url = input.value;
+  var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+  if (input.files && input.files[0] && (
+    ext == "png" || ext == "jpeg" || ext == "jpg" || ext == "gif" || ext == "pdf"
+    )) {
+    var path = $(input).val();
+    var filename = path.replace(/^.*\\/, "");
+    // $('.fileUpload span').html('Uploaded Proof : ' + filename);
+    return "Uploaded file : "+filename;
+  } else {
+    $(input).val("");
+    return "Only image/pdf formats are allowed!";
+  }
+}
+// Upload btn end
+
+});
+</script>
+
+  </body>
+</html>

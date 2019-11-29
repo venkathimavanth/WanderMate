@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+
+
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Wandermate</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav" style="margin-left:60%">
+        <li class="nav-item">
+          <a class="nav-link" href="/guides/guideprofile">home</a>
+        </li>
+
+        <li  class="nav-item dropdown" id='dshow'>
+          <a class="nav-link" href="#" role="button"   id="tog" data-toggle="dropdown" data-target="notifications" aria-haspopup="true" aria-expanded="false">
+            <i class="ni ni-bell-55"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden" id="dshow1">
+        <% if(user.notifications) {%>
+            <div class="px-3 py-3">
+              <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"><%=user.notifications.length%></strong> notifications.</h6>
+            </div>
+
+            <div class="list-group list-group-flush" id="notifications">
+
+        <% for(i=0;i < user.notifications.length;i++ ){ %>
+              <a href="#!" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <img alt="Image placeholder" src="<%=user.notifications[i].img %>" class="avatar rounded-circle">
+                  </div>
+                  <div class="col ml--2">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div>
+                        <h4 class="mb-0 text-sm"><%=user.notifications[i].username%></h4>
+                      </div>
+                      <div class="text-right text-muted">
+                        <small></small>
+                      </div>
+                    </div>
+                    <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
+                  </div>
+                </div>
+              </a>
+                <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+              <%} %>
+
+            </div>
+              <%}else{ %>
+                <p>no new notifications</p>
+              <%}%>
+
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="logout">logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<%- body %>
+  </body>
+
+</html>

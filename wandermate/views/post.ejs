@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/styles/blog/blog.css">
+  </head>
+  <body style="font-family: 'Muli', 'Helvetica', Arial, sans-serif;" onload="editorFunc(<%= blog[0].text %>)">
+    <div class="parallax">
+    </div>
+    <center>
+       <p style="margin-top:-17%;margin-bottom:15%;color:white;font-size:40px;"><%=blog[0].heading%></p>
+  </center>
+      <div style="width:100%;" id="facilities" >
+      <div>
+        <div style="width:80%;float:left">
+          <div style="padding-left:15%;padding-right:10%;padding-top:3.5%">
+            <section class="blogs-1">
+                  <div id="editor"></div>
+            </section>
+        </div>
+      </div>
+        <div style="width:20%;float:left" >
+          <div style="margin-left:-30%;margin-right:15%;">
+
+
+
+
+              <div class="card card-profile" data-background="cover" style="border:none;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-top:12%">
+                <img style="height:75%" alt="cover" class="img pattern pattern-top" src="/styles/blog/card.jpg">
+                <div class="card-header" >
+                  <div class="card-avatar">
+                  <div >
+                    <img style="width:15vh;height:15vh;margin-top:10%" class="img img-raised rounded-circle" src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                  </div>
+                </div>
+              </div>
+              <div class="card-body pt-0" >
+                <div class="text-center">
+                  <h5 class="h5 mt-3"> <%=blog[0].name%></h5>
+                </div>
+
+
+
+                <div class="card-profile-stats d-flex justify-content-center" style="margin-top:-4%">
+                  <div>
+
+                    <span class="heading" style="font-size:20px;"> <%=likes%> </span>
+                    <span class="description" style="font-size:15px"> Likes </span>
+
+                  </div>
+                  <div>
+
+                    <span class="heading" style="font-size:20px;"> <%=posts%> </span>
+                    <span class="description" style="font-size:15px"> Posts </span>
+                  </div>
+                </div>
+
+
+                    <a href="/blog/<%=blog[0]._id%>/all" style="" class="btn btn-lg btn-success btn-block" type="button"> Check Posts </a>
+
+              </div>
+            </div>
+
+            <h2>Most Liked</h2>
+
+
+
+<div style="padding-bottom:4%">
+
+
+
+
+  <div style="border:none;box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1), 0 6px 15px 0 rgba(0, 0, 0, 0.19);%">
+  <div class="card-body">
+    <h4 class="card-title">
+      <a href="/blog/<%=first._id%>">
+         <%= first.heading %> </a>
+    </h4>
+    <p class="card-description" >
+      <%= first.text.substring(0,100) %>...
+    </p>
+     <div class="card-footer">
+       <div class="author">
+         <img alt="..." style="width:5vh;height:5vh" class="avatar img-raised" src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+         <span style="font-color:#d1d2d3"><%= first.name%>  </span>
+       </div>
+       <div class="stats stats-right opacity-8">
+         <i class="ni ni-watch-time"></i>
+          5 min read
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+  <div style="border:none;box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1), 0 6px 15px 0 rgba(0, 0, 0, 0.19);%">
+  <div class="card-body">
+    <h4 class="card-title">
+      <a href="/blog/<%=second._id%>">
+         <%= second.heading%> </a>
+    </h4>
+    <p class="card-description" >
+      <%= second.text.substring(0,100) %>...
+    </p>
+     <div class="card-footer">
+       <div class="author">
+         <img alt="..." style="width:5vh;height:5vh" class="avatar img-raised" src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+         <span style="font-color:#d1d2d3"> <%= second.name %> </span>
+       </div>
+       <div class="stats stats-right opacity-8">
+         <i class="ni ni-watch-time"></i>
+          5 min read
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+      function editorFunc(x){
+        var delta = x;
+        console.log(x)
+        var text_editor = new Quill('#editor', {
+          modules: {
+            toolbar: false,
+          },
+        });
+        text_editor.setContents(delta);
+
+      };
+    </script>
+
+  </body>
+</html>
