@@ -13,6 +13,8 @@ var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 
 const Placeinfo=require('../models/Placeinfo');
+const Guide=require('../models/Guide');
+const User=require('../models/User');
 
 router.get('/dashboard',(req,res)=>{
 
@@ -153,5 +155,150 @@ Placeinfo.findOne({_id:req.query.id})
 })
 });
 
+router.post('/addcity',(req,res)=>{
+  console.log(req.body)
+  console.log(req.files)
+  var bgimgs=[]
+  if(req.files.length!=0){
+    for(var i=0;i<req.files.length;i++){
+      bgimgs.push('/uploads/'+req.files[i].filename)
+    }
+
+  }
+let newPlace=new Placeinfo()
+
+  newPlace.name=req.body.city,
+  newPlace.bgimgs=bgimgs,
+  newPlace.history=' ',
+  newPlace.about=' ',
+  newPlace.thingstodo=[]
+
+
+newPlace.save()
+.then(x=>{
+  res.redirect('cities')
+})
+.catch(
+  err=>{
+    console.log(err)
+  }
+)
+
+
+
+
+});
+
+router.post('/images',(req,res)=>{
+  console.log(req.body)
+
+  console.log(req.files)
+  var bgimgs=[]
+  if(req.files.length!=0){
+    for(var i=0;i<req.files.length;i++){
+      bgimgs.push('/uploads/'+req.files[i].filename)
+    }
+
+  }
+Placeinfo.findOne({_id:req.body.city})
+.then(x=>{
+  var bgimgs=x.bgimgs
+  if(req.files.length!=0){
+    for(var i=0;i<req.files.length;i++){
+      bgimgs.push('/uploads/'+req.files[i].filename)
+    }
+
+  }
+  x.bgimgs=bgimgs
+  x.save()
+  .then(a=>{
+    res.redirect('cityinfo?id='+req.body.city)
+  })
+  .catch(err=>
+  {
+    console.log(err)
+    res.redirect('cities')
+  })
+})
+
+
+
+});
+
+router.post('/delimgs',(req,res)=>{
+  console.log(req.body)
+
+  var bgimgs=[]
+Placeinfo.findOne({_id:req.body.place})
+.then(x=>{
+  var bgimgs=x.bgimgs
+  if(req.body.length!=0){
+    console.log('bingo')
+
+      for (var j = bgimgs.length-1; j >=0 ;--j) {
+        if(bgimgs[j]==req.body.img){
+
+          var k=bgimgs.splice(j,1)
+
+          console.log(k);
+        }
+      }
+
+
+
+  }
+  x.bgimgs=bgimgs
+  x.save()
+  .then(a=>{
+    res.redirect('cityinfo?id='+req.body.place)
+  })
+  .catch(err=>
+  {
+    console.log(err)
+    res.redirect('cities')
+  })
+})
+
+
+
+});
+
+
+
+router.post('/delthings',(req,res)=>{
+  console.log(req.body)
+
+  var bgimgs=[]
+
+  Placeinfo.updateOne({'_id':req.body.place},{$pull:{thingstodo:{$elemMatch:{_id:req.body.id}}}})
+  .then(x=>{
+    res.redirect('/admin/cityinfo?id='+req.body.place)
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+
+
+});
+
+router.get('/allusers',(req,res)=>{
+User.find({})
+.then(x=>{
+  res.render('allusers',{users:x,layout:'adminlayout'});
+})
+.catch(err=>{
+  console.log(err)
+})
+});
+
+router.get('/allguides',(req,res)=>{
+Guide.find({})
+.then(x=>{
+  res.render('allguides',{users:x,layout:'adminlayout'});
+})
+.catch(err=>{
+  console.log(err)
+})
+});
 
 module.exports = router;
