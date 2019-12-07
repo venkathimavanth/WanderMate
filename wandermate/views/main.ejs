@@ -1392,7 +1392,7 @@
              </button>
              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                <a style="padding-top:2px;" class="dropdown-item" href="/users">Profile</a>
-               <a style="padding-top:2px;" class="dropdown-item" href="#">WanderList</a>
+               <a style="padding-top:2px;" class="dropdown-item" href="/wanderlist/<%= user.username %>">WanderList</a>
                <a style="padding-top:2px;" class="dropdown-item" href="/users/logout">Logout</a>
              </div>
          </li>
@@ -1652,124 +1652,81 @@
         <p class="news">PLACES TO VISIT</p>
         <div class="col-9">
           <table>
-            <tr id="1">
-              <td style="padding-right:0.75%;">
-                <div class="card1 text-center" style="background-size:cover;background-image:url('/uploads/places/charminar.jpg');">
-                  <h4 class="title title-modern">Charminar</h4>
-
-                  <div class="content">
-                    <div class="price">
-                      <h6>From</h6>
-                      <h4>2.799<b class="currency">&#8377;</b></h4>
+            <tr id="p<%= 1 %>">
+              <% for(var j=0;j<3;j++){ %>
+                <td style="padding-right:0.75%;">
+                  <div class="card1 text-center" style="background-size:cover;background-image:url(<%= places.spots[j].img %>);">
+                    <h4 class="title title-modern"><%= places.spots[j].name %></h4>
+                    <span class="dropdown" style="float:right;z-index:3;margin-top:-15%;">
+                      <button style="color:white;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-heart" style="color:#f783ac;font-size:22px;margin-top:-5%;"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% for(var i=0;i < boards.length;i++){ %>
+                          <a style="padding-top:2px;" class="dropdown-item"><%= boards[i].boardname %></a>
+                        <% } %>
+                      </div>
+                    </span>
+                    <div class="content">
+                      <div class="price">
+                        <h6>From</h6>
+                        <h4>2.799<b class="currency">&#8377;</b></h4>
+                      </div>
+                      <p class="description"><%= places.spots[j].description %></p>
                     </div>
-                    <p class="description">When selling products it's always a good idea to go with commanding fonts that are good at showing authority and security.</p>
-                  </div>
-                  <div class="filter"></div>
-                  <div class="footer btn-center">
-                    <button class="btn-neutral btn-round btn-fill">
-                      <a href="/place/form?id=charminar">Book Guide!</a></button>
-                  </div>
-                </div>
-              </td>
-              <td style="padding-right:0.75%;">
-                <div class="card1 text-center" style="background-size:cover;background-image:url('/uploads/places/golconda.jpg');">
-                  <h4 class="title title-modern">Golconda Fort</h4>
-
-                  <div class="content">
-                    <div class="price">
-                      <h6>From</h6>
-                      <h4>2.799<b class="currency">&#8377;</b></h4>
+                    <div class="filter"></div>
+                    <div class="footer btn-center">
+                      <button class="btn-neutral btn-round btn-fill">
+                        <a href="/place/form?id=charminar">Book Guide!</a></button>
                     </div>
-                    <p class="description">When selling products it's always a good idea to go with commanding fonts that are good at showing authority and security.</p>
                   </div>
-                  <div class="filter"></div>
-                  <div class="footer btn-center">
-                    <button class="btn-neutral btn-round btn-fill">
-                      <a href="/place/form?id=golconda">Book Guide!</a></button>                  </div>
-                </div>
-              </td>
-              <td style="padding-right:0.75%;">
-                <div class="card1 text-center" style="background-size:cover;background-image:url('/uploads/places/ramoji.jpg');">
-                  <h4 class="title title-modern">Ramoji Film City</h4>
-
-                  <div class="content">
-                    <div class="price">
-                      <h6>From</h6>
-                      <h4>2.799<b class="currency">&#8377;</b></h4>
-                    </div>
-                    <p class="description">When selling products it's always a good idea to go with commanding fonts that are good at showing authority and security.</p>
-                  </div>
-                  <div class="filter"></div>
-                  <div class="footer btn-center">
-                    <button class="btn-neutral btn-round btn-fill">
-                      <a href="/place/form?id=ramoji">Book Guide!</a></button>                  </div>
-                </div>
-              </td>
+                </td>
+              <% } %>
             </tr>
-            <tr id="2" style="display:none">
-              <td style="padding-right:0.75%;">
-                <div class="card1 text-center" style="background-size:cover;background-image:url('/uploads/places/charminar.jpg');">
-                  <h4 class="title title-modern">Charminar</h4>
-
-                  <div class="content">
-                    <div class="price">
-                      <h6>From</h6>
-                      <h4>2.799<b class="currency">&#8377;</b></h4>
+            <% for(var i=3;i< places.spots.length; i+=3){ %>
+              <tr id="p<%= (i/3)+1 %>" style="display:none;">
+                <% for(var j=0;j<((places.spots.length-i>=3)?3:(places.spots.length-i));j++){ %>
+                  <td style="padding-right:0.75%;">
+                    <div class="card1 text-center" style="background-size:cover;background-image:url(<%= places.spots[i+j].img %>);">
+                      <h4 class="title title-modern"><%= places.spots[i+j].name %></h4>
+                      <span class="dropdown" style="float:right;z-index:3;margin-top:-15%;">
+                        <button style="color:white;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="far fa-heart" style="color:#f783ac;font-size:22px;margin-top:-5%;"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <% for(var k=0;k< boards.length;k++){ %>
+                            <a style="padding-top:2px;" class="dropdown-item"><%= boards[k].boardname %></a>
+                          <% } %>
+                        </div>
+                      </span>
+                      <div class="content">
+                        <div class="price">
+                          <h6>From</h6>
+                          <h4>2.799<b class="currency">&#8377;</b></h4>
+                        </div>
+                        <p class="description"><%= places.spots[i+j].description %></p>
+                      </div>
+                      <div class="filter"></div>
+                      <div class="footer btn-center">
+                        <button class="btn-neutral btn-round btn-fill">
+                          <a href="/place/form?id=charminar">Book Guide!</a></button>
+                      </div>
                     </div>
-                    <p class="description">When selling products it's always a good idea to go with commanding fonts that are good at showing authority and security.</p>
-                  </div>
-                  <div class="filter"></div>
-                  <div class="footer btn-center">
-                    <button class="btn-neutral btn-round btn-fill">
-                      <a href="/place/form?id=charminar">Book Guide!</a></button>                  </div>
-                </div>
-              </td>
-              <td style="padding-right:0.75%;">
-                <div class="card1 text-center" style="background-size:cover;background-image:url('/uploads/places/golconda.jpg');">
-                  <h4 class="title title-modern">Golconda Fort</h4>
-
-                  <div class="content">
-                    <div class="price">
-                      <h6>From</h6>
-                      <h4>2.799<b class="currency">&#8377;</b></h4>
-                    </div>
-                    <p class="description">When selling products it's always a good idea to go with commanding fonts that are good at showing authority and security.</p>
-                  </div>
-                  <div class="filter"></div>
-                  <div class="footer btn-center">
-                    <button class="btn-neutral btn-round btn-fill">
-                      <a href="/place/form?id=charminar">Book Guide!</a></button>                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr id="3" style="display:none">
-              <td style="padding-right:0.75%;">
-                <div class="card1 text-center" style="background-size:cover;background-image:url('/uploads/places/golconda.jpg');">
-                  <h4 class="title title-modern">Golconda Fort</h4>
-
-                  <div class="content">
-                    <div class="price">
-                      <h6>From</h6>
-                      <h4>2.799<b class="currency">&#8377;</b></h4>
-                    </div>
-                    <p class="description">When selling products it's always a good idea to go with commanding fonts that are good at showing authority and security.</p>
-                  </div>
-                  <div class="filter"></div>
-                  <div class="footer btn-center">
-                    <button class="btn-neutral btn-round btn-fill">
-                      <a href="/place/form?id=charminar">Book Guide!</a></button>                  </div>
-                </div>
-              </td>
-            </tr>
+                  </td>
+                <% } %>
+              </tr>
+            <% } %>
           </table>
           <div style="width:100%;text-align:center;">
             <ul id="menu">
               <li> <button style="background-color:#2196f3; color:#ffffff;border-radius:50%;" class="btn btn-light" onclick="change(1)" type="button" name="button">1</button> </li>
-              <li> <button style="border-radius:50%;" class="btn btn-light" onclick="change(2)" type="button" name="button">2</button> </li>
-              <li> <button style="border-radius:50%;" class="btn btn-light" onclick="change(3)" type="button" name="button">3</button> </li>
+              <% for(var i=1;i<Math.ceil(places.spots.length/3);i++){ %>
+                <li> <button style="border-radius:50%;" class="btn btn-light" onclick="change(<%= i+1 %>)" type="button" name="button"><%= i+1 %></button> </li>
+              <% } %>
             </ul>
           </div>
         </div>
+
         <div class="col-3">
           <div class="card3 card-pricing bg-success border-0 text-center mb-4" style="background: linear-gradient(35deg,#2dce89 0,#2dcecc 100%)!important;height:460px;">
             <div class="card-header bg-transparent">
@@ -2391,7 +2348,7 @@
                 <% for (var i =0; i <4; i++ ) { %>
                   <div class="col-lg-3">
                     <div style="z-index:0; position:relative;" class="card4 card4-blog card4-background" data-animation="zooming">
-                      <div class="full-background" style="background-image: url('/<%= places.thingstodo[i].img %>');"></div>
+                      <div class="full-background" style="background-image: url('<%= places.thingstodo[i].img %>');"></div>
                       <a href="javascript:;">
                         <div class="card4-body">
                           <div class="content-bottom">
@@ -2408,7 +2365,7 @@
                 <% for (var i =4; i <8; i++ ) { %>
                   <div class="col-lg-3">
                     <div style="z-index:0; position:relative;" class="card4 card4-blog card4-background" data-animation="zooming">
-                      <div class="full-background" style="background-image: url('/<%= places.thingstodo[i].img %>');"></div>
+                      <div class="full-background" style="background-image: url('<%= places.thingstodo[i].img %>');"></div>
                       <a href="javascript:;">
                         <div class="card4-body">
                           <div class="content-bottom">
@@ -2706,11 +2663,11 @@ function change(ind){
 
   for(var i=1;i<=pages.length;i++){
     if(i === ind){
-      document.getElementById(i.toString()).style.display="inline-block";
+      document.getElementById("p"+i.toString()).style.display="inline-block";
       pages[i-1].style.backgroundColor="#2196f3";
       pages[i-1].style.color="#ffffff";
     } else {
-      document.getElementById(i.toString()).style.display="none";
+      document.getElementById("p"+i.toString()).style.display="none";
       pages[i-1].style.backgroundColor="#f8f9fa";
       pages[i-1].style.color="#000000";
     }

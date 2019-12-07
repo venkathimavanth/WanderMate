@@ -23,6 +23,13 @@ let placesSchema = mongoose.Schema({
       title: {type:String},
       description: {type:String}
     }
+  ],default:undefined},
+  spots:{type:[
+    {
+      img:{type:String},
+      name:{type:String},
+      description:{type:String},
+    }
   ],default:undefined}
 });
 

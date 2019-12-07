@@ -11,7 +11,8 @@ let Placeinfo = require('./models/Placeinfo');
 let Tour_plans = require('./models/tour_plans');
 let Guides = require('./models/Guide');
 let News = require('./models/News');
-let Chatdata = require('./models/chatdata')
+let WishList = require('./models/WishList')
+let Chatdata = require('./models/Chatdata');
 const socketio = require('socket.io');
 const http = require('http');
 
@@ -90,8 +91,9 @@ mongoose.connect(db,{   useNewUrlParser: true,
  app.use('/place',require('./routes/place'));
  app.use('/blog',require('./routes/blog'));
   app.use('/pricing',require('./routes/api'));
-app.use('/admin',require('./routes/admin'))  
+app.use('/admin',require('./routes/admin'))
 app.use('/',require('./routes/landing'));
+app.use('/wanderlist',require('./routes/wishlist'))
 
 const Suggestions = require('./models/Suggestion')
 
@@ -258,7 +260,10 @@ console.log('heyy')
                      console.log(err);
                    }else{
                      console.log(item)
-                     res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item});
+                     WishList.find({username: req.user.name}, function(err, boards){
+                       console.log(boards[0].boards);
+                       res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boards[0].boards});
+                     })
                    }
                  })
                }
@@ -287,34 +292,24 @@ console.log('heyy')
 
 
  var count=0;
- var usertype = 'user';
 
  app.get('/chat/:username/:guidename', function(req, res){
    var username = req.params.username;
    var guidename = req.params.guidename;
+   var usertype = req.user.usertype;
    count=count+1;
 
-   Chatdata.findOne({username:username, guidename:guidename}, function(err, places){
+   Chatdata.find({username:username, guidename:guidename}, function(err, places){
      if(err){
        console.log(err);
      } else {
-       if(usertype === 'user'){
-         Chatdata.find({username:username}, function(err, chats){
-           if(err){
-             console.log(err)
-           }else{
-             res.render('chat', {data:places, usertype:'user', otherchats:chats});
-           }
-         });
-       } else {
-         Chatdata.find({guidename:guidename}, function(err, chats){
-           if(err){
-             console.log(err)
-           }else{
-             res.render('chat', {data:places, usertype:'guide', otherchats:chats});
-           }
-         });
-       }
+       Chatdata.find({username:username}, function(err, chats){
+         if(err){
+           console.log(err)
+         }else{
+           res.render('chat', {data:places, usertype:usertype, otherchats:chats});
+         }
+       });
      }
    });
 

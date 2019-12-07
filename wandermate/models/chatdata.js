@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let chatdataschema = mongoose.Schema({
+const chatdataschema = mongoose.Schema({
   username:{
     type: String,
     required: true
@@ -18,5 +18,5 @@ let chatdataschema = mongoose.Schema({
   ]}
 })
 
-let chatdata = mongoose.model('chatdata', chatdataschema,'chatdata');
-module.export = chatdata
+const Chatdata = mongoose.model('Chatdata', chatdataschema,'chatdata');
+module.exports = Chatdata;
