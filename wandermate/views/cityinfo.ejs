@@ -183,7 +183,48 @@ this._addFormElementData(n);for(var v=0;v<c.length;v++){var w=c[v];n.append(w.na
 
 
     <%}%>
+    <a data-toggle="modal" data-target="#spots"> <h2>Spots</h2></a>
+    <%if(place.spots){%>
 
+        <%if(place.spots.length!=0){%>
+            <section class="blogs-5">
+                    <div class="container">
+                      <div class="row">
+
+                        <div class="col-md-10 mx-auto">
+                          <div class="row">
+                            <%for(var i=0;i<place.spots.length;i++){%>
+
+                            <div class="col-lg-4 col-md-6">
+                              <div class="card card-blog card-plain">
+                                <div class="card-image shadow">
+                                  <a href="javascript:;">
+
+                                    <img class="img rounded" style="height:150px" src="<%=place.spots[i].img%>">
+                                  </a>
+                                </div>
+                                <div class="card-body">
+                                  <h4 class="card-title">
+                                    <a href="javascript:;"><%=place.spots[i].title%></a>
+                                  </h4>
+                                  <p class="card-description p1">
+                                    <%=place.spots[i].description%>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+      <%}%>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </section>
+
+
+        <%}%>
+<%}%>
 
 
 
@@ -248,6 +289,69 @@ this._addFormElementData(n);for(var v=0;v<c.length;v++){var w=c[v];n.append(w.na
       </div>
     </form>
     </div>
+
+
+    <div class="modal fade bd-example-modal-sm" id="spots" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <form method="post" action="/admin/spots?id=<%= place.id %>" method="post" enctype="multipart/form-data" >
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">New spot</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+                <div class=row>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="input-group input-group-merge">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+                        </div>
+                        <input class="form-control" name="title" id="title" placeholder="Title" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="input-group input-group-merge">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+              </div>
+              <textarea name="description" rows="8" cols="60"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="fileUpload blue-btn btn width100">
+    <span>Upload your Location Picture</span>
+    <input type="file" name="userPhoto" id="newsimg" class="uploadlogo" />
+    </div>
+          </div>
+        </div>
+
+
+      </div>
+
+                <input type="submit" id="submit" class="btn btn-sm btn-default float-right" style="background-color: #2DCE89;border-color:#2DCE89">
+
+            </div>
+        </div>
+        </div>
+      </div>
+    </form>
+    </div>
+
+
+
 
 
     <div class="modal fade bd-example-modal-lg" id="about" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

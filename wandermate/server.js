@@ -263,10 +263,16 @@ console.log('heyy')
                    if(err){
                      console.log(err);
                    }else{
+                     console.log(places)
+console.log('kjbkb')
                      console.log(item)
                      WishList.find({username: req.user.name}, function(err, boards){
-                       console.log(boards[0].boards);
-                       res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boards[0].boards});
+                       if(boards.length!=0){
+                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boards[0].boards});
+                       }else{
+                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:[]});
+                         console.log(places)
+                       }
                      })
                    }
                  })

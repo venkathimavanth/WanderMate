@@ -1219,6 +1219,12 @@
   	 padding: 0;
   	 box-sizing: border-box;
   }
+
+  .sidearrow:hover{
+    opacity: 1;
+    font-size: 200px;
+  }
+
   .sidearrow {
   	 opacity: 0;
   	 font-size: 18px;
@@ -1472,7 +1478,7 @@
               </div>
               <div class="tab-pane" id="weather">
                 <div class="cardw">
-                  <p id="cityn">Hyderabad, India</p>
+                  <p id="cityn"><%= places.name %>, India</p>
                   <p id="details"><b>Today</b> , <span id="sum">Cloudy</span> <br> Wind <span id="wind">10</span>m/s <span class="dot">•</span> Prep<span id="prep"></span> <span class="dot">•</span> Min <span id="mintemp"></span>°F </p>
                   <div class="row">
                     <div class="col-6">
@@ -1653,9 +1659,10 @@
         <div class="col-9">
           <table>
             <tr id="p<%= 1 %>">
-              <% for(var j=0;j<3;j++){ %>
+
+              <% for(var j=0; j < ((places.spots.length<3)?places.spots.length:3) ;j++){ %>
                 <td style="padding-right:0.75%;">
-                  <div class="card1 text-center" style="background-size:cover;background-image:url(<%= places.spots[j].img %>);">
+                  <div class="card1 text-center" style="background-size:cover;background-image:url('<%= places.spots[j].img %>');">
                     <h4 class="title title-modern"><%= places.spots[j].name %></h4>
                     <span class="dropdown" style="float:right;z-index:3;margin-top:-15%;">
                       <button style="color:white;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -1687,7 +1694,7 @@
               <tr id="p<%= (i/3)+1 %>" style="display:none;">
                 <% for(var j=0;j<((places.spots.length-i>=3)?3:(places.spots.length-i));j++){ %>
                   <td style="padding-right:0.75%;">
-                    <div class="card1 text-center" style="background-size:cover;background-image:url(<%= places.spots[i+j].img %>);">
+                    <div class="card1 text-center" style="background-size:cover;background-image:url('<%= places.spots[i+j].img %>');">
                       <h4 class="title title-modern"><%= places.spots[i+j].name %></h4>
                       <span class="dropdown" style="float:right;z-index:3;margin-top:-15%;">
                         <button style="color:white;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -2344,8 +2351,9 @@
             <div class="container-fluid">
               <h2 class="news">THINGS TO DO</h2>
               <br />
+              <% if(places.thingstodo.length!=0){%>
               <div class="row">
-                <% for (var i =0; i <4; i++ ) { %>
+                <% for (var i =0; i < places.thingstodo.length; i++ ) { %>
                   <div class="col-lg-3">
                     <div style="z-index:0; position:relative;" class="card4 card4-blog card4-background" data-animation="zooming">
                       <div class="full-background" style="background-image: url('<%= places.thingstodo[i].img %>');"></div>
@@ -2361,23 +2369,8 @@
                   </div>
                 <% } %>
               </div>
-              <div class="row row-below">
-                <% for (var i =4; i <8; i++ ) { %>
-                  <div class="col-lg-3">
-                    <div style="z-index:0; position:relative;" class="card4 card4-blog card4-background" data-animation="zooming">
-                      <div class="full-background" style="background-image: url('<%= places.thingstodo[i].img %>');"></div>
-                      <a href="javascript:;">
-                        <div class="card4-body">
-                          <div class="content-bottom">
-                            <h6 class="card4-category text-white-50 opacity-8"><%= places.thingstodo[i].title %></h6>
-                            <h5 class="card4-title"><%= places.thingstodo[i].description %></h5>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                <% } %>
-              </div>
+              <% } %>
+
             </div>
           </section>
         </div>
@@ -2486,7 +2479,7 @@
       </table>
     </center>
     </div>
-    <p id="address" style="display:none;">Hyderabad, India</p>
+    <p id="address" style="display:none;"><%= places.name %>, India</p>
     <div id="map" style="width:100%; height:500px;">
     </div>
   </div>
