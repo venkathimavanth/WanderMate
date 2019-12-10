@@ -1872,11 +1872,11 @@
         </div>
       </div>
     </div>
-    <div class="row" style="width:100%;padding:2%;background-image:url('https://demos.creative-tim.com/argon-design-system-pro/assets/img/ill/1.svg');background-color: #172b4d!important;">
+    <div class="row" style="height:1100px;overflow-y: scroll;width:100%;padding:2%;background-image:url('https://demos.creative-tim.com/argon-design-system-pro/assets/img/ill/1.svg');background-color: #172b4d!important;">
       <p class="news">TOURS OFFERED</p>
       <div class="row" style="width:80%;margin-left:10%;margin-top:3%;">
           <% plans.forEach(function(item,index){ %>
-            <div class="col-4">
+            <div class="col-4" style="margin-top:2.5%;">
               <div class="card9 card9-pricing1 card9-coin" style="background-color:rgba(255,255,255,1);">
                 <div class="card9-header bg-transparent">
                   <img src="/uploads/suriya1.jpg1573825247106.jpeg" class="img-center shadow1">
@@ -1908,9 +1908,12 @@
                         <div class="form-group col-md-12">
                           <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                             <option selected>Dates...</option>
-                            <option value="1">One</option>
+                            <% for(var i=0;i< item.dates.length; i++){ %>
+                            <!-- <option value="1">One</option>
                             <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="3">Three</option> -->
+                              <option value="<%= item.dates[i] %>"><%= item.dates[i] %></option>
+                            <% } %>
                           </select>
                         </div>
                     </div>

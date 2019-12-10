@@ -35,6 +35,7 @@ module.exports=function(passport){
     new CustomStrategy(function(req,done){
       Guide.findOne({username:req.body.username})
       .then(user => {
+
         if(!user){
           return done(null,false,req.flash('error', 'Username does not exist'));
         }
