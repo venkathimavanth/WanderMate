@@ -400,7 +400,7 @@ router.post('/newtrip/singleplace',CheckGuide,(req,res)=>{
   contentType = 'image/png';
   }
 else{
-  
+
   path = '/uploads/'+'places/Hyderabad/imgs/bg0.jpg'
   contentType = 'image/png';
   }
@@ -1137,13 +1137,23 @@ router.post('/news',CheckGuide,(req,res)=>{
     guide:req.user.username,
     title:req.body.title,
     img:img,
-    guideimg:req.user.img.path
-
+    guideimg:req.user.img.path,
+    upvotes:[]
 
   })
   news.save()
   res.redirect('/guides/guideprofile')
 })
+
+router.post('/upvote',(req,res)=>{
+  console.log(req.body)
+
+News.updateOne({_id:req.body.newsid},{$push:{upvotes:new Date()}}).then(console.log("updated"))
+
+  // res.redirect('//')
+})
+
+
 
 router.get('/tour_plan_details',CheckGuide, async (req,res) => {
 

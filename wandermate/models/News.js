@@ -8,6 +8,7 @@ const newsSchema = mongoose.Schema({
   guideimg:{type:String},
   title:{type:String},
   news:{type:String},
+  upvotes:{type:Array,default:void 0},
 
 })
 const News = mongoose.model('News',newsSchema)

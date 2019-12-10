@@ -1583,6 +1583,7 @@
                           </p>
                         </div>
                         <div class="modal-footer">
+                          <button style="margin-right:75%" type="button" onclick="upvote('<%= item.id %>')" class="btn btn-default"><i style="color:#007bff;text-transform:none;font-size:18px" class="far fa-thumbs-up">Upvote</i></button>
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                       </div>
@@ -2577,6 +2578,22 @@
 
   <!-- <script src="/static/roshan/main.js"></script> -->
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script type="text/javascript">
+    function upvote(x){
+      console.log('yessssssssssss')
+      $.ajax({
+        type:'POST',
+        url:'/guides/upvote',
+        data:{
+          newsid:x,
+        },
+        success:function(){
+        location.reload()
+        }
+      });
+
+    }
+  </script>
   <script>
   function news(x,y){
     var delta = x;
