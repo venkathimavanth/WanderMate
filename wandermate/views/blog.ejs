@@ -309,7 +309,7 @@
                 <div class="card-header" >
                   <div class="card-avatar">
                   <div >
-                    <img style="width:15vh;height:15vh;margin-top:10%;box-shadow:0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);" class="img img-raised rounded-circle" src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                    <img style="width:15vh;height:15vh;margin-top:10%;box-shadow:0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);" class="img img-raised rounded-circle" src=<%=user.img.path %> >
                   </div>
                 </div>
               </div>
@@ -393,7 +393,7 @@
 
 
 
-
+<% if(first){ %>
   <div style="border:none;box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1), 0 6px 15px 0 rgba(0, 0, 0, 0.19);%">
   <div class="card-body">
     <h4 class="card-title">
@@ -417,11 +417,13 @@
     </div>
   </div>
 
+<%}%>
+
 </div>
 
 
 
-
+<% if(second){ %>
   <div style="border:none;box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1), 0 6px 15px 0 rgba(0, 0, 0, 0.19);%">
   <div class="card-body">
     <h4 class="card-title">
@@ -444,6 +446,7 @@
       </div>
     </div>
   </div>
+<% } %>
 </div>
 
 
