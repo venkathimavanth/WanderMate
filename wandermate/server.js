@@ -252,8 +252,8 @@ console.log('heyy')
 
 
 
-
-
+console.log("cgdjgvjywegdvjgwekvgbwevbwekugvuegviegvegvukgewkug");
+            console.log(plans);
 
             Guides.find({city: req.params.name.toLowerCase()}, function(err, guides){
                if(err){

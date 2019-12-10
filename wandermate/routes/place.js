@@ -7,6 +7,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const Guides=require('../models/Guide')
 const User=require('../models/User')
+const Tour_plans = require('../models/tour_plans');
 
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
@@ -47,6 +48,108 @@ router.get('/',CheckUser,function(req,res){
       res.render('place',{user:req.user,places:places});
 
 });
+
+ObjectId = require('mongodb').ObjectId;
+
+
+router.post('/tripplan',CheckUser,urlencodedParser, function(req,res){
+
+  data_form=req.body
+  console.log('--------------------------------------------------------------------------------------------------------------');
+  console.log(data_form);
+  Tour_plans.findOne({ _id:ObjectId(data_form.plans_id)})
+  .catch(err=>{console.log(err)})
+  .then( data=>{
+    console.log('we');
+    console.log(data_form);
+    var date=data_form.date
+    console.log(date);
+    console.log(typeof(date));
+    var d=new Date(date)
+    for(var i=1;i<data.num_of_days;i++){
+      console.log(i);
+      console.log(d);
+      var next = new Date(d);
+      next.setDate(d.getDate()+i);
+      console.log(next);
+      var m1,d1,yr1;
+
+      yr1=next.getFullYear();
+      m1=next.getMonth()+1;
+      if(m1<10){
+        m1='0'+m1;
+      }
+      d1=next.getDate()
+      if(d1<10){
+        d1='0'+d1;
+      }
+      var date1=yr1.toString()+'/'+m1.toString()+'/'+d1.toString()
+      console.log(date1);
+      if(data.dates.includes(date1)){
+        console.log('date found');
+        data.dates.pull(date1);
+      }
+
+      var prev = new Date(d);
+      prev.setDate(d.getDate()-i);
+      console.log(next);
+
+      yr1=prev.getFullYear();
+      m1=prev.getMonth()+1;
+      if(m1<10){
+        m1='0'+m1;
+      }
+      d1=prev.getDate()
+      if(d1<10){
+        d1='0'+d1;
+      }
+      date2=yr1.toString()+'/'+m1.toString()+'/'+d1.toString()
+      console.log(date2);
+      if(data.dates.includes(date2)){
+        console.log('date found');
+        data.dates.pull(date2);
+      }
+
+    }
+    data.dates.pull(date)
+    console.log(data);
+
+    Tour_plans.updateOne({guide:data.guide},
+                    data,function(){})
+
+
+    var itemOne = {
+      users:{username:req.user.username},
+      date_n_time:{date:data_form.date},
+      place:data.city,
+      num_of_days:data.num_of_days,
+      current:true,
+      plan:'tourplan'};
+
+
+      Guides.updateOne({ username: data.guide },
+                      {$push:{booking:itemOne}},function(){})
+
+
+
+      var itemOne1 = {
+        guide:data.guide,
+        date_n_time:{date:data_form.date},
+        place:data.city,
+        num_of_days:data.num_of_days,
+        current:true,
+        plan:'tourplan'};
+
+        User.updateOne({username:req.user.username},
+                        {$push:{booking:itemOne1}},function(){})
+
+ })
+
+
+
+  res.redirect('/')
+});
+
 
 var data
 var value_form
@@ -440,6 +543,19 @@ router.post('/booked_city',CheckUser,function(req,res){
                 if (err) throw err;
                 console.log("1 document updated");
               });
+
+
+              var itemOne1 = {
+                guide:data.guide,
+                date_n_time:{date:value_form_city.date},
+                type:'solo',
+                place:city_id,
+                tot_no_of_tourits:value_form_city.number,
+                current:true,
+                plan:'daylong'};
+
+                User.updateOne({username:req.user.username},
+                                {$push:{booking:itemOne1}},function(){})
 
          }
        })
