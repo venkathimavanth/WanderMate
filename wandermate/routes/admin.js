@@ -85,6 +85,51 @@ Placeinfo.findOne({_id:req.query.id})
 
 });
 
+router.post('/spots',(req,res)=>{
+  console.log(req.query.id)
+  console.log(req.body)
+  console.log(req.files)
+  if(req.files[0]){
+
+  var k = fs.readFileSync(req.files[0].path)
+var path = '/uploads/'+req.files[0].filename
+}
+else{
+var path = '/uploads/suriya1.jpg1573825247106.jpeg'
+
+}
+Placeinfo.findOne({_id:req.query.id})
+.then(x=>{
+  Placeinfo.updateOne({_id:req.query.id},{
+    $push:{
+      spots:{
+        img:path,
+        name:req.body.title,
+        description:req.body.description,
+      }
+    }
+
+  })
+  .then(y=>{
+
+    res.redirect('/admin/cityinfo?id='+ x._id)
+
+  })
+  .catch(z=>{
+    res.render('cityinfo',{layout:'adminlayout',place:x})
+
+  })
+
+})
+.catch(err=>{
+  res.redirect('cities')
+
+  console.log(err);
+})
+
+});
+
+
 router.post('/about',(req,res)=>{
   console.log(req.query.id)
   console.log(req.body)

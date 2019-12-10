@@ -14,6 +14,7 @@ var wishListSchema = mongoose.Schema({
       list:{type:[
         {
           comment:{type:String},
+          img:{type:String},
           city:{type:String},
           name:{type:String}
         }

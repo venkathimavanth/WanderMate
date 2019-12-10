@@ -606,7 +606,7 @@
                                     <div class="card bg-gradient-primary text-white">
                                       <div class="card-body p-2">
                                         <% if (data.messages[i].text.substring(0,8) === 'https://') { %>
-                                          <a href="<%= data.messages[i].text %>" target="_blank">My Location</a>
+                                          <a href="<%= data.messages[i].text %>" target="_blank"><%= data.messages[i].text %></a>
                                         <% } else { %>
                                           <p class="mb-1"><%= data.messages[i].text %><br></p>
                                         <% } %>
@@ -624,7 +624,7 @@
                                     <div class="card">
                                       <div class="card-body p-2">
                                         <% if (data.messages[i].text.substring(0,8) === 'https://') { %>
-                                          <a href="<%= data.messages[i].text %>" target="_blank">My Location</a>
+                                          <a href="<%= data.messages[i].text %>" target="_blank"><%= data.messages[i].text %></a>
                                         <% } else { %>
                                           <p class="mb-1"><%= data.messages[i].text.substring(0,8) %><br></p>
                                         <% } %>
@@ -662,7 +662,7 @@
                   </div>
                 </section>
               </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
   <script type="text/javascript">
 
   function scroll(){
@@ -694,7 +694,7 @@
     }
   }
 
-  var socket = io.connect('http://127.0.0.1:8000');
+var socket = io.connect('http://127.0.0.1:8000',{ transports: ['websocket'], rejectUnauthorized: false  });
 
   if(socket != undefined){
     console.log('Connected to socket...');
@@ -728,11 +728,20 @@
 
           var time = new Date(data.messages[x].time).getHours() + " : " + (new Date(data.messages[x].time).getMinutes()<10?'0':'') + new Date(data.messages[x].time).getMinutes();
           small.innerHTML = time;
-          p.innerHTML = data.messages[x].text;
+          if(data.messages[x].text.substring(0,8) === 'https://'){
+            var a = document.createElement('a');
+            a.setAttribute('href', data.messages[x].text);
+            a.setAttribute('target', '_blank');
+            a.innerHTML = data.messages[x].text;
+            div4.appendChild(a);
+            console.log("abc");
+          }else{
+            p.innerHTML = data.messages[x].text;
+            div4.appendChild(p);
+          }
 
           div5.appendChild(small);
           div5.appendChild(i);
-          div4.appendChild(p);
           div4.appendChild(div5);
           div3.appendChild(div4);
           div2.appendChild(div3);
@@ -753,6 +762,8 @@
 
     textarea.addEventListener('keydown', function(event){
       if(event.which === 13 && event.shiftKey == false){
+        console.log(usertype);
+        console.log(textarea.value);
         socket.emit('input', {
           type:usertype,
           msg:textarea.value,

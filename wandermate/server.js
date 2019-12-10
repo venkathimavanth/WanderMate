@@ -17,9 +17,13 @@ const socketio = require('socket.io');
 const http = require('http');
 
 
+
 var cookieParser = require('cookie-parser');
 var app=express()
 //EJS
+const server = http.createServer(app);
+const io = socketio(server);
+io.origins('*:*');
 
 app.use(expressLayouts);
 app.set('view engine','ejs');
@@ -259,10 +263,29 @@ console.log('heyy')
                    if(err){
                      console.log(err);
                    }else{
+                     console.log(places)
+console.log('kjbkb')
                      console.log(item)
                      WishList.find({username: req.user.name}, function(err, boards){
-                       console.log(boards[0].boards);
-                       res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boards[0].boards});
+                       if(boards.length!=0){
+                         console.log(boards[0]);
+                         var boardslist = []
+                         var placenames = []
+                         for(var i=0;i<boards[0].boards.length;i++){
+                           boardslist.push(boards[0].boards[i].boardname);
+                           console.log(boards[0].boards[i].list);
+                           console.log();
+                           for(var j=0;j<boards[0].boards[i].list.length;j++){
+                             placenames.push(boards[0].boards[i].list[j].name)
+                           }
+                         }
+                         console.log(boardslist);
+                         console.log(placenames);
+                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boardslist, placenames:placenames});
+                       }else{
+                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:[]});
+                         console.log(places)
+                       }
                      })
                    }
                  })
@@ -287,8 +310,6 @@ console.log('heyy')
    res.redirect('/places/'+cityName);
  });
 
- const server = http.createServer(app);
- const io = socketio(server);
 
 
  var count=0;
@@ -303,17 +324,20 @@ console.log('heyy')
      if(err){
        console.log(err);
      } else {
+       console.log(places)
        Chatdata.find({username:username}, function(err, chats){
          if(err){
            console.log(err)
          }else{
-           res.render('chat', {data:places, usertype:usertype, otherchats:chats});
+           console.log(chats)
+           res.render('chat', {data:places[0], usertype:usertype, otherchats:chats});
          }
        });
      }
    });
-
+console.log('heyy')
    io.on('connection', function(socket){
+     console.log(count);
 
  if(count==1){
 
@@ -331,7 +355,7 @@ console.log('heyy')
              socket.on('sendlocation', (coords)=>{
                var type = coords.type;
                var time = coords.time;
-               var msg = 'https://maps.google.com/?q'+coords.lat+','+coords.lng;
+               var msg = 'https://www.google.com/maps/place/'+coords.lat+','+coords.lng;
                Chatdata.updateOne(
                  { username: username, guidename:guidename},
                  { $push: {messages: {text: msg, time: time, sentby: type}} },
@@ -393,5 +417,7 @@ console.log('heyy')
 
 
 
-app.listen(3000);
+ server.listen(8000, function(){
+   console.log("Connected to server")
+ });
 console.log('you are listening to port 3000');
