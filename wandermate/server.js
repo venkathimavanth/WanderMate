@@ -268,7 +268,20 @@ console.log('kjbkb')
                      console.log(item)
                      WishList.find({username: req.user.name}, function(err, boards){
                        if(boards.length!=0){
-                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boards[0].boards});
+                         console.log(boards[0]);
+                         var boardslist = []
+                         var placenames = []
+                         for(var i=0;i<boards[0].boards.length;i++){
+                           boardslist.push(boards[0].boards[i].boardname);
+                           console.log(boards[0].boards[i].list);
+                           console.log();
+                           for(var j=0;j<boards[0].boards[i].list.length;j++){
+                             placenames.push(boards[0].boards[i].list[j].name)
+                           }
+                         }
+                         console.log(boardslist);
+                         console.log(placenames);
+                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boardslist, placenames:placenames});
                        }else{
                          res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:[]});
                          console.log(places)

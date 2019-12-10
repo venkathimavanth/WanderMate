@@ -209,6 +209,12 @@
     overflow-y: scroll;
   }
 
+  .delbtn {
+  background: none;
+  padding: 0px;
+  border: none;
+}
+
   </style>
 </head>
 <!-- <body style="background-image:linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4) 75%),url('https://demos.creative-tim.com/argon-design-system-pro/assets/img/ill/bg_contactus3.svg');background-size:contain;background-repeat:no-repeat;background-size:100% 100%;"> -->
@@ -248,39 +254,43 @@
     <div class="card" style="margin-top:6%;width:87%;margin-left:6.5%;background-color:rgba(0,0,0,0);">
       <div class="card-header">
         <span style="padding-top:3%;padding-left:2%;color:#f1f2f3;font-size:45px;float:left;">WANDERLIST</span>
-        <ul class="nav nav-tabs justify-content-center" role="tablist" style="padding-top:4.3%;padding-left:4%;float:left;">
+        <ul class="nav nav-tabs justify-content-center" role="tablist" style=";padding-top:4.3%;padding-left:4%;float:left;">
           <li class="nav-item">
+            <form class="del" style="display:none;" action="/wanderlist/delboard" method="POST">
+              <input style="display:none;" type="text" name="name" value="<%= wishlist[0].boards[0].boardname %>">
+              <button class="delbtn" type="submit" name="submit"><i style="font-size:12px;color:white;" class="far fa-times-circle"></i></button>
+            </form>
             <a style="color:#f1f2f3;" class="nav-link active" data-toggle="tab" href="#<%= wishlist[0].boards[0].boardname %>" role="tab">
               <%= wishlist[0].boards[0].boardname %>
             </a>
           </li>
           <% for(var i=1;i < wishlist[0].boards.length;i++){ %>
             <li class="nav-item">
+              <form class="del" style="display:none;" action="/wanderlist/delboard" method="POST">
+                <input style="display:none;" type="text" name="name" value="<%= wishlist[0].boards[i].boardname %>">
+                <button class="delbtn" type="submit" name="submit"><i style="font-size:12px;color:white;" class="far fa-times-circle"></i></button>
+              </form>
               <a style="color:#f1f2f3;" class="nav-link" data-toggle="tab" href="#<%= wishlist[0].boards[i].boardname %>" role="tab">
                 <%= wishlist[0].boards[i].boardname %>
               </a>
             </li>
           <% } %>
-          <!-- <li class="nav-item">
-            <a style="color:#f1f2f3;" class="nav-link active" data-toggle="tab" href="#home" role="tab">
-              Home
-            </a>
-          </li>
+          <form id="newboardform" action="/wanderlist/newboard" method="POST" style="display:none;">
+            <div class="form-group">
+              <input name="board" type="text" class="form-control" placeholder="Board Name..">
+            </div>
+          </form>
           <li class="nav-item">
-            <a style="color:#f1f2f3;" class="nav-link" data-toggle="tab" href="#profile" role="tab">
-              Profile
-            </a>
+            <span class="dropdown">
+              <button style="color:white;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Settings
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a style="padding-top:2px;" class="dropdown-item"><p onclick="display()">Add Board</p></a>
+                <a style="padding-top:2px;" class="dropdown-item"><p onclick="show()">Remove Board</p></a>
+              </div>
+            </span>
           </li>
-          <li class="nav-item">
-            <a style="color:#f1f2f3;" class="nav-link" data-toggle="tab" href="#messages" role="tab">
-              Messages
-            </a>
-          </li>
-          <li class="nav-item">
-            <a style="color:#f1f2f3;" class="nav-link" data-toggle="tab" href="#settings" role="tab">
-              Settings
-            </a>
-          </li> -->
         </ul>
       </div>
       <div class="card-body scrollbar" style="float:left;" id="style-1">
@@ -289,7 +299,7 @@
             <div class="row">
               <% for(var i=0;i< wishlist[0].boards[0].list.length;i++){ %>
                 <div class="col-lg-4">
-                  <div class="card card-background" style="border-radius:3px;background-image: url('/static/places/charminar.jpg')">
+                  <div class="card card-background" style="border-radius:3px;background-image: url('<%= wishlist[0].boards[0].list[i].img %>')">
                     <div style="border-radius:3px!important;" class="card-body text-right">
                       <div class="icon icon-shape bg-gradient-white shadow rounded-circle mb-3">
                         <i style="color:#f54278;" class="fas fa-heart"></i>
@@ -298,12 +308,14 @@
                         <h2 class="card-title"><%= wishlist[0].boards[0].list[i].name %></h2>
                       </a>
                       <h6 class="desc text-white opacity-8"><%= wishlist[0].boards[0].list[i].comment %></h6>
-                      <a style="margin-top:4%;" href="javascript:;" class="btn btn-sm btn-success">
+                      <a style="margin-top:4%;" href="/place/form?id=<%= wishlist[0].boards[0].list[i].name %>" class="btn btn-sm btn-success">
                         Book Now
                       </a><br>
-                      <a style="margin-top:2%;background-color:#dc3545;border-color:#dc3545;" href="javascript:;" class="btn btn-sm btn-success">
-                        Remove
-                      </a>
+                      <form action="/wanderlist/delplace" method="POST">
+                        <input style="display:none;" type="text" name="board" value="<%= wishlist[0].boards[0].boardname %>">
+                        <input style="display:none;" type="text" name="name" value="<%= wishlist[0].boards[0].list[i].name %>">
+                        <button class="btn btn-sm btn-success" style="margin-top:2%;background-color:#dc3545;border-color:#dc3545;" type="submit" name="submit">Remove</button>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -315,7 +327,7 @@
               <div class="row">
                 <% for(var j=0;j< wishlist[0].boards[i].list.length;j++){ %>
                   <div class="col-lg-4">
-                    <div class="card card-background" style="border-radius:3px;background-image: url('/static/places/charminar.jpg')">
+                    <div class="card card-background" style="border-radius:3px;background-image: url('<%= wishlist[0].boards[i].list[j].img %>')">
                       <div style="border-radius:3px!important;" class="card-body text-right">
                         <div class="icon icon-shape bg-gradient-white shadow rounded-circle mb-3">
                           <i style="color:#f54278;" class="fas fa-heart"></i>
@@ -323,13 +335,15 @@
                         <a href="javascript:;">
                           <h2 class="card-title"><%= wishlist[0].boards[i].list[j].name %></h2>
                         </a>
-                        <h6 class="desc text-white opacity-8"><%= wishlist[0].boards[j].list[j].comment %></h6>
-                        <a style="margin-top:4%;" href="javascript:;" class="btn btn-sm btn-success">
+                        <h6 class="desc text-white opacity-8"><%= wishlist[0].boards[i].list[j].comment %></h6>
+                        <a style="margin-top:4%;" href="/place/form?id=<%= wishlist[0].boards[i].list[j].name %>" class="btn btn-sm btn-success">
                           Book Now
                         </a><br>
-                        <a style="margin-top:2%;background-color:#dc3545;border-color:#dc3545;" href="javascript:;" class="btn btn-sm btn-success">
-                          Remove
-                        </a>
+                        <form action="/wanderlist/delplace" method="POST">
+                          <input style="display:none;" type="text" name="board" value="<%= wishlist[0].boards[i].boardname %>">
+                          <input style="display:none;" type="text" name="name" value="<%= wishlist[0].boards[i].list[j].name %>">
+                          <button class="btn btn-sm btn-success" style="margin-top:2%;background-color:#dc3545;border-color:#dc3545;" type="submit" name="submit">Remove</button>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -377,6 +391,17 @@
         }
       }
     }
+  }
+
+  function display(){
+    document.getElementById('newboardform').style.display="block";
+  }
+
+  function show(){
+    var icons = document.getElementsByClassName('del');
+    for(var i=0;i<icons.length;i++){
+      icons[i].style.display = "block";
+    }
   }
   </script>
 </body>
