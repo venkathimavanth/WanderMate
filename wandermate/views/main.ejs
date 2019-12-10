@@ -18,13 +18,25 @@
   <link rel="canonical" href="https://www.creative-tim.com/product/hipster-as-f-cards"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
   <style >
   @import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
   html,
   body {
       font-family: 'Roboto', sans-serif;
   }
-
+  .notifimg{
+    color: #fff;
+    background-color: #adb5bd;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border-radius: 50%;
+    height: 48px;
+    width: 48px
+  }
   #wander {
     line-height: 50px;
     position: fixed;
@@ -1391,7 +1403,50 @@
         <center>
          <li><a class="items" href="/users/dashboard"><i class="fas fa-home"></i></a></li>
          <li><a class="items" href="/blog"><i class="fas fa-blog"></i></a></li>
-         <li><a class="items" href="#"><i class="fas fa-bell"></i></a></li>
+         <li class="dropdown">
+           <i class="fas fa-bell dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+             <!-- <button style="color:grey;font-size:16px;margin-top:-2%;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             </button> -->
+             <div style="min-width:23rem;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <!-- <a style="padding-top:2px;" class="dropdown-item" href="/users">Profile</a>
+               <a style="padding-top:2px;" class="dropdown-item" href="#">WanderList</a>
+               <a style="padding-top:2px;" class="dropdown-item" href="/users/logout">Logout</a> -->
+               <% if(user.notifications) {%>
+                   <div class="px-3 py-3">
+                     <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"><%=user.notifications.length%></strong> notifications.</h6>
+                   </div>
+
+                   <div class="list-group list-group-flush" id="notifications">
+
+               <% for(i=0;i < user.notifications.length;i++ ){ %>
+                     <a href="#!" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
+                       <div class="row align-items-center">
+                         <div class="col-auto">
+                           <img alt="Image placeholder" src="<%=user.notifications[i].img %>" class="notifimg rounded-circle">
+                         </div>
+                         <div class="col ml--2">
+                           <div class="d-flex justify-content-between align-items-center">
+                             <div>
+                               <h4 style="font-family: inherit;font-weight: 400;line-height: 1.5;color: #32325d;" class="mb-0 text-sm"><%=user.notifications[i].senderid%></h4>
+                             </div>
+                             <div class="text-right text-muted">
+                               <small></small>
+                             </div>
+                           </div>
+                           <p style="margin-bottom: 0!important;font-weight: 300;line-height: 1.7;" class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
+                         </div>
+                       </div>
+                     </a>
+                       <a href="#!" class="dropdown-item text-center text-primary py-3">View all</a>
+                     <%} %>
+
+                   </div>
+                     <%}else{ %>
+                       <p>No Notifications</p>
+                     <%}%>
+
+             </div>
+         </li>
          <li class="dropdown" style="margin-left:-4%;">
              <button style="color:white;font-size:16px;margin-top:-2%;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                <i class="far fa-user-circle"><small><b><%= user.username %></b></small></i>
