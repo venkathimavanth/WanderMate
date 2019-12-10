@@ -8,11 +8,25 @@
   <title>
     Trip
   </title>
-  
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
+  <style >
+      .cld-day.disableDay{
+        opacity: 0.5;
+        background-color:rgb(45, 206, 137);
+        color:white;
+
+      }
+      .cld-day.booked{
+        pointer-events: none;
+        opacity: 0.1;
+      }
+
+  </style>
   <!--     Fonts and icons     -->
+  <link rel="stylesheet" href="../css/calendar.css"/>
+
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
@@ -89,6 +103,7 @@
                     </td>
                   </tr>
                   <% } %>
+
                   <tr>
                     <td colspan="3"></td>
                     <td class="td-total">
@@ -111,6 +126,19 @@
                 </tr> -->
                 </tbody>
               </table>
+
+              <div class="col-md-6 mx-auto text-center">
+                <h2>Edit your calendar here</h2>
+              <div class="card" style="padding:-10%;width:100%">
+                <div id="caleandar" style="margin:5%">
+                </div>
+                <form id="calform">
+              <input type="text" name="finaldays" id="finaldays" hidden>
+                </form>
+                <button type="button" style="margin-bottom:3%;margin-left:5%;margin-right:5%" class="btn btn-success" onclick="send('<%=tour[0]._id%>')">Save</button>
+              </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -122,7 +150,115 @@
     <script src="https://demos.creative-tim.com/material-kit-pro/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
     <script src="https://demos.creative-tim.com/material-kit-pro/assets/js/plugins/moment.min.js"></script>
     <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="../js/caleandar.js"></script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
+
+
     <!--  Plugin for Sharrre btn -->
     <script src="https://demos.creative-tim.com/material-kit-pro/assets/js/material-kit.min.js?v=2.2.0" type="text/javascript"></script>
+    <script type="text/javascript">
+      var events = [];
+
+      var days=<%-JSON.stringify(opted)%>;
+      var flag=0
+      var settings = {
+
+          Color: '',
+          LinkColor: '',
+          NavShow: true,
+          NavVertical: false,
+          NavLocation: '',
+          DateTimeShow: true,
+          DateTimeFormat: 'mmm, yyyy',
+          DatetimeLocation: '',
+          EventClick: '',
+          EventTargetWholeDay: false,
+          DisabledDates:days,
+          flag:0,
+      };
+
+      var element = document.getElementById('caleandar');
+      caleandar(element,events,settings);
+
+      var divs = document.querySelectorAll('.currMonth');
+
+      var alldays=[]
+      console.log(days)
+      var dd=<%-JSON.stringify(booked)%>;
+
+      for(var m=0;m<divs.length;m++){
+        var a =divs[m].getAttribute('data-date')
+        var id=divs[m].getAttribute('id')
+        for(var n=0;n<dd.length;n++){
+          if(a==dd[n]){
+
+            document.getElementById(id).classList.add('booked');
+
+          }
+        }
+        console.log(a)
+      }
+      var k = function sel(d) {
+
+
+
+        var a = d.getAttribute('data-date')
+        var count=0
+        s=""
+        f=0
+        for(var q = 0; q < days.length; q++){
+          if(a==days[q]){
+            f=1
+            var id=d.getAttribute('id')
+            document.getElementById(id).classList.remove('disableDay');
+            days = days.filter(e => e !== a);
+            count=count+1;
+          }
+          else {
+            console.log('days')
+            console.log(days)
+            s=s.concat(days[q],"-");
+          };
+          };
+          if(f==0) {
+            s=s.concat(a);
+          }
+       document.getElementById('finaldays').value=s
+        console.log(s)
+
+
+      if (count==0){
+        days.push(a)
+        console.log(days);
+        var id=d.getAttribute('id')
+        document.getElementById(id).classList.add('disableDay');
+        var count=0;
+      }
+            }
+
+            function send(x){
+            console.log('called')
+              // e.preventDefault();
+
+
+
+            console.log($('#finaldays').val())
+              $.ajax({
+                type:'POST',
+                url:'tourcal',
+                data:{
+                  dates:$('#finaldays').val(),
+                  id:x
+                },
+                success:function(){
+                  location.reload()
+                }
+              });
+
+            };
+
+
+    </script>
+
   </body></html>
