@@ -122,7 +122,7 @@ router.post('/tripplan',CheckUser,urlencodedParser, function(req,res){
       users:{username:req.user.username},
       date_n_time:{date:data_form.date},
       place:data.city,
-      days:data.days,
+      days:data.num_of_days,
       current:true,
       plan:'tourplan'};
 
@@ -136,18 +136,19 @@ router.post('/tripplan',CheckUser,urlencodedParser, function(req,res){
         guide:data.guide,
         date_n_time:{date:data_form.date},
         place:data.city,
-        days:data.days,
+        days:data.num_of_days,
         current:true,
         plan:'tourplan'};
 
         User.updateOne({username:req.user.username},
                         {$push:{booking:itemOne1}},function(){})
 
+res.redirect('/users')
  })
 
 
 
-  res.redirect('/')
+
 });
 
 
