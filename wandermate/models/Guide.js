@@ -13,7 +13,7 @@ const BookingSchema = new mongoose.Schema({
   tot_no_of_tourits:Number,
   current:Boolean,
   plan:String,
-  num_of_days:Number
+  days:Number
 
 });
 

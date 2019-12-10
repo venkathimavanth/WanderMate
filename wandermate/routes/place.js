@@ -66,7 +66,7 @@ router.post('/tripplan',CheckUser,urlencodedParser, function(req,res){
     console.log(date);
     console.log(typeof(date));
     var d=new Date(date)
-    for(var i=1;i<data.num_of_days;i++){
+    for(var i=1;i<data.days;i++){
       console.log(i);
       console.log(d);
       var next = new Date(d);
@@ -122,7 +122,7 @@ router.post('/tripplan',CheckUser,urlencodedParser, function(req,res){
       users:{username:req.user.username},
       date_n_time:{date:data_form.date},
       place:data.city,
-      num_of_days:data.num_of_days,
+      days:data.days,
       current:true,
       plan:'tourplan'};
 
@@ -136,7 +136,7 @@ router.post('/tripplan',CheckUser,urlencodedParser, function(req,res){
         guide:data.guide,
         date_n_time:{date:data_form.date},
         place:data.city,
-        num_of_days:data.num_of_days,
+        days:data.days,
         current:true,
         plan:'tourplan'};
 
