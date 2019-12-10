@@ -17,6 +17,7 @@ var urlencodedparser=bodyparser.urlencoded({extended:false});
 const Guide=require('../models/Guide')
 const User=require('../models/User')
 const News=require('../models/News')
+const Tp = require('../models/tour_plans')
 bodyParser = require('body-parser').json();
 const validatePhoneNumber = require('validate-phone-number-node-js');
 
@@ -149,8 +150,8 @@ newGuide.img.path = '/uploads/'+req.files[0].filename
 newGuide.img.contentType = 'image/png';
 }else{
 
-newUser.img.path = '/uploads/suriya1.jpg1573825247106.jpeg'
-newUser.img.contentType = 'image/png';
+newGuide.img.path = '/uploads/suriya1.jpg1573825247106.jpeg'
+newGuide.img.contentType = 'image/png';
 }
 
 bcrypt.genSalt(10,(err,salt)=>bcrypt.hash(newGuide.password,salt,(err,hash)=>
@@ -227,7 +228,7 @@ router.post('/forgot', function(req, res, next) {
     secure: true, // use SSL
     auth: {
         user: 'koushiks666@gmail.com',
-        pass: 'Narayanaetechno@1'
+        pass: '$200Found'
     }
 });
 
@@ -362,11 +363,25 @@ router.get('/guideprofile',CheckGuide,async (req,res)=>{
   }
   console.log('----------------')
   console.log(user)
-  res.render('guideprofile',{user:user})
+  Tp.find({guide:req.user.username}).then(x=>
+  {
+res.render('guideprofile',{user:user,tours:x})
+
+});
+
 });
 router.get('/newtrip/singleplace',CheckGuide,(req,res)=>{
   console.log(req.user)
-  res.render("singleplace")
+  Tp.findOne({guide:req.user.username}).then(x=>
+  {
+    console.log(x)
+    if (x==null){
+      res.render("singleplace")
+
+    }else{
+      res.redirect('/guides/guideprofile')
+    }
+  })
 });
 router.post('/newtrip/singleplace',CheckGuide,(req,res)=>{
 
@@ -379,9 +394,17 @@ router.post('/newtrip/singleplace',CheckGuide,(req,res)=>{
   var closetime=req.body.closetime
   var slotduration=req.body.duration
   console.log(req.files)
+  if(req.files.length!=0){
   var a = fs.readFileSync(req.files[0].path)
   path = '/uploads/'+req.files[0].filename
   contentType = 'image/png';
+  }
+else{
+  
+  path = '/uploads/'+'places/Hyderabad/imgs/bg0.jpg'
+  contentType = 'image/png';
+  }
+
   // t1=opentime.split(':')
   // var mins = 30*Number(slotduration)*t1[1];
   // var hours=t1[0];
@@ -406,11 +429,20 @@ var timeslots = [];
 
 starttime1 = addMinutes(starttime, interval);
 
-while (starttime1 <= endtime) {
+while (starttime1 <= endtime ) {
 
   timeslots.push(starttime);
+
   starttime = addMinutes(starttime, interval);
+
   starttime1 = addMinutes(starttime, interval);
+  if(starttime >starttime1){
+    break
+  }
+  console.log('------------')
+console.log(starttime)
+console.log(starttime1)
+console.log('------------')
 
 }
 
@@ -546,6 +578,24 @@ return res.redirect('/guides/newtrip/singleplace')
 });
 
 router.post('/guideprofile/cal',CheckGuide,(req,res)=>{
+currentbookings=[]
+if (req.user.booking.length !=0){
+    for (var i = 0; i < req.user.booking.length; i++) {
+      if(req.user.booking[i].current==true && req.user.booking[i].plantype=='tourplan' ){
+
+        var m2=new Date(req.user.booking[i].date_n_time.date)
+
+        for (var i = 0; i < req.user.booking[i].days-1; i++) {
+          m2.setDate(m2.getDate()+1)
+          currentbookings.append(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+
+                }
+
+
+      }
+    }
+
+}
 console.log(req.body)
   var dates=req.body.dates;
   dates=dates.split('-');
@@ -578,12 +628,15 @@ const toRemove = new Set(dates);
 
 const difference = new Set([...myArray].filter((x) => !toRemove.has(x)));
 
-
-var available_dates=Array.from(difference);
+const curbok = new Set(currentbookings);
+const dif1= new Set([...difference].filter((x) => !curbok.has(x)));
+var available_dates=Array.from(dif1);
 console.log('not available')
 console.log(dates)
 console.log(available_dates)
 console.log('available_dates')
+
+
 
 
 
@@ -1091,5 +1144,95 @@ router.post('/news',CheckGuide,(req,res)=>{
   news.save()
   res.redirect('/guides/guideprofile')
 })
+
+router.get('/tour_plan_details',CheckGuide, async (req,res) => {
+
+    try{
+
+    var tour = await Tp.find({guide:req.user.username,_id:req.query.id})
+
+    console.log(tour)
+    var opted=tour[0].dates
+    console.log('pppppppppppppppppppp')
+console.log(opted)
+    var booked=[]
+    for (var i = 0; i < req.user.booking.length; i++) {
+      if(req.user.booking[i].current==true && req.user.booking[i].plantype=='tourplan'){
+        booked.push(guide.booking[i].date_n_time.date)
+        var t2=new Date(guide.booking[m].date_n_time.date)
+
+        days1=guide.booking[m].days
+        for (var i = 0; i < days1-1; i++) {
+          m2.setDate(m2.getDate()+1)
+          booked.append(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+
+                }
+
+      }
+    }
+    b1=new Set(booked)
+    booked = Array.from(b1)
+    console.log(opted)
+    console.log('opted')
+    console.log(booked)
+    res.status(200).render('edittourplan',{ tour:tour,booked:booked,opted:opted})
+    }catch(e){
+    res.status(404).send(e)
+    }
+
+})
+
+router.post('/tourcal',CheckGuide,(req,res)=>{
+  console.log('hey')
+  console.log(req.body)
+  var dates1=req.body.dates
+  console.log(dates1)
+console.log(req.body.dates)
+  console.log(req.body.id)
+  guide=req.user
+  dates1 = dates1.split('-')
+  console.log(dates1)
+  hold=[]
+  for (var m=0;m<guide.booking.length;m++){
+    if(guide.booking[m].current==true && guide.booking[m].plantype=='tourplan' ){
+      hold.push(guide.booking[m].date_n_time.date)
+      var t2=new Date(guide.booking[m].date_n_time.date)
+
+      days1=guide.booking[m].days
+      for (var i = 0; i < days1-1; i++) {
+        t2.setDate(t2.getDate()+1)
+        hold.append(t2.getFullYear() + '/' + (t2.getMonth()+1).toString().padStart(2, '0') + '/' + t2.getDate().toString().padStart(2, '0'))
+
+              }
+              var t2=new Date(guide.booking[m].date_n_time.date)
+              for (var i = 0; i < days1-1; i++) {
+                t2.setDate(t2.getDate()-1)
+                hold.append(t2.getFullYear() + '/' + (t2.getMonth()+1).toString().padStart(2, '0') + '/' + t2.getDate().toString().padStart(2, '0'))
+
+                      }
+
+    }
+  }
+  var booked= new Set(hold)
+
+  var dated = new Set(dates1)
+  var datees = new Set([...dated].filter((x) => !booked.has(x)));
+
+  var dates=Array.from(datees)
+console.log('booked')
+console.log(booked)
+console.log('dates')
+console.log(dates)
+Tp.findOne({guide:req.user.username,_id:req.body.id}).then(x=>{
+  var da = x.dates
+// Tp.updateOne({guide:req.user.username,_id:req.body.id},{$pullAll:da}).then(y=>{
+//   Tp.updateOne({})
+// })
+x.dates=dates
+x.save().then(a=>{console.log('done')})
+})
+
+});
+
 
 module.exports = router;

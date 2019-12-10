@@ -556,7 +556,7 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
             </th>
           </tr>
           <% }else{%>
-            <p>Add trip to see here</p>
+            <p>Add About to see here</p>
             <% }%>
         </tbody>
       </table>
@@ -622,7 +622,23 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
             </td>
           </tr>
           <% }%>
-          <% }else{%>
+          <% }else if(tours.length!=0){%>
+            <%for(var j=0;j< tours.length;j++){ %>
+              <tr>
+                <th scope="row">
+                  <a href="/guides/tour_plan_details?id=<%=tours[j]._id%>"><%=tours[j].name %></a>
+                </th>
+                <td>
+                  <div class="d-flex align-items-center" >
+                    <span class="mr-2">Tour plan</span>
+                    <div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <%}%>
+          <%}else{%>
             <th scope="col">Add trip to see here</th>
             <% }%>
 
@@ -1222,7 +1238,7 @@ $('#relationship-status-slider').on('change input', function() {
         navbar.style.boxShadow = 'none';
         wander.style.color = 'grey';
         wander.style.marginTop = "35px"
-        ul.style.marginTop = "1.7%x";
+        ul.style.marginTop = "1.7%";
         btn.style.color = 'grey';
         for(var i=0; i<items.length; i++){
           items[i].style.color = 'grey';

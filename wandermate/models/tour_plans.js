@@ -58,7 +58,12 @@ const tp_Schema = new mongoose.Schema({
     cost:{
         type:Number,
         required:true,
-    }
+    },
+    dates:{
+      type:Array,
+      default: void 0,
+      }
+
 })
 
 const TP = mongoose.model('TP',tp_Schema)

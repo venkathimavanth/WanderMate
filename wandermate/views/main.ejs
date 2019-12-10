@@ -1590,90 +1590,40 @@
                     </div>
                   </div>
                 <% }) %>
-                <!--
-                <div class="card2 card2-blog card2-plain blog-horizontal">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="card2-image">
-                        <a href="javascript:;">
-                          <img class="img rounded" src="https://demos.creative-tim.com/argon-design-system-pro/assets/img/faces/team-3.jpg">
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-lg-8">
-                      <div class="card2-body">
-                        <h3 class="card2-title">
-                          <p class="heading">MateLabs mixes learning with IFTTT</p>
-                        </h3>
-                        <p class="card2-description">
-                          If you’ve ever wanted to train a machine learning model and integrate it with IFTTT, you now can with a new offering from MateLabs. MateVerse, a platform where novices can spin out machine...<a href="javascript:;"> Read More </a>
-                        </p>
-                        <div class="author">
-                          <img src="https://demos.creative-tim.com/argon-design-system-pro/assets/img/faces/team-5.jpg" alt="..." class="avatar img-raised">
-                          <div class="text">
-                            <span class="name">Paul Smith</span>
-                            <div class="meta">Drawn on 23 Jan</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card2 card2-blog card2-plain blog-horizontal">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="card2-image">
-                        <a href="javascript:;">
-                          <img class="img rounded" src="https://demos.creative-tim.com/argon-design-system-pro/assets/img/faces/team-4.jpg">
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-lg-8">
-                      <div class="card2-body">
-                        <h3 class="card2-title">
-                          <p class="heading">US venture investment ticks up in Q2</p>
-                        </h3>
-                        <p class="card2-description">
-                          Venture investment in U.S. startups rose sequentially in the second quarter of 2017, boosted by large, late-stage financings and a few outsized early-stage rounds in tech and healthcare.. <a href="javascript:;"> Read More </a>
-                        </p>
-                        <div class="author">
-                          <img src="https://demos.creative-tim.com/argon-design-system-pro/assets/img/faces/team-2.jpg" alt="..." class="avatar img-raised">
-                          <div class="text">
-                            <span class="name">Jasmine Tailor</span>
-                            <div class="meta">Drawn on 23 Jan</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
               </div>
             </div>
           </div>
         </section>
       </div>
     </div>
+
     <div style="z-index:5;padding:2%;">
       <div class="row" style="width:100%;">
         <p class="news">PLACES TO VISIT</p>
         <div class="col-9">
           <table>
             <tr id="p<%= 1 %>">
-
               <% for(var j=0; j < ((places.spots.length<3)?places.spots.length:3) ;j++){ %>
                 <td style="padding-right:0.75%;">
                   <div class="card1 text-center" style="background-size:cover;background-image:url('<%= places.spots[j].img %>');">
                     <h4 class="title title-modern"><%= places.spots[j].name %></h4>
-                    <span class="dropdown" style="float:right;z-index:3;margin-top:-15%;">
-                      <button style="color:white;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="far fa-heart" style="color:#f783ac;font-size:22px;margin-top:-5%;"></i>
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <% for(var i=0;i < boards.length;i++){ %>
-                          <a style="padding-top:2px;" class="dropdown-item"><%= boards[i].boardname %></a>
-                        <% } %>
-                      </div>
-                    </span>
+                    <% if (placenames.includes(places.spots[j].name)) { %>
+                      <span class="dropdown" style="float:right;z-index:3;margin-top:-13%;margin-right:6%;">
+                          <i class="fas fa-heart" style="color:#f783ac;font-size:22px;margin-top:-5%;"></i>
+                      </span>
+                    <% } else { %>
+                      <span class="dropdown" style="float:right;z-index:3;margin-top:-15%;">
+                        <button style="color:white;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="far fa-heart" style="color:#f783ac;font-size:22px;margin-top:-5%;"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <% for(var i=0;i < boards.length;i++){ %>
+                            <a style="padding-top:2px;" class="dropdown-item"><p data-toggle="modal" data-whatever="<%= boards[i] %>" data-target="#board<%= j+1 %>"><%= boards[i] %></p></a>
+                          <% } %>
+                          <a style="padding-top:2px;" class="dropdown-item"><p data-toggle="modal" data-img="<%= places.spots[j].img %>" data-name="<%= places.spots[j].name %>" data-target="#addnew"><i style="color:#28a745;" class="fas fa-plus">Add New</i></p></a>
+                        </div>
+                      </span>
+                    <% } %>
                     <div class="content">
                       <div class="price">
                         <h6>From</h6>
@@ -1684,10 +1634,55 @@
                     <div class="filter"></div>
                     <div class="footer btn-center">
                       <button class="btn-neutral btn-round btn-fill">
-                        <a href="/place/form?id=charminar">Book Guide!</a></button>
+                        <a href="/place/form?id=<%= places.spots[j].name %>">Book Guide!</a></button>
                     </div>
                   </div>
                 </td>
+                <div class="modal fade" id="board<%= j+1 %>" role="dialog">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title" style="float:left;">Add to my List</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row" style="padding:3%;">
+                          <div class="col-6" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);background-size:cover;background-image:url('<%= places.spots[j].img %>');"></div>
+                          <div class="col-6">
+                            <form action="/wanderlist/add" method="POST">
+                              <div class="form-group">
+                                <label for="disabledTextInput">Board Name</label>
+                                <input name="board" type="text" class="form-control" id="disabledTextInput" readonly>
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Comment</label>
+                                <textarea name="comment" placeholder="My thoughts on this..." class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                              </div>
+                              <div class="form-group">
+                                <input type="text" class="form-control" style="display:none;" name="img" value="<%= places.spots[j].img %>">
+                              </div>
+                              <div class="form-group">
+                                <input type="text" class="form-control" style="display:none;" name="city" value="<%= places.name %>">
+                              </div>
+                              <div class="form-group">
+                                <input type="text" class="form-control" style="display:none;" name="name" value="<%= places.spots[j].name %>">
+                              </div>
+                              <button type="submit" style="float:right;" class="btn btn-success btn-sm">Submit</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script type="text/javascript">
+                  $('#board<%= j+1 %>').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget)
+                    var recipient = button.data('whatever')
+                    var modal = $(this)
+                    modal.find('.modal-body #disabledTextInput').val(recipient)
+                  })
+                </script>
               <% } %>
             </tr>
             <% for(var i=3;i< places.spots.length; i+=3){ %>
@@ -1702,7 +1697,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                           <% for(var k=0;k< boards.length;k++){ %>
-                            <a style="padding-top:2px;" class="dropdown-item"><%= boards[k].boardname %></a>
+                            <a style="padding-top:2px;" class="dropdown-item"><p data-toggle="modal" data-whatever="<%= boards[k] %>" data-target="#board<%= i+j+1 %>"><%= boards[k] %></p></a>
                           <% } %>
                         </div>
                       </span>
@@ -1716,10 +1711,55 @@
                       <div class="filter"></div>
                       <div class="footer btn-center">
                         <button class="btn-neutral btn-round btn-fill">
-                          <a href="/place/form?id=charminar">Book Guide!</a></button>
+                          <a href="/place/form?id=<%= places.spots[i+j].name %>">Book Guide!</a></button>
                       </div>
                     </div>
                   </td>
+                  <div class="modal fade" id="board<%= i+j+1 %>" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 style="float:left;" class="modal-title">Add to my List</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row" style="padding:3%;">
+                            <div class="col-6" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);background-size:cover;background-image:url('<%= places.spots[i+j].img %>');"></div>
+                            <div class="col-6">
+                              <form action="/wanderlist/add" method="POST">
+                                <div class="form-group">
+                                  <label for="disabledTextInput">Board Name</label>
+                                  <input name="board" type="text" class="form-control" id="disabledTextInput" readonly>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleFormControlTextarea1">Comment</label>
+                                  <textarea name="comment" placeholder="My thoughts on this..." class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                  <input type="text" class="form-control" name="img" style="display:none;" value="<%= places.spots[i+j].img %>">
+                                </div>
+                                <div class="form-group">
+                                  <input type="text" class="form-control" name="city" style="display:none;" value="<%= places.name %>">
+                                </div>
+                                <div class="form-group">
+                                  <input type="text" class="form-control" name="name" style="display:none;" value="<%= places.spots[i+j].name %>">
+                                </div>
+                                <button type="submit" style="float:right;" class="btn btn-success btn-sm">Submit</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <script type="text/javascript">
+                    $('#board<%= i+j+1 %>').on('show.bs.modal', function (event) {
+                      var button = $(event.relatedTarget)
+                      var recipient = button.data('whatever')
+                      var modal = $(this)
+                      modal.find('.modal-body input').val(recipient)
+                    })
+                  </script>
                 <% } %>
               </tr>
             <% } %>
@@ -1733,6 +1773,54 @@
             </ul>
           </div>
         </div>
+        <div class="modal fade" id="addnew" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" style="float:left;">Add new Board</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <div class="row" style="padding:3%;">
+                  <div class="col-6" id="boardmodalbgimg" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);background-size:cover;background-image:url('<%= places.spots[j].img %>');"></div>
+                  <div class="col-6">
+                    <form action="/wanderlist/addnewboard" method="POST">
+                      <div class="form-group">
+                        <label for="newboard">Board Name</label>
+                        <input name="board" type="text" class="form-control" id="newboard">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Comment</label>
+                        <textarea name="comment" placeholder="My thoughts on this..." class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" style="display:none" id="boardimg" name="img">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" style="display:none" name="city" value="<%= places.name %>">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control" style="display:none" id="boardplacename" name="name">
+                      </div>
+                      <button type="submit" style="float:right;" class="btn btn-success btn-sm">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          $('#addnew').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var name = button.data('name')
+            var img = button.data('img')
+            var modal = $(this)
+            modal.find('.modal-body #boardplacename').val(name)
+            modal.find('.modal-body #boardimg').val(img)
+            modal.find('.modal-body #boardmodalbgimg').css("background-image", "url(" + img + ")");
+          })
+        </script>
 
         <div class="col-3">
           <div class="card3 card-pricing bg-success border-0 text-center mb-4" style="background: linear-gradient(35deg,#2dce89 0,#2dcecc 100%)!important;height:460px;">
@@ -2667,6 +2755,23 @@ function change(ind){
   }
 }
 
+</script>
+
+<script type="text/javascript">
+  // function boardname(id, name){
+  //   console.log(id);
+  //   console.log(name);
+  //   var form = document.getElementById('board'+id).getElementsByTagName('form')[0];
+  //   var feild = form.getElementsByTagName('input')[0];
+  //   feild.value = name;
+  // }
+  $('#').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget)
+  var recipient = button.data('whatever')
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})
 </script>
 
 
