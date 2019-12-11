@@ -144,6 +144,22 @@ router.get('/:id',IsAuth,function(req,res){
   .catch(err=>{console.log(err)})
   .then( user_data=>{
 
+      var liked=false
+
+      if( user_data[0].userlikes.includes(req.user.username)){
+        liked=true
+      }
+      else{
+        if( user_data[0].guidelikes.includes(req.user.username)){
+          liked=true
+        }
+        else{
+          liked=false
+        }
+      }
+
+      console.log(liked);
+
       count=0
       posts=0
       Blogs.find({name:user_data[0].name,type:user_data[0].type}, function(err,p_data){
@@ -157,14 +173,79 @@ router.get('/:id',IsAuth,function(req,res){
            }
          })
           }
-            res.render('post',{user:req.user,likes:count,posts:posts,blog:user_data,first:max_liked_blog[0],second:max_liked_blog[1]})
+            res.render('post',{user:req.user,likes:count,posts:posts,blog:user_data,first:max_liked_blog[0],second:max_liked_blog[1],liked:liked})
 
     })
-
 
   })
 
 });
+
+router.post('/:id',IsAuth, urlencodedParser, function(req, res){
+
+  console.log(req.body);
+
+  if(req.body.type=='user'){
+    Blogs.updateOne({_id:new ObjectId(req.body.id)},
+                  {$push:{userlikes:req.body.name}},function(){});
+  }
+  if(req.body.type=='guide'){
+    Blogs.updateOne({_id:new ObjectId(req.body.id)},
+                  {$push:{guidelikes:req.body.name}},function(){});
+  }
+
+  var id=req.body.id
+  Blogs.findOne({'_id':id})
+  .catch(err=>{console.log(err)})
+  .then( data=>{
+      var likes=parseInt(data.likes)+1
+      data.likes=likes.toString()
+      var newvalues = { $set: data };
+      Blogs.updateOne({'_id':id}, newvalues, function(err, res) {
+        if (err) throw err;
+        console.log("1 document updated");
+      });
+
+
+
+      Blogs.find({'_id':req.params.id})
+      .catch(err=>{console.log(err)})
+      .then( user_data=>{
+          var liked=false
+
+          if( user_data[0].userlikes.includes(req.user.username)){
+            liked=true
+          }
+          else{
+            if( user_data[0].guidelikes.includes(req.user.username)){
+              liked=true
+            }
+            else{
+              liked=false
+            }
+          }
+
+          console.log(liked);
+          count=0
+          posts=0
+          Blogs.find({name:user_data[0].name,type:user_data[0].type}, function(err,p_data){
+           if(err){
+             console.log(err);
+           }else{
+             p_data.forEach(function(item,index){
+               if(item.name==user_data[0].name && item.type==user_data[0].type){
+                 count=count+parseInt(item.likes)
+                 posts=posts+1
+               }
+             })
+              }
+                res.render('post',{user:req.user,likes:count,posts:posts,blog:user_data,first:max_liked_blog[0],second:max_liked_blog[1],liked:liked})
+
+        })
+
+      })
+  })
+})
 
 
 var i=0

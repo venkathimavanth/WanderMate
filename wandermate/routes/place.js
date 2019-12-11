@@ -66,57 +66,6 @@ router.post('/tripplan',CheckUser,urlencodedParser, function(req,res){
     console.log(date);
     console.log(typeof(date));
     var d=new Date(date)
-    for(var i=1;i<data.num_of_days;i++){
-      console.log(i);
-      console.log(d);
-      var next = new Date(d);
-      next.setDate(d.getDate()+i);
-      console.log(next);
-      var m1,d1,yr1;
-
-      yr1=next.getFullYear();
-      m1=next.getMonth()+1;
-      if(m1<10){
-        m1='0'+m1;
-      }
-      d1=next.getDate()
-      if(d1<10){
-        d1='0'+d1;
-      }
-      var date1=yr1.toString()+'/'+m1.toString()+'/'+d1.toString()
-      console.log(date1);
-      if(data.dates.includes(date1)){
-        console.log('date found');
-        data.dates.pull(date1);
-      }
-
-      var prev = new Date(d);
-      prev.setDate(d.getDate()-i);
-      console.log(next);
-
-      yr1=prev.getFullYear();
-      m1=prev.getMonth()+1;
-      if(m1<10){
-        m1='0'+m1;
-      }
-      d1=prev.getDate()
-      if(d1<10){
-        d1='0'+d1;
-      }
-      date2=yr1.toString()+'/'+m1.toString()+'/'+d1.toString()
-      console.log(date2);
-      if(data.dates.includes(date2)){
-        console.log('date found');
-        data.dates.pull(date2);
-      }
-
-    }
-    data.dates.pull(date)
-    console.log(data);
-
-    // Tour_plans.updateOne({guide:data.guide},
-    //                 data,function(){})
-data.save()
 
     var itemOne = {
       users:{username:req.user.username},
@@ -124,7 +73,9 @@ data.save()
       place:data.city,
       days:data.num_of_days,
       current:true,
-      plan:'tourplan'};
+      plan:'tourplan',
+      planid:data._id
+    };
 
 
       Guides.updateOne({ username: data.guide },
@@ -138,18 +89,89 @@ data.save()
         place:data.city,
         days:data.num_of_days,
         current:true,
-        plan:'tourplan'};
+        plan:'tourplan',
+        planid:data._id
+      };
 
         User.updateOne({username:req.user.username},
                         {$push:{booking:itemOne1}},function(){})
 
-res.redirect('/users')
+        Tour_plans.find({ guide:data.guide})
+        .catch(err=>{console.log(err)})
+        .then( all_data=>{
+
+          for(var k=0;k<all_data.length;k++){
+            console.log('k value');
+            console.log(k);
+            for(var j=0;j<all_data[k].num_of_days;j++){
+                console.log('j value');
+                console.log(j);
+                console.log(d);
+                var next = new Date(d);
+                next.setDate(d.getDate()+j);
+                console.log(next);
+                var m1,d1,yr1;
+
+                yr1=next.getFullYear();
+                m1=next.getMonth()+1;
+                if(m1<10){
+                  m1='0'+m1;
+                }
+                d1=next.getDate()
+                if(d1<10){
+                  d1='0'+d1;
+                }
+                var date1=yr1.toString()+'/'+m1.toString()+'/'+d1.toString()
+                console.log(date1);
+                if(all_data[k].dates.includes(date1)){
+                  console.log('date found');
+                  all_data[k].dates.pull(date1);
+                }
+
+                var prev = new Date(d);
+                prev.setDate(d.getDate()-j);
+                console.log(next);
+
+                yr1=prev.getFullYear();
+                m1=prev.getMonth()+1;
+                if(m1<10){
+                  m1='0'+m1;
+                }
+                d1=prev.getDate()
+                if(d1<10){
+                  d1='0'+d1;
+                }
+                date2=yr1.toString()+'/'+m1.toString()+'/'+d1.toString()
+                console.log(date2);
+                if(all_data[k].dates.includes(date2)){
+                  console.log('date found');
+                  all_data[k].dates.pull(date2);
+                }
+
+            }
+            all_data[k].dates.pull(date)
+            console.log('all sat------------------');
+            console.log(all_data[k]);
+            Tour_plans.updateOne({'_id':all_data[k]._id},
+                            all_data[k],function(){})
+          }
+
+
+
+
+
+       })
+
  })
 
 
 
-
+  res.redirect('/users/#currentbookings')
 });
+
+
+
+
 
 
 var data
@@ -161,6 +183,7 @@ router.get('/form',CheckUser,function(req,res){
   if (data==undefined){
     res.render('form',{user:req.user,guides:false,value:false});
     place_id = req.query.id;
+    place_id=place_id.toLowerCase();
 
   }
   else{
@@ -438,7 +461,7 @@ router.post('/booked',CheckUser,function(req,res){
 
 
 
-   res.redirect('/places/Hyderabad')
+   res.redirect('/users/#currentbookings')
 
 })
 
@@ -455,6 +478,7 @@ router.get('/form_city',CheckUser,function(req,res){
   if (data_city==undefined){
     res.render('form_city',{user:req.user,guides:false,value:false});
     city_id = req.query.id;
+    city_id=city_id.toLowerCase();
 
   }
   else{
@@ -465,7 +489,7 @@ router.get('/form_city',CheckUser,function(req,res){
   console.log("fghj");
 
 
-  Guides.find({$and:[{"availabledates.plantype":'daylong'},{"availabledates.date":value_form_city.date}]},function(err,guides){
+  Guides.find({$and:[{"availabledates.plantype":'daylong'},{"availabledates.date":value_form_city.date},{"availabledates.location":city_id}]},function(err,guides){
     if(err){
       console.log(err);
     }else{
@@ -475,8 +499,8 @@ router.get('/form_city',CheckUser,function(req,res){
         // var count = guides[i].limit - value_form.number    //limit in availabledates
 
           for (j=0;j<guides[i].availabledates.length;j++){
-            if(guides[i].availabledates[j].date==value_form_city.date && guides[i].availabledates[j].plantype=='daylong' && guides[i].limit>= value_form_city.number){
-              guides_count.push({'name':guides[i].username,'time':false});
+            if(guides[i].availabledates[j].date==value_form_city.date && guides[i].availabledates[j].plantype=='daylong' && guides[i].limit>= value_form_city.number && guides[i].availabledates[j].location==city_id){
+              guides_count.push({'name':guides[i].username,'time':false,'pic':guides[i].img.path});
             }
           }
       }
@@ -547,7 +571,7 @@ router.post('/booked_city',CheckUser,function(req,res){
 
 
               var itemOne1 = {
-                guide:data.guide,
+                guide:guide.username,
                 date_n_time:{date:value_form_city.date},
                 type:'solo',
                 place:city_id,
@@ -560,7 +584,7 @@ router.post('/booked_city',CheckUser,function(req,res){
 
          }
        })
-   res.redirect('/places/Hyderabad')
+   res.redirect('/users/#currentbookings')
 
 })
 
