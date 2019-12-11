@@ -15,7 +15,7 @@ let WishList = require('./models/WishList')
 let Chatdata = require('./models/Chatdata');
 const socketio = require('socket.io');
 const http = require('http');
-
+let User = require('./models/User');
 
 
 var cookieParser = require('cookie-parser');
@@ -190,67 +190,67 @@ console.log('heyy')
             console.log(err);
           }else{
             var plans=plans
-            console.log(plans.length)
-            for(var i=0;i<plans.length;i++){
-              console.log('------------')
-              console.log(plans[i]._id);
-              var dates=[]
-              num_of_days=plans[i].num_of_days
-              console.log(num_of_days)
-              Guides.findOne({"availabledates.planid":'5dd0a1783691d951dc5ba363'},function(err,guide){
-                if(err){
-                  console.log(err);
-                }else{
-                  console.log(guide);
-                  if(guide){
-                    console.log(guide.name);
-                    console.log(i);
-                    console.log('roshan');
-
-                  for (var j=0;j<guide.availabledates.length;j++){
-                    if(guide.availabledates[j].plantype=='owntrip' && guide.availabledates[j].totalbookings=='0'){
-                      console.log(guide.availabledates[j].date)
-                      dates.push(guide.availabledates[j].date)
-                    }
-                  }
-                  console.log('dtaes');
-                  console.log(dates);
-
-                  avail=[]
-
-                  function check(d1,d2){
-                    var today= new Date(d1);
-
-                    var x= today.getFullYear().toString()+'/'+((today.getMonth()+1)<10?'0'+(today.getMonth()+1).toString():(today.getMonth()+1).toString())+'/'+(today.getDate()<10?'0'+(today.getDate()).toString():(today.getMonth()).toString())
-                    console.log(x);
-
-                    var next = new Date();
-                    next.setDate(today.getDate()+num_of_days-1);
-                    var y=next.getFullYear().toString()+'/'+(next.getMonth()+1).toString()+'/'+next.getDate().toString()
-                    console.log(y);
-
-                    if(today.getFullYear()==d1.getFullYear() && today.getMonth()==d1.getMonth() && today.getDate()==d1.getDate()){
-                      console.log('asdfghj');
-                      avail.push({start:'x',end:'y'})
-                      return true
-                    }
-                  }
-
-
-                  for(var k=0;k<dates.length-num_of_days+1;k++){
-                    console.log(j);
-                    console.log((new Date(dates[k])));
-                    console.log((new Date(dates[k+num_of_days-1])));
-                    console.log(check(new Date(dates[k]), new Date(dates[k+num_of_days-1])))
-                    console.log('done');
-
-                  }
-                }
-                }
-              })
-            }
-
-
+              // console.log(plans.length)
+              // for(var i=0;i<plans.length;i++){
+              //   console.log('------------')
+              //   console.log(plans[i]._id);
+              //   var dates=[]
+              //   num_of_days=plans[i].num_of_days
+              //   console.log(num_of_days)
+              //   Guides.findOne({"availabledates.planid":'5dd0a1783691d951dc5ba363'},function(err,guide){
+              //     if(err){
+              //       console.log(err);
+              //     }else{
+              //       console.log(guide);
+              //       if(guide){
+              //         console.log(guide.name);
+              //         console.log(i);
+              //         console.log('roshan');
+              //
+              //       for (var j=0;j<guide.availabledates.length;j++){
+              //         if(guide.availabledates[j].plantype=='owntrip' && guide.availabledates[j].totalbookings=='0'){
+              //           console.log(guide.availabledates[j].date)
+              //           dates.push(guide.availabledates[j].date)
+              //         }
+              //       }
+              //       console.log('dtaes');
+              //       console.log(dates);
+              //
+              //       avail=[]
+              //
+              //       function check(d1,d2){
+              //         var today= new Date(d1);
+              //
+              //         var x= today.getFullYear().toString()+'/'+((today.getMonth()+1)<10?'0'+(today.getMonth()+1).toString():(today.getMonth()+1).toString())+'/'+(today.getDate()<10?'0'+(today.getDate()).toString():(today.getMonth()).toString())
+              //         console.log(x);
+              //
+              //         var next = new Date();
+              //         next.setDate(today.getDate()+num_of_days-1);
+              //         var y=next.getFullYear().toString()+'/'+(next.getMonth()+1).toString()+'/'+next.getDate().toString()
+              //         console.log(y);
+              //
+              //         if(today.getFullYear()==d1.getFullYear() && today.getMonth()==d1.getMonth() && today.getDate()==d1.getDate()){
+              //           console.log('asdfghj');
+              //           avail.push({start:'x',end:'y'})
+              //           return true
+              //         }
+              //       }
+              //
+              //
+              //       for(var k=0;k<dates.length-num_of_days+1;k++){
+              //         console.log(j);
+              //         console.log((new Date(dates[k])));
+              //         console.log((new Date(dates[k+num_of_days-1])));
+              //         console.log(check(new Date(dates[k]), new Date(dates[k+num_of_days-1])))
+              //         console.log('done');
+              //
+              //       }
+              //     }
+              //     }
+              //   })
+              // }
+              //
+              //
 
 console.log("cgdjgvjywegdvjgwekvgbwevbwekugvuegviegvegvukgewkug");
             console.log(plans);
@@ -415,6 +415,57 @@ console.log('heyy')
  });
 
 
+ app.get('/viewprofile/:guidename',function(req,res){
+   Guides.find({name:req.params.guidename}, function(err, guide){
+     Tour_plans.find({guide:req.params.guidename}, function(req, tours){
+       res.render('guideinfo', {user:guide[0], tours:tours[0]})
+     })
+   })
+ })
+
+ const recommend = require('collaborative-filter');
+app.get('/reco/:name',async function(req,res){
+  var placenames = []
+  var mat = []
+  console.log("_________");
+  console.log(placenames);
+await Placeinfo.find({},function(err, places){
+    //console.log(places)
+    for(var i=0;i<places.length;i++){
+      placenames.push(places[i].name);
+    }
+  })
+  console.log("_________");
+  console.log(placenames);
+  var ind;
+await User.find({}, function(err, users){
+    //console.log(users);
+    for(var i=0;i<users.length;i++){
+      var temp = new Array(placenames.length).fill(0)
+      if(req.params.name === users[i].name){
+        ind = i
+      }
+      for(var j=0;j<users[i].booking.length;j++){
+        if(users[i].booking[j].plan === "daylong"){
+          if(placenames.includes(users[i].booking[j].place)){
+            temp[placenames.indexOf(users[i].booking[j].place)] = 1
+          }
+        }
+      }
+      mat.push(temp)
+      console.log("_________");
+      console.log(temp);
+    }
+    const result = recommend.cFilter(mat, ind);
+    var recomendations = []
+    console.log("_________");
+    console.log(placenames);
+    for(var i=0;i<result.length;i++){
+      recomendations.push(placenames[result[i]])
+    }
+    console.log(recomendations);
+  })
+})
 
 
  server.listen(8000, function(){

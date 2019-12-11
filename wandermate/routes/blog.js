@@ -95,7 +95,12 @@ router.get('/',IsAuth,function(req,res){
          })
           }
           console.log(data.length);
-          res.render('blog',{user:req.user,likes:count,posts:posts,blog:data,first:max_liked_blog[0],second:max_liked_blog[1],url:'blog',i:i});
+          Blogs.find().sort({likes:-1}).limit(2)
+            .catch(err=>{console.log(err)})
+            .then( h_data=>{
+                max_liked_blog=h_data
+                res.render('blog',{user:req.user,likes:count,posts:posts,blog:data,first:max_liked_blog[0],second:max_liked_blog[1],url:'blog',i:i});
+            })
 
     })
   })
@@ -130,7 +135,13 @@ router.get('/myposts',IsAuth,function(req,res){
                }
              })
               }
-              res.render('blog',{user:req.user,likes:count,posts:posts,blog:data,first:max_liked_blog[0],second:max_liked_blog[1],url:'myposts',i:i});
+
+              Blogs.find().sort({likes:-1}).limit(2)
+                .catch(err=>{console.log(err)})
+                .then( h_data=>{
+                    max_liked_blog=h_data
+                    res.render('blog',{user:req.user,likes:count,posts:posts,blog:data,first:max_liked_blog[0],second:max_liked_blog[1],url:'myposts',i:i});
+                })
 
         })
 
@@ -173,7 +184,12 @@ router.get('/:id',IsAuth,function(req,res){
            }
          })
           }
-            res.render('post',{user:req.user,likes:count,posts:posts,blog:user_data,first:max_liked_blog[0],second:max_liked_blog[1],liked:liked})
+          Blogs.find().sort({likes:-1}).limit(2)
+            .catch(err=>{console.log(err)})
+            .then( h_data=>{
+                max_liked_blog=h_data
+                res.render('post',{user:req.user,likes:count,posts:posts,blog:user_data,first:max_liked_blog[0],second:max_liked_blog[1],liked:liked})
+            })
 
     })
 
@@ -239,7 +255,13 @@ router.post('/:id',IsAuth, urlencodedParser, function(req, res){
                }
              })
               }
-                res.render('post',{user:req.user,likes:count,posts:posts,blog:user_data,first:max_liked_blog[0],second:max_liked_blog[1],liked:liked})
+
+              Blogs.find().sort({likes:-1}).limit(2)
+                .catch(err=>{console.log(err)})
+                .then( h_data=>{
+                    max_liked_blog=h_data
+                    res.render('post',{user:req.user,likes:count,posts:posts,blog:user_data,first:max_liked_blog[0],second:max_liked_blog[1],liked:liked})
+                })
 
         })
 
@@ -279,7 +301,13 @@ router.get('/:id/all',IsAuth,function(req,res){
                 }
               })
                }
-               res.render('blog',{user:req.user,likes:count,posts:posts,blog:data,first:max_liked_blog[0],second:max_liked_blog[1],url:'posts',i:i,id:req.params.id});
+
+               Blogs.find().sort({likes:-1}).limit(2)
+                 .catch(err=>{console.log(err)})
+                 .then( h_data=>{
+                     max_liked_blog=h_data
+                     res.render('blog',{user:req.user,likes:count,posts:posts,blog:data,first:max_liked_blog[0],second:max_liked_blog[1],url:'posts',i:i,id:req.params.id});
+                 })
 
          })
 

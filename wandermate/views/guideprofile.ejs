@@ -579,7 +579,7 @@ width: 100%;
                         </tr>
                       </thead>
                       <tbody class="list">
-                        <%if(user.booking){ %>
+                          <%if(user.booking){ %>
                             <% for(i=0;i < user.booking.length;i++ ){ %>
                               <% if(user.booking[i].current){ %>
                         <tr>
@@ -677,12 +677,12 @@ width: 100%;
 
 
 <br><br>
-<div class="wrapper">
+<div class="wrapper" id="wrapper">
           <div class="container" style="margin:50px auto !important">
             <div class="row">
-              <%if(user.booking){ %>
-                  <% for(i=0;i < user.booking.length;i++ ){ %>
-                    <% if(user.booking[i].current == false){ %>
+              <%if(booking){ %>
+                  <% for(i=0;i < booking.length;i++ ){ %>
+                    <% if(booking[i].current == false){ %>
 
               <div class="col-lg-4 col-md-6">
 
@@ -691,30 +691,30 @@ width: 100%;
                   <div class="card-header">
                     <div class="card-avatar">
                       <a href="javascript:;">
-                        <img class="img img-raised rounded-circle" src="<%=user.booking[i].img%>">
+                        <img class="img img-raised rounded-circle" src="<%=booking[i].img%>">
                       </a>
                     </div>
                   </div>
                   <div class="card-body pt-0">
                     <div class="text-center">
                       <h5 class="h5 mt-3">
-                        <%=user.booking[i].users[0].username%>
+                        <%=booking[i].users[0].username%>
                       </h5>
                       <div class="font-weight-300">
-                        <i class="ni location_pin mr-2"><%=user.booking[i].place%></i>
+                        <i class="ni location_pin mr-2"><%=booking[i].place%></i>
                       </div>
                     </div>
                     <div class="card-profile-stats d-flex justify-content-center">
                       <div>
-                        <span class="heading"><%=user.booking[i].tot_no_of_tourits%></span>
+                        <span class="heading"><%=booking[i].tot_no_of_tourits%></span>
                         <span class="description">Tourists</span>
                       </div>
                       <div>
-                        <span class="heading"><%=user.booking[i].type%></span>
+                        <span class="heading"><%=booking[i].type%></span>
                         <span class="description">Type</span>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-lg btn-success btn-block" onclick="testimonial('<%=user.booking[i].users[0].username%>')">Request Testimonial</button>
+                    <button type="button" class="btn btn-lg btn-success btn-block" onclick="testimonial('<%=booking[i].users[0].username%>')">Request Testimonial</button>
                   </div>
                 </div>
               </div>
@@ -724,37 +724,10 @@ width: 100%;
 
             </div>
           </div>
+          <a href="/guides/guideprofile?pg=<%=p%>#wrapper" class="btn btn-success" style="float:right;margin-right:14%;background-color:#06b995!important"> more.. </a>
+          <a href="/guides/guideprofile#wrapper" class="btn btn-success" style="float:left;margin-left:14%;background-color:#06b995!important"> back  .. </a>
 </div>
 
-<div class="pagination-container justify-content-center">
-                <ul class="pagination pagination-success justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;" aria-label="Previous">
-                      <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;">2</a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="javascript:;">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;">4</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;">5</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;" aria-label="Next">
-                      <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
 <br>
 <br>
 <div class="testimonials-3">
