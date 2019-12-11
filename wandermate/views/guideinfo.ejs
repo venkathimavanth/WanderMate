@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <title>Hello World!</title>
+
+ <!-- Favicon -->
+
+ <!-- <link rel="stylesheet" href="../css/guideprofile.css"> -->
+<style >
+.rangeslider__fill{background:#2DCE89 !important}
+.rangeslider--horizontal{height: 5px !important;width:100% !important;}
+.rangeslider__handle{margin-top:5px !important;width:20px !important;height:20px !important;}
+
+</style>
+<script src="https://kit.fontawesome.com/ea0619ce99.js" crossorigin="anonymous"></script>
+
+ <!-- <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png"> -->
+ <link rel="stylesheet" href="https://demos.creative-tim.com/argon-design-system-pro/assets/css/argon-design-system.min.css?v=1.0.0">
+<!-- <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"> -->
+ <!-- Fonts -->
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+<style >
+
+  #wander {
+    line-height: 50px;
+    position: fixed;
+    float: left;
+    margin: 35px 220px;
+    color: grey;
+    font-weight: 600 !important ;
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: 1s;
+  }
+
+  nav {
+    position: fixed;
+    width: 100%;
+    line-height: 60px;
+    z-index: 1000;
+    overflow-y: visible;
+    border-bottom: 1px solid #f2f2f2;
+    border-width: thin;
+    padding: 10px;
+    transition: background 300ms linear;
+  }
+
+  nav ul {
+    line-height: 50px;
+    list-style: none;
+    background: rgba(0, 0, 0, 0);
+    color: grey;
+    padding: 0;
+    text-align: right;
+    margin: 0;
+    padding-right: 40px;
+    transition: 1s;
+  }
+
+  nav ul li {
+    display: inline-block;
+    padding: 10px 20px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: grey;
+    font-size: 16px;
+  }
+.btn-success {
+color: #fff;
+background-color: #2dce89;
+border-color: #2dce89;
+box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+.blue-btn:hover,
+.blue-btn:active,
+.blue-btn:focus,
+.blue-btn {
+background: transparent;
+border: solid 1px #2DCE89;
+border-radius: 3px;
+color: #2DCE89;
+font-size: 16px;
+margin-bottom: 20px;
+outline: none !important;
+padding: .625rem 1.25rem;
+}
+
+.fileUpload {
+position: relative;
+overflow: hidden;
+height: 43px;
+margin-top: 0;
+}
+
+.fileUpload input.uploadlogo {
+position: absolute;
+top: 0;
+right: 0;
+margin: 0;
+padding: 0;
+font-size: 20px;
+cursor: pointer;
+opacity: 0;
+filter: alpha(opacity=0);
+width: 100%;
+height: 42px;
+}
+
+/*Chrome fix*/
+input::-webkit-file-upload-button {
+cursor: pointer !important;
+height: 42px;
+width: 100%;
+}
+
+</style>
+ <!-- Icons -->
+ <link href="../assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+ <!-- <link href="../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"> -->
+
+<link rel="stylesheet" href="../css/calendar.css"/>
+<!-- <link rel="stylesheet" href="../css/addtrip.css"/> -->
+<link rel="stylesheet" href="https://andreruffert.github.io/rangeslider.js/assets/rangeslider.js/dist/rangeslider.css">
+<!-- quill editor -->
+<script type="module" src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
+<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+
+
+ <!-- Argon CSS -->
+ <!-- <link type="text/css" href="../assets/css/argon.css" rel="stylesheet"> -->
+ <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
+  </script>
+  </head>
+  <body class="presentation-page">
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- <header class="header-global">
+    <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbar_global">
+          <div class="navbar-collapse-header">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a href="../index.html">
+                  <img src="https://demos.creative-tim.com/argon-design-system-pro/assets/img/brand/blue.png">
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank" data-toggle="tooltip" title="Like us on Facebook">
+                <i class="fa fa-facebook-square"></i>
+                <span class="nav-link-inner--text d-lg-none">Facebook</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://www.instagram.com/creativetimofficial" target="_blank" data-toggle="tooltip" title="Follow us on Instagram">
+                <i class="fa fa-instagram"></i>
+                <span class="nav-link-inner--text d-lg-none" >Instagram</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </header> -->
+  <!-- <li class="nav-item">
+    <a class="nav-link nav-link-icon dropdown-toggle dropdown-toggle-split " id="dropdownMenuReference"
+data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent" href="#" >
+      <i class="fa fa-bell"></i>
+      <span class="nav-link-inner--text d-lg-none" >Notification</span>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">Separated link</a>
+</div>
+
+
+  </li> -->
+<!-- <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+
+
+  <li  class="nav-item dropdown" id='dshow'>
+    <a class="nav-link" href="#" role="button"   id="tog" data-toggle="dropdown" data-target="notifications" aria-haspopup="true" aria-expanded="false">
+      <i class="ni ni-bell-55"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden" id="dshow1">
+<% if(user.notifications) {%>
+      <div class="px-3 py-3">
+        <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"><%=user.notifications.length%></strong> notifications.</h6>
+      </div>
+
+      <div class="list-group list-group-flush" id="notifications">
+
+  <% for(i=0;i < user.notifications.length;i++ ){ %>
+        <a href="#!" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <img alt="Image placeholder" src="<%=user.notifications[i].img %>" class="avatar rounded-circle">
+            </div>
+            <div class="col ml--2">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h4 class="mb-0 text-sm"><%=user.notifications[i].username%></h4>
+                </div>
+                <div class="text-right text-muted">
+                  <small>2 hrs ago</small>
+                </div>
+              </div>
+              <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
+            </div>
+          </div>
+        </a>
+          <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+        <%} %>
+
+      </div>
+        <%}else{ %>
+          <p>no new notifications</p>
+        <%}%>
+
+    </div>
+  </li>
+
+<li class="nav-item">
+  <a href="logout" class="text-center text-primary font-weight-bold py-3">logout</a>
+</li>
+</ul> -->
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Wandermate</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="margin-left:60%">
+      <li class="nav-item">
+        <a class="nav-link" href="/guides/guideprofile">home</a>
+      </li>
+
+      <li  class="nav-item dropdown" id='dshow'>
+        <a class="nav-link" href="#" role="button"   id="tog" data-toggle="dropdown" data-target="notifications" aria-haspopup="true" aria-expanded="false">
+          <i class="ni ni-bell-55"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden" id="dshow1">
+      <% if(user.notifications) {%>
+          <div class="px-3 py-3">
+            <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"><%=user.notifications.length%></strong> notifications.</h6>
+          </div>
+
+          <div class="list-group list-group-flush" id="notifications">
+
+      <% for(i=0;i < user.notifications.length;i++ ){ %>
+            <a href="#!" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <img alt="Image placeholder" src="<%=user.notifications[i].img %>" class="avatar rounded-circle">
+                </div>
+                <div class="col ml--2">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <h4 class="mb-0 text-sm"><%=user.notifications[i].username%></h4>
+                    </div>
+                    <div class="text-right text-muted">
+                      <small></small>
+                    </div>
+                  </div>
+                  <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
+                </div>
+              </div>
+            </a>
+              <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+            <%} %>
+
+          </div>
+            <%}else{ %>
+              <p>no new notifications</p>
+            <%}%>
+
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="logout">logout</a>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+<nav id="nav" style="z-index:5;padding-top:0.2%;padding-bottom:0.05%;border:none;" class="navpic">
+  <div class="logo">
+    <span id="wander">WANDERMATE</span>
+  </div>
+  <div class="menu"  style="overflow:visible!important;">
+    <ul id="ul" style="margin-left:60%;margin-top:1.7%;">
+      <center>
+       <li><a class="items" href="/users/dashboard"><i class="fas fa-home"></i></a></li>
+       <li><a class="items" href="/blog"><i class="fas fa-blog"></i></a></li>
+       <li><a class="items" href="#"><i class="fas fa-bell"></i></a></li>
+       <li class="dropdown" style="margin-left:-4%;">
+           <button style="color:grey;font-size:16px;margin-top:-2%;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="far fa-user-circle"><small><b><%= user.username %></b></small></i>
+           </button>
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+             <a style="padding-top:2px;" class="dropdown-item" href="/users">Profile</a>
+             <a style="padding-top:2px;" class="dropdown-item" href="#">WanderList</a>
+             <a style="padding-top:2px;" class="dropdown-item" href="/users/logout">Logout</a>
+           </div>
+       </li>
+     </center>
+    </ul>
+  </div>
+</nav>
+
+    <main class="profile-page">
+        <section  style="background-image:url('../login/1.jpg') !important"class="section-profile-cover  my-0">
+          <!-- Circles background -->
+          <div class="shape shape-style-1 shape-primary alpha-4">
+          </div>
+        </section>
+        <section class="section" style="margin-top:10%">
+          <div class="container">
+            <div class="card card-profile shadow mt--300">
+              <div class="px-4">
+                <div class="row justify-content-center">
+                  <div class="col-lg-3 order-lg-3">
+                    <div class="card-profile-image">
+                      <a href="#">
+                        <img style="width:18vh;height:18vh;" src="<%=user.img.path %>" class="rounded-circle">
+                      </a>
+                    </div>
+                  </div>
+                  <!-- <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+                    <div class="card-profile-actions py-4 mt-lg-0">
+                      <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-sm btn-info " style="background-color: #2DCE89;border-color:#2DCE89">add trip</a>
+                      <a href="/guides/editprofile" class="btn btn-sm btn-default " style="background-color: #2DCE89;border-color:#2DCE89">Edit profile</a>
+                      <a href="#" data-toggle="modal" data-target="#NewsUpdate" class="btn btn-sm btn-default float-right" style="background-color: #2DCE89;border-color:#2DCE89">News</a>
+
+                    </div>
+                  </div> -->
+                  <div class="col-lg-4 order-lg-1">
+                    <div class="card-profile-stats d-flex justify-content-center">
+                      <div>
+                        <span class="heading">22</span>
+                        <span class="description">Friends</span>
+                      </div>
+                      <div>
+                        <span class="heading">10</span>
+                        <span class="description">trips</span>
+                      </div>
+                      <div>
+                        <span class="heading">89</span>
+                        <span class="description">rating</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center mt-5" >
+                        <h3 style="margin-top:-3%"><%=user.username %></h3>
+                        <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i><%=user.city %>, <%=user.country %></div>
+                        <p style="margin-bottom:5%" ></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<form  method="post">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Choose your plan</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+          			<section >
+                  <center>
+          				<nav class="cl-effect-14" style="margin:-10px">
+          					<a href="/guides/newtrip/singleplace" style="color:#2DCE89">Single Place</a>
+          					<a href="/guides/newtrip/daylong" style="color:#2DCE89">Day Long</a>
+                    <a href="/tours/tour_plan" style="color:#2DCE89">Own tour</a>
+
+          				</nav>
+                </center>
+          			</section>
+          		</div>
+          </div>
+          </div>
+        </div>
+      </form>
+      </div>
+      <div class="modal fade" id="addlanguage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <form method="post" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add new language</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+              <form>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <div class="input-group input-group-merge">
+
+                        <input class="form-control" name="language" id="language" placeholder="language" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+
+
+                  <output id="relationship-status-output"  class="relationship-status-output color-default">0</output>
+
+                  <input type="range" id="relationship-status-slider" name="eff"  class="relationship-status-slider" value="0" min="0" max="10" step="1">
+                </div>
+                </div>
+
+
+
+                <a href="#" onclick="addlan()" class="btn btn-sm btn-default float-right" style="margin-top: 10%;background-color: #2DCE89;border-color:#2DCE89">submit</a>
+              </form>
+          		</div>
+          </div>
+          </div>
+        </div>
+      </form>
+      </div>
+
+
+      <div class="modal fade bd-example-modal-lg" id="NewsUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <form method="post" action='/guides/news' method="post" enctype="multipart/form-data" >
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Update News</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                  <div class=row>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="input-group input-group-merge">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+                          </div>
+                          <input class="form-control" name="title" id="title" placeholder="Title" type="text">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="fileUpload blue-btn btn width100">
+  <span>Upload your Location Picture</span>
+  <input type="file" name="userPhoto" id="newsimg" class="uploadlogo" />
+</div>
+
+                    </div>
+                  </div>
+                  <div id="editor" style="height:300px"></div>
+                  <input id="hiddenfield" type="text" value="" name="hiddenfield" hidden>
+                  <br>
+                  <input type="submit" id="submit" class="btn btn-sm btn-default float-right" style="background-color: #2DCE89;border-color:#2DCE89">Update News
+
+          		</div>
+          </div>
+          </div>
+        </div>
+      </form>
+      </div>
+
+
+<div class="container" style="margin-left:15%;margin-bottom:5%">
+  <div class="row" style="margin-left:-20%;margin-bottom:5%" >
+    <div class="col-md-6 mx-auto text-center">
+      <h3 class="display-3">My Calendar</h3>
+    </div>
+    <div class="col-md-6 mx-auto text-center">
+      <h3 class="display-3"></h3>
+    </div>
+  </div>
+  <div class="row " >
+<div class="col-md-6 mx-auto text-center">
+<div class="card" style="padding:-10%;width:100%">
+  <div id="caleandar" style="margin:5%">
+  </div>
+<%if(user.plans.length!=0){%>
+  <form id="calform">
+<input type="text" name="finaldays" id="finaldays" hidden>
+  </form>
+  <button type="button" style="margin-bottom:3%;margin-left:5%;margin-right:5%" class="btn btn-success" onclick="send()">Save</button>
+<%}%>
+</div>
+</div>
+<div class="col-md-6 mx-auto text-center" >
+  <div class="card" style="margin-left:20%">
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">About</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(user.about){  %>
+          <tr>
+            <th scope="row">
+              <%=user.about %>
+            </th>
+          </tr>
+          <% }else{%>
+            <p>Add About to see here</p>
+            <% }%>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  <div class="card" style="margin-left:20%" >
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Languages</th>
+            <!-- <th scope="col"><a href="#" data-toggle="modal" data-target="#addlanguage"  class="btn btn-sm btn-default float-right" style="background-color: #2DCE89;color:white;border-color:#2DCE89">Add language</a></th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <% if(user.languages.length != 0){  %>
+            <% for(i=0;i < user.languages.length;i++ ){ %>
+          <tr>
+            <th scope="row">
+              <%=user.languages[i].language %>
+            </th>
+            <td>
+              <div class="d-flex align-items-center">
+                <span class="mr-2"><%=user.languages[i].eff %>%</span>
+                <div>
+                  <div class="progress">
+                    <div class="progress-bar bg-gradient-green" role="progressbar" aria-valuenow="<%=user.languages[i].eff %>" aria-valuemin="0" aria-valuemax="100" style="width: <%=user.languages[i].eff %>%"></div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <% }%>
+          <% }else{%>
+            <p>Add languages to see here</p>
+            <% }%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card" style="margin-left:20%" >
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">My trips</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(user.plans.length != 0){  %>
+            <% for(i=0;i < user.plans.length;i++ ){ %>
+          <tr>
+            <th scope="row">
+              <%=user.plans[i].location %>
+            </th>
+            <td>
+              <div class="d-flex align-items-center" >
+                <span class="mr-2"><%=user.plans[i].plantype %></span>
+                <div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <% }%>
+          <% }else if(tours.length!=0){%>
+            <%for(var j=0;j< tours.length;j++){ %>
+              <tr>
+                <th scope="row">
+                  <a href="/guides/tour_plan_details?id=<%=tours[j]._id%>"><%=tours[j].name %></a>
+                </th>
+                <td>
+                  <div class="d-flex align-items-center" >
+                    <span class="mr-2">Tour plan</span>
+                    <div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <%}%>
+          <%}else{%>
+            <th scope="col">Add trip to see here</th>
+            <% }%>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<br><br>
+
+<div class="testimonials-3">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 mx-auto text-center">
+            <h3 class="display-3">My Testimonials</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-8 col-10 positioned">
+            <h3 class="display-3">See our customers opinion</h3>
+            <p class="lead">
+              Meet Wingman, a robust suite of styled pages and components, powered by Bootstrap 4. The ideal starting point for product landing pages, stylish web-apps and complete company websites.
+            </p>
+            <a href="javascript:;" style="background-color: #2DCE89;border-color:#2DCE89" class="btn btn-primary mt-5">Contact us</a>
+          </div>
+          <div class="col-md-12 col-md-6">
+
+            <div class="testimonial-glide glide--ltr glide--carousel glide--swipeable">
+
+
+
+              <div class="glide__track" data-glide-el="track">
+
+                <ul class="glide__slides" style="transition: transform 0ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s; width: 4125px; transform: translate3d(-1375px, 0px, 0px);">
+                  <%if(user.testimonials){ %>
+                    <%if(user.testimonials.length!=0 ){ %>
+                      <% for(i=0;i < user.testimonials.length;i++ ){ %>
+
+                  <li class="glide__slide " style="width: 265px; margin-left: 5px; margin-right: 5px;">
+                    <div class="info text-left" style="border: 1px solid #2dce89;">
+                      <p class="description">
+                        <%=user.testimonials[i].text%>
+                      </p>
+                      <div class="author">
+                        <img src="<%=user.img.path %>" alt="..." class="avatar img-raised">
+                        <span><%=user.testimonials[i].username%></span>
+                      </div>
+                    </div>
+                  </li>
+                  <%}%>
+                  <%}else{%>
+                      <li class="glide__slide " style="width: 265px; margin-left: 5px; margin-right: 5px;">
+                        <div class="info text-left" style="border: 1px solid #2dce89;">
+                          <p class="description">
+                            "use can see ur testimonials here"
+                          </p>
+                          <div class="author">
+                            <img src="<%=user.img.path %>" alt="..." class="avatar img-raised">
+                            <span>Wandemate</span>
+                          </div>
+                        </div>
+                      </li>
+                    <%}%>
+                    <%}%>
+                </ul>
+
+
+
+              </div>
+
+
+
+
+              <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left text-default" data-glide-dir="<"><i class="ni ni-bold-left"></i></button>
+                <button class="glide__arrow glide__arrow--right text-default" data-glide-dir=">"><i class="ni ni-bold-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<br>
+<br>
+<br>
+
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../assets/vendor/popper/popper.min.js"></script>
+<script src="../assets/vendor/bootstrap/bootstrap.min.js"></script>
+<!-- <script src="../assets/js/argon.js"></script> -->
+<script type="text/javascript" src="../js/caleandar.js"></script>
+<!-- <script type="text/javascript" src="https://demos.creative-tim.com/argon-design-system-pro/assets/vendor/headroom/headroom.min.js"></script> -->
+<script type="text/javascript" src="https://demos.creative-tim.com/argon-design-system-pro/assets/js/argon-design-system.min.js?v=1.0.0">
+
+</script>
+<script src="https://demos.creative-tim.com/argon-design-system-pro/assets/js/plugins/glide.js"></script>
+
+<script type="text/javascript" src="https://andreruffert.github.io/rangeslider.js/assets/rangeslider.js/dist/rangeslider.min.js">
+
+</script>
+<!-- <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> -->
+
+<script type="text/javascript">
+var events = [];
+
+var days=[]
+var flag=0
+var settings = {
+
+    Color: '',
+    LinkColor: '',
+    NavShow: true,
+    NavVertical: false,
+    NavLocation: '',
+    DateTimeShow: true,
+    DateTimeFormat: 'mmm, yyyy',
+    DatetimeLocation: '',
+    EventClick: '',
+    EventTargetWholeDay: false,
+    DisabledDates:days,
+    flag:0,
+};
+
+var element = document.getElementById('caleandar');
+caleandar(element,events,settings);
+
+// var divs = document.querySelectorAll('.currMonth');
+//
+// var alldays=[]
+// console.log(days)
+// var k = function sel(d) {
+//
+//
+//
+//   var a = d.getAttribute('data-date')
+//   var count=0
+//   s=""
+//   f=0
+//   for(var q = 0; q < days.length; q++){
+//     if(a==days[q]){
+//       f=1
+//       var id=d.getAttribute('id')
+//       document.getElementById(id).classList.remove('disableDay');
+//       days = days.filter(e => e !== a);
+//       count=count+1;
+//     }
+//     else {
+//       console.log('days')
+//       console.log(days)
+//       s=s.concat(days[q],"-");
+//     };
+//     };
+//     if(f==0) {
+//       s=s.concat(a);
+//     }
+//  document.getElementById('finaldays').value=s
+//   console.log(s)
+//
+//
+// if (count==0){
+//   days.push(a)
+//   console.log(days);
+//   var id=d.getAttribute('id')
+//   document.getElementById(id).classList.add('disableDay');
+//   var count=0;
+// }
+// }
+// else{
+//   alert('create a plan to set calendar')
+// }
+// }
+//
+// function send(){
+// console.log('called')
+  // e.preventDefault();
+
+
+//
+// console.log($('#finaldays').val())
+//   $.ajax({
+//     type:'POST',
+//     url:'guideprofile/cal',
+//     data:{
+//       dates:$('#finaldays').val(),
+//     },
+//     sucess:function(){
+//       return false
+//     }
+//   });
+//
+// };
+
+function testimonial(x){
+console.log('called')
+  $.ajax({
+    type:'POST',
+    url:'testimonial',
+    data:{
+      userid:x,
+    },
+    sucess:function(){
+      return false
+    }
+  });
+
+};
+
+setInterval(function(){
+  console.log('calling')
+  $.ajax({
+    type:'POST',
+    url:'updatenotis',
+    data:{
+      data:' ',
+    },
+    success:function(result){
+      console.log(result)
+      $('#notifications').empty();
+      for (var dat in result.data) {
+        console.log(result.data[dat]._id)
+      $('#notifications').append(       ' <a href="#!" onclick=noti('+ result.data[dat]._id +') class="list-group-item list-group-item-action">'+
+                '<div class="row align-items-center">'+
+                  '<div class="col-auto">'+
+                    '<img alt="Image placeholder" src="'+result.data[dat].img + '" class="avatar rounded-circle">'+
+                  '</div>'+
+                  '<div class="col ml--2">'+
+                    '<div class="d-flex justify-content-between align-items-center">'+
+                      '<div>'+
+                        '<h4 class="mb-0 text-sm">'+ result.data[dat].username + '</h4>'  +
+                      '</div>'+
+                      '<div class="text-right text-muted">'+
+                        '<small>2 hrs ago</small>'+
+                      '</div>'+
+                    '</div>'+
+                    '<p class="text-sm mb-0">' + "Let's meet at Starbucks at 11:30. Wdyt?" + '</p>'+
+                  '</div>'+
+                '</div>'+
+              '</a>'
+);
+   }
+      console.log('called')
+    }
+  });
+
+}, 30000);
+
+
+
+function noti(x){
+console.log('called')
+  $.ajax({
+    type:'POST',
+    url:'noti',
+    data:{
+      notiid:x,
+    },
+    sucess:function(){
+      return false
+    }
+  });
+
+};
+
+
+</script>
+
+<!--
+<script>
+
+  var toolbarOptions = [
+    ['bold', 'italic', 'underline'],
+    [{'header': ['1', '2', '3', '4', '5', '6', false]}],
+    [{'list' : 'ordered'}, {'list' : 'bullet'}],
+    ['link', 'image'],
+    [{'color' : []}],
+    [{'font' : []}],
+    [{'align' : []}],
+  ];
+
+  var text_editor = new Quill('#editor', {
+    modules: {
+      toolbar: toolbarOptions,
+    },
+    placeholder : 'enter here',
+    theme : 'snow'
+  });
+  $('#submit').click(function(){
+    document.getElementById("hiddenfield").value=JSON.stringify(text_editor.getContents());
+    console.log(text_editor.getContents());
+    // var title=document.getElementById('title').value
+    // var img=document.getElementById('newsimg').value
+    //
+    // console.log('called')
+    //   $.ajax({
+    //     type:'POST',
+    //     url:'/guides/news',
+    //     data:{
+    //       news:JSON.stringify(text_editor.getContents()),
+    //       title:title,
+    //       img:img
+    //     },
+    //     success:function(){
+    //       location.reload()
+    //     }
+      // });
+
+
+
+  });
+
+
+
+  </script> -->
+ <!-- <script type="text/javascript">
+$('input[type="range"]').rangeslider({
+polyfill: false
+});
+
+$('#relationship-status-slider').on('change input', function() {
+  $('#relationship-status-output').text($(this).val());
+});
+</script> -->
+<!--      <script>
+    new Glide('.testimonial-glide', {
+      type: 'carousel',
+      startAt: 0,
+      focusAt: 2,
+      perTouch: 1,
+      perView: 4
+    }).mount();
+
+
+   </script> -->
+    <!-- <script>
+     $(document).ready(function() {
+       // Facebook Pixel Code Don't Delete
+       ! function(f, b, e, v, n, t, s) {
+         if (f.fbq) return;
+         n = f.fbq = function() {
+           n.callMethod ?
+             n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+         };
+         if (!f._fbq) f._fbq = n;
+         n.push = n;
+         n.loaded = !0;
+         n.version = '2.0';
+         n.queue = [];
+         t = b.createElement(e);
+         t.async = !0;
+         t.src = v;
+         s = b.getElementsByTagName(e)[0];
+         s.parentNode.insertBefore(t, s)
+       }(window,
+         document, 'script', '//connect.facebook.net/en_US/fbevents.js');
+
+       try {
+         fbq('init', '111649226022273');
+         fbq('track', "PageView");
+
+       } catch (err) {
+         console.log('Facebook Track Error:', err);
+       }
+
+     });
+   </script> -->
+   <!-- <script type="text/javascript">
+
+   function addlan(){
+     console.log('imcalled lan')
+ $('.error').hide();
+   $('.error').hide();
+   var name = document.getElementById('language').value
+   if (name == "") {
+     return false;
+   }
+   var eff =  document.getElementById('relationship-status-output').value
+   if (eff == "") {
+     return false;
+   }
+   console.log(name)
+   console.log(eff)
+   $.ajax({
+     type:'POST',
+     url:'addlanguage',
+     data:{
+       lang:name,
+       eff:eff
+     },
+
+     success:function(){
+       location.reload()
+     }
+   });
+
+
+}
+    </script> -->
+    <script type="text/javascript">
+    window.onscroll = function(){
+      var navbar = document.getElementById('nav')
+      var wander = document.getElementById('wander')
+      var items = document.getElementsByClassName('items')
+      var count = document.getElementById('count')
+      var btn = document.getElementById('dropdownMenuButton')
+      var ul = document.getElementById('ul')
+
+      if (window.pageYOffset < 250){
+        navbar.style.background = "rgba(0, 0, 0, 0)";
+        navbar.style.boxShadow = 'none';
+        wander.style.color = 'grey';
+        wander.style.marginTop = "35px"
+        ul.style.marginTop = "1.7%";
+        btn.style.color = 'grey';
+        for(var i=0; i<items.length; i++){
+          items[i].style.color = 'grey';
+          items[i].onmouseover = function(){
+            items[i].style.color = "#06b995";
+          }
+        }
+      } else {
+        navbar.style.background = '#fff';
+        navbar.style.boxShadow = "0 4px 4px -2px #495057";
+        wander.style.color = "grey";
+        btn.style.color = 'grey';
+        wander.style.marginTop = "17px"
+        ul.style.marginTop = "0.4%";
+        for(var i=0; i<items.length; i++){
+          items[i].style.color = "grey";
+          items[i].onmouseover = function(){
+            items[i].style.color = "black";
+          }
+        }
+      }
+    }
+    </script>
+    <noscript>
+     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
+    </noscript>
+  </body>
+</html>
