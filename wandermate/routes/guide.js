@@ -906,8 +906,17 @@ $push:{
 })
 
 router.get('/newtrip/daylong',CheckGuide,(req,res)=>{
+  Tp.findOne({guide:req.user.username}).then(x=>
+  {
+    console.log(x)
+    if (x==null){
+      res.render('daylong')
 
-  res.render('daylong')
+    }else{
+      res.redirect('/guides/guideprofile')
+    }
+  })
+
 });
 router.post('/newtrip/daylong',CheckGuide,(req,res)=>{
 
