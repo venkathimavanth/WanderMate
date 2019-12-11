@@ -18,7 +18,7 @@ let Placeinfo = require('../models/Placeinfo');
 let Tour_plans = require('../models/tour_plans');
 bodyParser = require('body-parser').json();
 router.get('/login',(req,res)=>res.render('guidelogin'));
-router.get('/signup',(req,res)=>res.render('usersignup'));
+router.get('/signup',(req,res)=>res.render('usersignup',{errors:[]}));
 const validatePhoneNumber = require('validate-phone-number-node-js');
 
 function CheckUser(req, res, next) {
@@ -95,7 +95,7 @@ router.post('/signup',urlencodedparser,[check('name').not().isEmpty().withMessag
   });
 
 
-  if (errors.errors.lenght>0){
+  if (errors.errors.length>0){
     console.log('im here')
     res.render('register.ejs',{
       errors:errors
