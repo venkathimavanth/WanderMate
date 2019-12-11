@@ -47,7 +47,7 @@ router.get('/:name', function(req, res){
     if(err){
       console.log(err);
     }else{
-      res.render('wanderlist', {wishlist:wishlist});
+      res.render('wanderlist', {wishlist:wishlist,user:req.user});
     }
   })
 })

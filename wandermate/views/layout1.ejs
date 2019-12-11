@@ -95,17 +95,17 @@
 
                     <div class="modal-content" style="background-color: #DDDDDD;background-image:linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4) 75%), url('https://lstore.graphics/paaatterns/images/Waiau-3-p-1080.jpeg');background-size:contain;background-position:150% 100%;background-repeat:no-repeat;">
                       <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Testimonial</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                       </div>
                       <div class="modal-body">
                         <table style="width:100%;padding:3%;">
                           <tr>
-                            <td style="width:40%; padding-left:3%;padding-right:3%;padding-top:3%;padding-bottom: 1.5%;text-align:center;">
+                            <td style="width:40%;padding-top:3%;padding-bottom: 1.5%;text-align:center;">
                               <img style="width:40vh;height:40vh;border-radius:3px;box-shadow:0 10px 25px 0 rgba(0,0,0,.3);"  id="testmodelimg" alt="Raised Image" class="rounded img-raised">
                               <a style="float:right;" class="btn btn-link" href="#">Go to Profile..</a>
                             </td>
-                            <td style="width:60%;padding-right:3%;">
+                            <td style="width:60%;">
                               <form action="/users/testimonial/" method="POST">
                                 <input style="display:none;" type="text" id="testusername" name="username" value="Roshan">
                                 <input style="display:none;" type="text" id="testguidename" name="guidename" value="guide2">
@@ -141,7 +141,7 @@
               <!-- <li class="dropdown-header"></li> -->
               <a class="dropdown-item" href="/users">Profile</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#pk">WanderList</a>
+              <a class="dropdown-item" href="/wanderlist/<%= user.username %>">WanderList</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/users/logout">LogOut</a>
             </ul>

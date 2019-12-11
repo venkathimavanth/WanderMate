@@ -31,7 +31,7 @@
             <div class="list-group list-group-flush" id="notifications">
 
         <% for(i=0;i < user.notifications.length;i++ ){ %>
-              <a href="#!" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
+              <a href="#!" onclick="noti('<%=user.notifications[i]._id%>','<%=user.notifications[i].img %>')" class="list-group-item list-group-item-action">
                 <div class="row align-items-center">
                   <div class="col-auto">
                     <img alt="Image placeholder" src="<%=user.notifications[i].img %>" class="avatar rounded-circle">

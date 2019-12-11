@@ -1419,7 +1419,7 @@
                    <div class="list-group list-group-flush" id="notifications">
 
                <% for(i=0;i < user.notifications.length;i++ ){ %>
-                     <a href="#!" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
+                     <a href="#!" onclick="noti('<%=user.notifications[i]._id%>', '<%=user.notifications[i].img %>')" data-toggle="modal" data-target="#myModal" class="list-group-item list-group-item-action">
                        <div class="row align-items-center">
                          <div class="col-auto">
                            <img alt="Image placeholder" src="<%=user.notifications[i].img %>" class="notifimg rounded-circle">
@@ -1462,6 +1462,43 @@
     </div>
   </nav>
 
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <div class="modal-content" style="background-color: #DDDDDD;background-image:linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4) 75%), url('https://lstore.graphics/paaatterns/images/Waiau-3-p-1080.jpeg');background-size:contain;background-position:150% 100%;background-repeat:no-repeat;">
+        <div class="modal-header">
+          <h4 class="modal-title">Testimonial</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <table style="width:100%;padding:3%;">
+            <tr>
+              <td style="width:38%;padding-top:3%;padding-bottom: 1.5%;text-align:center;">
+                <img style="width:40vh;height:40vh;border-radius:3px;box-shadow:0 10px 25px 0 rgba(0,0,0,.3);"  id="testmodelimg" alt="Raised Image" class="rounded img-raised">
+                <a style="float:right;" class="btn btn-link" href="#">Go to Profile..</a>
+              </td>
+              <td style="width:58%;">
+                <form action="/users/testimonial/" method="POST">
+                  <input style="display:none;" type="text" id="testusername" name="username" value="Roshan">
+                  <input style="display:none;" type="text" id="testguidename" name="guidename" value="guide2">
+                  <h1 style="color:#919293;">Guide2</h1>
+                  <div class="form-group" style="margin-top:5%;">
+                    <label for="exampleFormControlTextarea1">Your Feedback</label>
+                    <textarea name="text" placeholder="Give your feedback please..." class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+                  </div>
+                  <input style="float:right;" class="btn btn-success btn-sm" type="submit" name="submit" value="Submit">
+                </form>
+              </td>
+            </tr>
+          </table>
+          <div class="modal-footer" style="border-top:none;">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <div style="width:100%;">
     <div class="overlay"></div>
@@ -2829,6 +2866,32 @@ function change(ind){
 }
 
 </script>
+
+<script type="text/javascript">
+function noti(x,img){
+  console.log(x)
+  document.getElementById('testusername').value = '<%- user.username %>';
+
+  document.getElementById('testguidename').value =  x;
+  // console.log(x)
+  console.log(img)
+  document.getElementById("testmodelimg").setAttribute('src',img);
+console.log('called')
+  $.ajax({
+    type:'POST',
+    url:'/users/noti',
+    data:{
+      notiid:x,
+    },
+    sucess:function(){
+      return false
+    }
+  });
+
+};
+
+</script>
+
 
 <script type="text/javascript">
   // function boardname(id, name){
