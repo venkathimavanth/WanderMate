@@ -344,6 +344,7 @@
       </div>
     </div>
   </div>
+  <% if(wishlist[0]){ %>
   <div class="row" style="width:100%;margin-top:-27%;z-index:100">
     <div class="card" style="margin-top:6%;width:87%;margin-left:6.5%;background-color:rgba(0,0,0,0);">
       <div class="card-header">
@@ -449,6 +450,9 @@
       </div>
     </div>
   </div>
+  <% }else{ %>
+    <h4>your board is empty</h4>
+  <% } %>
   <script type="text/javascript">
   window.onscroll = function(){
     var navbar = document.getElementById('nav')

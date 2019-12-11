@@ -336,11 +336,16 @@ console.log(req.body)
   });
 };
 });
+
+
 router.get('/dashboard',CheckGuide,(req,res)=>{
   console.log(req.user)
 
   res.render('dashboard',{user:req.user})
 });
+
+
+var p=0
 router.get('/guideprofile',CheckGuide,async (req,res)=>{
   var datetime = new Date();
   date = datetime.toISOString().slice(0,10);
@@ -411,7 +416,37 @@ console.log('-------------------------------------------------------------------
   console.log(user.booking)
   Tp.find({guide:req.user.username}).then(x=>
   {
-res.render('guideprofile',{user:user,tours:x})
+
+
+    if(req.query.pg){
+      p=p+1
+    }
+    else{
+      p=0
+    }
+    prev=[]
+    for(var q=0;q<user.booking.length;q++){
+      if(user.booking[q].current!=true){
+        prev.push(user.booking[q])
+      }
+    }
+
+    var booking=[]
+      if(p==0){
+         booking=prev.slice(0,3)
+    }
+    else{
+         booking=prev.slice(p*3,p*3+3)
+    }
+    console.log(req.query.pg);
+    console.log(p);
+    console.log('==========================================================================================================');
+    console.log(booking);
+
+
+
+
+res.render('guideprofile',{user:user,tours:x,p:p,booking:booking})
 
 });
 

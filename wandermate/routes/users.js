@@ -12,6 +12,7 @@ var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var urlencodedparser=bodyparser.urlencoded({extended:false});
 const User=require('../models/User')
+const recommend = require('collaborative-filter');
 const Guide=require('../models/Guide')
 let Placeinfo = require('../models/Placeinfo');
 let Tour_plans = require('../models/tour_plans');
