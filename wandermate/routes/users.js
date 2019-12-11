@@ -354,9 +354,48 @@ router.post('/testimonial/', urlencodedparser, function(req, res){
 
 
 router.get('/',CheckUser, async (req,res) => {
+  var datetime = new Date();
+  date = datetime.toISOString().slice(0,10);
+    date1 = date.split('-')
+    console.log(date1)
+    var date2 = date1[0]+'/'+date1[1]+'/'+date1[2]
     var user = req.user;
-    var datetime = new Date();
-    date = datetime.toISOString().slice(0,10);
+    User.findOne({username:req.user.username}).then(myuser=>{
+      for(var i=0;i<myuser.booking.length;i++){
+        d2 = new Date()
+        console.log(i);
+        if(myuser.booking[i].current == true   ){
+          console.log('camehere')
+          d1 = new Date(myuser.booking[i].date_n_time.date);
+          console.log(d1)
+          console.log(d2)
+
+          if(d1 <= d2){
+            console.log('heyy')
+            if(myuser.booking[i].plan=='tourplan' || myuser.booking[i].plan=='daylong'){
+                myuser.booking[i].current = false
+            }else if (myuser.booking[i].plan=='singleplace') {
+              console.log('yes');
+              if(d1==d2){
+              d2 = new Date().getHours
+              d1 = myuser.booking[i].date_n_time.time
+              d1 = d1.split(':')
+              if(Number(d2) >Number(d1[0])){
+                myuser.booking[i].current=false
+              }
+            }else if(d1<d2){
+              console.log('yes1');
+
+              myuser.booking[i].current=false
+            }
+
+            }
+          }
+          console.log('hip hip hurray')
+        }
+      }
+      myuser.save()
+    })
     res.render('profile', { user : user, date : date})
 })
 

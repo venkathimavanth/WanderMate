@@ -398,7 +398,7 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
              <a style="padding-top:2px;" class="dropdown-item" href="/users">Profile</a>
              <a style="padding-top:2px;" class="dropdown-item" href="#">WanderList</a>
-             <a style="padding-top:2px;" class="dropdown-item" href="/users/logout">Logout</a>
+             <a style="padding-top:2px;" class="dropdown-item" href="/guides/logout">Logout</a>
            </div>
        </li>
      </center>
@@ -754,7 +754,12 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
                             </div>
                           </th>
                           <td class="budget">
-                            <%=user.booking[i].date_n_time.time%>
+                            <%if(user.booking[i].date_n_time.time){%>
+                                <%=user.booking[i].phone_number%>
+                            <%}else{%>
+                              09:00
+                              <%}%>
+
                           </td>
                           <td>
                             <span class="badge badge-dot mr-4">
@@ -766,7 +771,11 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
                             <%=user.booking[i].phone_number%>
                           </td>
                           <td>
-                            <%=user.booking[i].tot_no_of_tourits%>
+                            <%if(user.booking[i].tot_no_of_tourits){%>
+                                <%=user.booking[i].phone_number%>
+                            <%}else{%>
+                              1
+                              <%}%>
                             <!-- <div class="d-flex align-items-center">
                               <span class="completion mr-2">60%</span>
                               <div>
@@ -831,10 +840,11 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
 <div class="wrapper">
           <div class="container" style="margin:50px auto !important">
             <div class="row">
+              <%if(user.booking){ %>
+                  <% for(i=0;i < user.booking.length;i++ ){ %>
+                    <% if(user.booking[i].current == false){ %>
+
               <div class="col-lg-4 col-md-6">
-                <%if(user.booking){ %>
-                    <% for(i=0;i < user.booking.length;i++ ){ %>
-                      <% if(user.booking[i].current == false){ %>
 
                 <div class="card card-profile" data-background="cover">
                   <img class="img pattern pattern-top" src="https://demos.creative-tim.com/argon-design-system-pro/assets/img/ill/linth3.svg" alt="cover">
@@ -867,10 +877,11 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
                     <button type="button" class="btn btn-lg btn-success btn-block" onclick="testimonial('<%=user.booking[i].users[0].username%>')">Request Testimonial</button>
                   </div>
                 </div>
-                <%}%>
-                <%}%>
-                <%}%>
               </div>
+              <%}%>
+              <%}%>
+              <%}%>
+
             </div>
           </div>
 </div>

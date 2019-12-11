@@ -338,10 +338,56 @@ console.log(req.body)
 });
 router.get('/dashboard',CheckGuide,(req,res)=>{
   console.log(req.user)
+
   res.render('dashboard',{user:req.user})
 });
 router.get('/guideprofile',CheckGuide,async (req,res)=>{
-  var user=req.user;
+  var datetime = new Date();
+  date = datetime.toISOString().slice(0,10);
+    date1 = date.split('-')
+    console.log(date1)
+    var date2 = date1[0]+'/'+date1[1]+'/'+date1[2]
+    var user = req.user;
+    Guide.findOne({username:req.user.username}).then(myuser=>{
+      for(var i=0;i<myuser.booking.length;i++){
+        d2 = new Date()
+        console.log(i);
+        if(myuser.booking[i].current == true   ){
+          console.log('camehere')
+          d1 = new Date(myuser.booking[i].date_n_time.date);
+          console.log(d1)
+          console.log(d2)
+
+          if(d1 <= d2){
+            console.log('heyy')
+            if(myuser.booking[i].plan=='tourplan' || myuser.booking[i].plan=='daylong'){
+                myuser.booking[i].current = false
+            }else if (myuser.booking[i].plan=='singleplace') {
+              console.log('yes');
+              if(d1==d2){
+              d2 = new Date().getHours
+              d1 = myuser.booking[i].date_n_time.time
+              d1 = d1.split(':')
+              if(Number(d2) >Number(d1[0])){
+                myuser.booking[i].current=false
+              }
+            }else if(d1<d2){
+              console.log('yes1');
+
+              myuser.booking[i].current=false
+            }
+
+            }
+          }
+          console.log('hip hip hurray')
+        }
+      }
+      user=myuser
+       myuser.save()
+    })
+  // var user=Guide.findOne({username:req.user.username})
+console.log('-----------------------------------------------------------------------')
+
   user=user.toJSON()
   console.log('here')
   if(req.user.booking.length !=0){
@@ -362,7 +408,7 @@ router.get('/guideprofile',CheckGuide,async (req,res)=>{
     }
   }
   console.log('----------------')
-  console.log(user)
+  console.log(user.booking)
   Tp.find({guide:req.user.username}).then(x=>
   {
 res.render('guideprofile',{user:user,tours:x})
@@ -581,7 +627,7 @@ router.post('/guideprofile/cal',CheckGuide,(req,res)=>{
 currentbookings=[]
 if (req.user.booking.length !=0){
     for (var i = 0; i < req.user.booking.length; i++) {
-      if(req.user.booking[i].current==true && req.user.booking[i].plantype=='tourplan' ){
+      if(req.user.booking[i].current==true && req.user.booking[i].plan=='tourplan' ){
 
         var m2=new Date(req.user.booking[i].date_n_time.date)
 
@@ -1167,7 +1213,7 @@ router.get('/tour_plan_details',CheckGuide, async (req,res) => {
 console.log(opted)
     var booked=[]
     for (var i = 0; i < req.user.booking.length; i++) {
-      if(req.user.booking[i].current==true && req.user.booking[i].plantype=='tourplan'){
+      if(req.user.booking[i].current==true && req.user.booking[i].plan=='tourplan'){
         booked.push(guide.booking[i].date_n_time.date)
         var t2=new Date(guide.booking[m].date_n_time.date)
 
@@ -1204,7 +1250,7 @@ console.log(req.body.dates)
   console.log(dates1)
   hold=[]
   for (var m=0;m<guide.booking.length;m++){
-    if(guide.booking[m].current==true && guide.booking[m].plantype=='tourplan' ){
+    if(guide.booking[m].current==true && guide.booking[m].plan=='tourplan' ){
       hold.push(guide.booking[m].date_n_time.date)
       var t2=new Date(guide.booking[m].date_n_time.date)
 

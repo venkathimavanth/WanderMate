@@ -176,7 +176,7 @@ $pullAll: { availabledates: removedate ,plans:myplans},
 else{
   hold=[]
   for (var m=0;m<guide.booking.length;m++){
-    if(guide.booking[m].current==true && guide.booking[m].plantype=='tourplan' ){
+    if(guide.booking[m].current==true && guide.booking[m].plan=='tourplan' ){
       hold.push(guide.booking[m].date_n_time.date)
       var t2=new Date(guide.booking[m].date_n_time.date)
 
