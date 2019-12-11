@@ -12,7 +12,7 @@ let Tour_plans = require('./models/tour_plans');
 let Guides = require('./models/Guide');
 let News = require('./models/News');
 let WishList = require('./models/WishList')
-let Chatdata = require('./models/Chatdata');
+let Chatdata = require('./models/chatdata');
 const socketio = require('socket.io');
 const http = require('http');
 let User = require('./models/User');
@@ -310,7 +310,9 @@ console.log('kjbkb')
    res.redirect('/places/'+cityName);
  });
 
-
+app.get('/exp',function (req,res){
+  res.render('exp')
+})
 
  var count=0;
 
@@ -501,4 +503,4 @@ await User.find({}, function(err, users){
  server.listen(8000, function(){
    console.log("Connected to server")
  });
-console.log('you are listening to port 3000');
+console.log('you are listening to port 8000');

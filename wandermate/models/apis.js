@@ -64,23 +64,7 @@ API_Schema.pre('save',async function (next){
     // api.tokens = api.tokens.concat({ token:api_key })
     api.token = api_key
     console.log(api)
-    // var smtpTransport = nodemailer.createTransport({
-    // host: 'smtp.gmail.com',
-    // port: 465,
-    // secure: true, // use SSL
-    // auth: {
-    //     user: 'koushiks666@gmail.com',
-    //     pass: 'Narayanaetechno@1'
-    //       }
-    // });
-    //
-    //   var mailOptions = {
-    //     to: api.email,
-    //     from: 'koushiks666@gmail.com',
-    //     subject: 'API request',
-    //     text: 'The request for a new API is completed successfully\n' + api.token + ' is the token you can use.\n Expiry date: ' + "".concat(api.expiry.split(' ')[0])
-    //   };
-    next()
+        next()
 })
 
 API_Schema.statics.checkAPI = async function (api){
