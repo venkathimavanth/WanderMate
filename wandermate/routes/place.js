@@ -166,7 +166,7 @@ router.post('/tripplan',CheckUser,urlencodedParser, function(req,res){
 
 
 
-  res.redirect('/users/#currentbookings')
+  res.redirect('/users#currentbookings')
 });
 
 
@@ -461,7 +461,7 @@ router.post('/booked',CheckUser,function(req,res){
 
 
 
-   res.redirect('/users/#currentbookings')
+   res.redirect('/users#currentbookings')
 
 })
 
@@ -584,7 +584,7 @@ router.post('/booked_city',CheckUser,function(req,res){
 
          }
        })
-   res.redirect('/users/#currentbookings')
+   res.redirect('/users#currentbookings')
 
 })
 
