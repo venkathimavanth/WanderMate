@@ -9,7 +9,6 @@ const BookingSchema = new mongoose.Schema({
   current:Boolean,
   plan:String,
   days:Number
-
 });
 
 const UserSchema = new mongoose.Schema({

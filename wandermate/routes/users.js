@@ -96,7 +96,7 @@ router.post('/signup',urlencodedparser,[check('name').not().isEmpty().withMessag
 
   if (errors.errors.lenght>0){
     console.log('im here')
-    res.render('register.ejs',{
+    return res.render('register.ejs',{
       errors:errors
 
     });
@@ -139,7 +139,7 @@ bcrypt.genSalt(10,(err,salt)=>bcrypt.hash(newUser.password,salt,(err,hash)=>
 
 }))
 
-  return  res.redirect('/users/login');
+  return res.redirect('/users/login');
   }
 
 });
@@ -160,6 +160,14 @@ router.post('/dashboard',CheckUser, (req,res)=>{
 });
 
 router.get('/dashboard',CheckUser,(req,res)=>{
+  const user_bookings = User.find({ _id:req.user._id},{'booking':1})  
+  console.log(user_bookings)
+  bookings = []
+  for(let i = 0; i < user_bookings.length;i++){
+     if(user_bookings[i].current === true){
+        bookings.append(user_bookings[i])
+     }
+  }
   Guide.find({}, function(err, guides){
     if(err){
       console.log(err);
@@ -172,8 +180,8 @@ router.get('/dashboard',CheckUser,(req,res)=>{
             if(err){
               console.log(err);
             }else{
-              res.render('landing-page',{user:req.user, guides: guides, places:places, plans:plans,layout:'layout1'})
-              console.log(req.user)
+              res.render('landing-page',{bookings:bookings,user:req.user, guides: guides, places:places, plans:plans,layout:'layout1'})
+              // console.log(req.user)
             }
           })
         }

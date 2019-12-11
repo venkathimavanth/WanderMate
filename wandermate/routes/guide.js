@@ -1138,18 +1138,25 @@ router.post('/news',CheckGuide,(req,res)=>{
     title:req.body.title,
     img:img,
     guideimg:req.user.img.path,
-    upvotes:[]
-
+    upvotes:[],
+    time: new Date()
   })
   news.save()
   res.redirect('/guides/guideprofile')
 })
 
-router.post('/upvote',(req,res)=>{
+router.post('/upvote',async (req,res)=>{
+  try{
   console.log(req.body)
-
-News.updateOne({_id:req.body.newsid},{$push:{upvotes:new Date()}}).then(console.log("updated"))
-
+  let id = req.body.newsid
+  const news = await News.find({ _id:id })
+// News.updateOne({_id:req.body.newsid},{$push:{upvotes:new Date(),array_length:}}).then(console.log("updated"))
+  news.upvotes.append(new Date())
+  news.array_length = news.array_length + 1
+  await news.save()
+  }catch(e){
+    res.status(400).send({e})
+  }
   // res.redirect('//')
 })
 
