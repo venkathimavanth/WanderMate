@@ -54,7 +54,7 @@ function CheckGuide(req, res, next) {
 
 
 router.get('/signup',(req,res)=>{
-  res.render('guidesignup.ejs')
+  res.render('guidesignup.ejs',{errors:[]})
 });
 
 router.post('/signup',urlencodedparser,[check('name').not().isEmpty().withMessage('Name is required'),
@@ -115,11 +115,11 @@ if(result===false){
 
   });
 
-
-  if (errors.errors.lenght>0){
+console.log(errors.errors)
+  if (errors.errors.length>0){
     console.log('im here')
     res.render('guidesignup.ejs',{
-      errors:errors
+      errors:errors.errors
 
     });
   }else{
@@ -186,7 +186,7 @@ passport.authenticate('local2',{
 
 router.get('/logout',(req,res)=>{
   req.logout()
-  res.redirect('/guides/login')
+  res.redirect('/')
 });
 
 router.get('/forgot', function(req, res) {
@@ -336,12 +336,63 @@ console.log(req.body)
   });
 };
 });
+
+
 router.get('/dashboard',CheckGuide,(req,res)=>{
   console.log(req.user)
+
   res.render('dashboard',{user:req.user})
 });
+
+
+var p=0
 router.get('/guideprofile',CheckGuide,async (req,res)=>{
-  var user=req.user;
+  var datetime = new Date();
+  date = datetime.toISOString().slice(0,10);
+    date1 = date.split('-')
+    console.log(date1)
+    var date2 = date1[0]+'/'+date1[1]+'/'+date1[2]
+    var user = req.user;
+    Guide.findOne({username:req.user.username}).then(myuser=>{
+      for(var i=0;i<myuser.booking.length;i++){
+        d2 = new Date()
+        console.log(i);
+        if(myuser.booking[i].current == true   ){
+          console.log('camehere')
+          d1 = new Date(myuser.booking[i].date_n_time.date);
+          console.log(d1)
+          console.log(d2)
+
+          if(d1 <= d2){
+            console.log('heyy')
+            if(myuser.booking[i].plan=='tourplan' || myuser.booking[i].plan=='daylong'){
+                myuser.booking[i].current = false
+            }else if (myuser.booking[i].plan=='singleplace') {
+              console.log('yes');
+              if(d1==d2){
+              d2 = new Date().getHours
+              d1 = myuser.booking[i].date_n_time.time
+              d1 = d1.split(':')
+              if(Number(d2) >Number(d1[0])){
+                myuser.booking[i].current=false
+              }
+            }else if(d1<d2){
+              console.log('yes1');
+
+              myuser.booking[i].current=false
+            }
+
+            }
+          }
+          console.log('hip hip hurray')
+        }
+      }
+      user=myuser
+       myuser.save()
+    })
+  // var user=Guide.findOne({username:req.user.username})
+console.log('-----------------------------------------------------------------------')
+
   user=user.toJSON()
   console.log('here')
   if(req.user.booking.length !=0){
@@ -362,10 +413,70 @@ router.get('/guideprofile',CheckGuide,async (req,res)=>{
     }
   }
   console.log('----------------')
-  console.log(user)
+  console.log(user.booking)
+  var currentbookings=[]
+  if (req.user.booking.length !=0){
+    console.log(',nmn')
+      for (var i = 0; i < req.user.booking.length; i++) {
+        if(req.user.booking[i].current==true && req.user.booking[i].plan=='tourplan' ){
+  console.log(',nmnddd')
+          var m2=new Date(req.user.booking[i].date_n_time.date)
+          currentbookings.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+          console.log(req.user.booking[i].days)
+          for (var j1 = 0; j1 < req.user.booking[i].days-1; j1++) {
+            console.log('working')
+            m2.setDate(m2.getDate()+1)
+            currentbookings.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+
+                  }
+                  var m2=new Date(req.user.booking[i].date_n_time.date)
+
+                  for (var j2 = 0; j2 < req.user.booking[i].days-1; j2++) {
+                     console.log('working2')
+                    m2.setDate(m2.getDate()-1)
+                    currentbookings.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+
+                          }
+
+
+        }
+      }
+
+  }
+
   Tp.find({guide:req.user.username}).then(x=>
   {
-res.render('guideprofile',{user:user,tours:x})
+
+
+    if(req.query.pg){
+      p=p+1
+    }
+    else{
+      p=0
+    }
+    prev=[]
+    for(var q=0;q<user.booking.length;q++){
+      if(user.booking[q].current!=true){
+        prev.push(user.booking[q])
+      }
+    }
+
+    var booking=[]
+      if(p==0){
+         booking=prev.slice(0,3)
+    }
+    else{
+         booking=prev.slice(p*3,p*3+3)
+    }
+    console.log(req.query.pg);
+    console.log(p);
+    console.log('==========================================================================================================');
+    console.log(booking);
+
+
+
+
+res.render('guideprofile',{user:user,tours:x,p:p,booking:booking,booked:currentbookings})
 
 });
 
@@ -577,25 +688,37 @@ return res.redirect('/guides/newtrip/singleplace')
 
 });
 
-router.post('/guideprofile/cal',CheckGuide,(req,res)=>{
-currentbookings=[]
+router.post('/guideprofile/cal',CheckGuide,async (req,res)=>{
+var currentbookings=[]
 if (req.user.booking.length !=0){
+  console.log(',nmn')
     for (var i = 0; i < req.user.booking.length; i++) {
-      if(req.user.booking[i].current==true && req.user.booking[i].plantype=='tourplan' ){
-
+      if(req.user.booking[i].current==true && req.user.booking[i].plan=='tourplan' ){
+console.log(',nmnddd')
         var m2=new Date(req.user.booking[i].date_n_time.date)
-
-        for (var i = 0; i < req.user.booking[i].days-1; i++) {
+        currentbookings.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+        console.log(req.user.booking[i].days)
+        for (var j1 = 0; j1 < req.user.booking[i].days-1; j1++) {
+          console.log('working')
           m2.setDate(m2.getDate()+1)
-          currentbookings.append(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+          currentbookings.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
 
                 }
+                var m2=new Date(req.user.booking[i].date_n_time.date)
+
+                for (var j2 = 0; j2 < req.user.booking[i].days-1; j2++) {
+                   console.log('working2')
+                  m2.setDate(m2.getDate()-1)
+                  currentbookings.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+
+                        }
 
 
       }
     }
 
 }
+console.log(currentbookings)
 console.log(req.body)
   var dates=req.body.dates;
   dates=dates.split('-');
@@ -628,9 +751,12 @@ const toRemove = new Set(dates);
 
 const difference = new Set([...myArray].filter((x) => !toRemove.has(x)));
 
-const curbok = new Set(currentbookings);
-const dif1= new Set([...difference].filter((x) => !curbok.has(x)));
-var available_dates=Array.from(dif1);
+// const curbok = new Set(currentbookings);
+// console.log(curbok)
+//
+// const dif1= new Set([...difference].filter((x) => !curbok.has(x)));
+var available_dates=Array.from(difference);
+
 console.log('not available')
 console.log(dates)
 console.log(available_dates)
@@ -761,6 +887,11 @@ console.log(tooo)
 if(tooo[tooo.length-1]=='-'){
   tooo.pop()
 }
+// for(var r=0;r<currentbookings.length;r++){
+//   tooo.push(currentbookings[r])
+// }
+// t1o = new Set(tooo)
+// tooo = Array.from(t1o)
 Guide.updateOne({"_id":req.user._id},{
 $push:{
   notavailabledates:{
@@ -860,8 +991,17 @@ $push:{
 })
 
 router.get('/newtrip/daylong',CheckGuide,(req,res)=>{
+  Tp.findOne({guide:req.user.username}).then(x=>
+  {
+    console.log(x)
+    if (x==null){
+      res.render('daylong')
 
-  res.render('daylong')
+    }else{
+      res.redirect('/guides/guideprofile')
+    }
+  })
+
 });
 router.post('/newtrip/daylong',CheckGuide,(req,res)=>{
 
@@ -1174,17 +1314,27 @@ router.get('/tour_plan_details',CheckGuide, async (req,res) => {
 console.log(opted)
     var booked=[]
     for (var i = 0; i < req.user.booking.length; i++) {
-      if(req.user.booking[i].current==true && req.user.booking[i].plantype=='tourplan'){
-        booked.push(guide.booking[i].date_n_time.date)
-        var t2=new Date(guide.booking[m].date_n_time.date)
+      console.log('entered');
+      if(req.user.booking[i].current==true && req.user.booking[i].plan=='tourplan'){
+        console.log('runig');
+        booked.push(req.user.booking[i].date_n_time.date)
+        var t2=new Date(req.user.booking[i].date_n_time.date)
 
-        days1=guide.booking[m].days
-        for (var i = 0; i < days1-1; i++) {
-          m2.setDate(m2.getDate()+1)
-          booked.append(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+        days1=req.user.booking[i].days
+        for (var m = 0; m < days1-1; m++) {
+          t2.setDate(t2.getDate()+1)
+          booked.push(t2.getFullYear() + '/' + (t2.getMonth()+1).toString().padStart(2, '0') + '/' + t2.getDate().toString().padStart(2, '0'))
 
                 }
+                var t2=new Date(req.user.booking[i].date_n_time.date)
 
+                for (var m = 0; m < days1-1; m++) {
+                  t2.setDate(t2.getDate()-1)
+                  booked.push(t2.getFullYear() + '/' + (t2.getMonth()+1).toString().padStart(2, '0') + '/' + t2.getDate().toString().padStart(2, '0'))
+
+                        }
+
+console.log('exited');
       }
     }
     b1=new Set(booked)
@@ -1199,6 +1349,17 @@ console.log(opted)
 
 })
 
+router.post('/deltour',CheckGuide,(req,res)=>{
+console.log(req.body.id)
+Tp.deleteOne({_id:req.body.id}).then(x=>{
+  console.log('deleted')
+  res.redirect('/guides/guideprofile')
+})
+.catch(err=>{console.log(err);})
+
+})
+
+
 router.post('/tourcal',CheckGuide,(req,res)=>{
   console.log('hey')
   console.log(req.body)
@@ -1211,7 +1372,7 @@ console.log(req.body.dates)
   console.log(dates1)
   hold=[]
   for (var m=0;m<guide.booking.length;m++){
-    if(guide.booking[m].current==true && guide.booking[m].plantype=='tourplan' ){
+    if(guide.booking[m].current==true && guide.booking[m].plan=='tourplan' ){
       hold.push(guide.booking[m].date_n_time.date)
       var t2=new Date(guide.booking[m].date_n_time.date)
 

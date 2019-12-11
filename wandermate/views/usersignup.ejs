@@ -20,6 +20,28 @@
 	<!-- CSS Files -->
 	<link href="/guidesignup/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="/guidesignup/css/material-bootstrap-wizard.css" rel="stylesheet" />
+	<style media="screen">
+	*,::after,::before{box-sizing:border-box;}
+	button{border-radius:0;}
+	button:focus{outline:1px dotted;outline:5px auto -webkit-focus-ring-color;}
+	button{margin:0;font-family:inherit;font-size:inherit;line-height:inherit;}
+	button{overflow:visible;}
+	button{text-transform:none;}
+	button,html [type=button]{-webkit-appearance:button;}
+	[type=button]::-moz-focus-inner,button::-moz-focus-inner{padding:0;border-style:none;}
+	.fade{opacity:0;transition:opacity .15s linear;}
+	.fade.show{opacity:1;}
+	.alert{position:relative;padding:.75rem 1.25rem;margin-bottom:1rem;border:1px solid transparent;border-radius:.25rem;}
+	.alert-dismissible{padding-right:4rem;}
+	.alert-dismissible .close{position:absolute;top:0;right:0;padding:.75rem 1.25rem;color:inherit;}
+	.alert-warning{color:#856404;background-color:#fff3cd;border-color:#ffeeba;}
+	.close{float:right;font-size:1.5rem;font-weight:700;line-height:1;color:#000;text-shadow:0 1px 0 #fff;opacity:.5;}
+	.close:focus,.close:hover{color:#000;text-decoration:none;opacity:.75;}
+	button.close{padding:0;background-color:transparent;border:0;-webkit-appearance:none;}
+	@media print{
+	*,::after,::before{text-shadow:none!important;box-shadow:none!important;}
+	}
+	</style>
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
@@ -42,6 +64,19 @@
 		            <!--      Wizard container        -->
 		            <div class="wizard-container">
 		                <div class="card wizard-card" data-color="green" id="wizardProfile">
+											<%if(errors != null){%>
+											<%if(errors.length!=0){%>
+												<%for(var i=0;i < errors.length;i++){%>
+											<div class="alert alert-warning alert-dismissible fade show" role="alert">
+										    <%= errors[i].msg%>
+										    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										      <span aria-hidden="true">&times;</span>
+										    </button>
+										  </div>
+		<%}%>
+		<%}%>
+		<%}%>
+											
 		                    <form  method="post" enctype="multipart/form-data">
 		                <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 

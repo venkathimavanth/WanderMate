@@ -8,7 +8,8 @@ const BookingSchema = new mongoose.Schema({
   tot_no_of_tourits:Number,
   current:Boolean,
   plan:String,
-  days:Number
+  days:Number,
+  planid:String,
 });
 
 const UserSchema = new mongoose.Schema({

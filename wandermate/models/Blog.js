@@ -25,7 +25,10 @@ const blogSchema = mongoose.Schema({
   images:{
     type:String,
     required:false
-  }
+  },
+  userlikes:[String],
+  guidelikes:[String],
+
 });
 
 const Blog = mongoose.model('Blog',blogSchema)

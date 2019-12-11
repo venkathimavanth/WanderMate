@@ -24,6 +24,13 @@
  <!-- Fonts -->
  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 <style >
+.cld-day.booked{
+  pointer-events: none;
+  opacity: 0.5 !important;
+  background-color:white !important;
+
+}
+
 
   #wander {
     line-height: 50px;
@@ -135,7 +142,7 @@ width: 100%;
 
  <!-- Argon CSS -->
  <!-- <link type="text/css" href="../assets/css/argon.css" rel="stylesheet"> -->
- <script>
+ <!-- <script>
     (function(w, d, s, l, i) {
       w[l] = w[l] || [];
       w[l].push({
@@ -150,176 +157,9 @@ width: 100%;
         'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
       f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
-  </script>
+  </script> -->
   </head>
   <body class="presentation-page">
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <!-- <header class="header-global">
-    <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
-      <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse" id="navbar_global">
-          <div class="navbar-collapse-header">
-            <div class="row">
-              <div class="col-6 collapse-brand">
-                <a href="../index.html">
-                  <img src="https://demos.creative-tim.com/argon-design-system-pro/assets/img/brand/blue.png">
-                </a>
-              </div>
-              <div class="col-6 collapse-close">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                  <span></span>
-                  <span></span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank" data-toggle="tooltip" title="Like us on Facebook">
-                <i class="fa fa-facebook-square"></i>
-                <span class="nav-link-inner--text d-lg-none">Facebook</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://www.instagram.com/creativetimofficial" target="_blank" data-toggle="tooltip" title="Follow us on Instagram">
-                <i class="fa fa-instagram"></i>
-                <span class="nav-link-inner--text d-lg-none" >Instagram</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-  </header> -->
-  <!-- <li class="nav-item">
-    <a class="nav-link nav-link-icon dropdown-toggle dropdown-toggle-split " id="dropdownMenuReference"
-data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent" href="#" >
-      <i class="fa fa-bell"></i>
-      <span class="nav-link-inner--text d-lg-none" >Notification</span>
-    </a>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-<a class="dropdown-item" href="#">Action</a>
-<a class="dropdown-item" href="#">Another action</a>
-<a class="dropdown-item" href="#">Something else here</a>
-<div class="dropdown-divider"></div>
-<a class="dropdown-item" href="#">Separated link</a>
-</div>
-
-
-  </li> -->
-<!-- <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-
-
-  <li  class="nav-item dropdown" id='dshow'>
-    <a class="nav-link" href="#" role="button"   id="tog" data-toggle="dropdown" data-target="notifications" aria-haspopup="true" aria-expanded="false">
-      <i class="ni ni-bell-55"></i>
-    </a>
-    <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden" id="dshow1">
-<% if(user.notifications) {%>
-      <div class="px-3 py-3">
-        <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"><%=user.notifications.length%></strong> notifications.</h6>
-      </div>
-
-      <div class="list-group list-group-flush" id="notifications">
-
-  <% for(i=0;i < user.notifications.length;i++ ){ %>
-        <a href="#!" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
-          <div class="row align-items-center">
-            <div class="col-auto">
-              <img alt="Image placeholder" src="<%=user.notifications[i].img %>" class="avatar rounded-circle">
-            </div>
-            <div class="col ml--2">
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <h4 class="mb-0 text-sm"><%=user.notifications[i].username%></h4>
-                </div>
-                <div class="text-right text-muted">
-                  <small>2 hrs ago</small>
-                </div>
-              </div>
-              <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
-            </div>
-          </div>
-        </a>
-          <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
-        <%} %>
-
-      </div>
-        <%}else{ %>
-          <p>no new notifications</p>
-        <%}%>
-
-    </div>
-  </li>
-
-<li class="nav-item">
-  <a href="logout" class="text-center text-primary font-weight-bold py-3">logout</a>
-</li>
-</ul> -->
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Wandermate</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav" style="margin-left:60%">
-      <li class="nav-item">
-        <a class="nav-link" href="/guides/guideprofile">home</a>
-      </li>
-
-      <li  class="nav-item dropdown" id='dshow'>
-        <a class="nav-link" href="#" role="button"   id="tog" data-toggle="dropdown" data-target="notifications" aria-haspopup="true" aria-expanded="false">
-          <i class="ni ni-bell-55"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden" id="dshow1">
-      <% if(user.notifications) {%>
-          <div class="px-3 py-3">
-            <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"><%=user.notifications.length%></strong> notifications.</h6>
-          </div>
-
-          <div class="list-group list-group-flush" id="notifications">
-
-      <% for(i=0;i < user.notifications.length;i++ ){ %>
-            <a href="#!" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <img alt="Image placeholder" src="<%=user.notifications[i].img %>" class="avatar rounded-circle">
-                </div>
-                <div class="col ml--2">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                      <h4 class="mb-0 text-sm"><%=user.notifications[i].username%></h4>
-                    </div>
-                    <div class="text-right text-muted">
-                      <small></small>
-                    </div>
-                  </div>
-                  <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
-                </div>
-              </div>
-            </a>
-              <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
-            <%} %>
-
-          </div>
-            <%}else{ %>
-              <p>no new notifications</p>
-            <%}%>
-
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="logout">logout</a>
-      </li>
-    </ul>
-  </div>
-</nav> -->
 
 <nav id="nav" style="z-index:5;padding-top:0.2%;padding-bottom:0.05%;border:none;" class="navpic">
   <div class="logo">
@@ -330,7 +170,67 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
       <center>
        <li><a class="items" href="/users/dashboard"><i class="fas fa-home"></i></a></li>
        <li><a class="items" href="/blog"><i class="fas fa-blog"></i></a></li>
-       <li><a class="items" href="#"><i class="fas fa-bell"></i></a></li>
+       <li class="dropdown">
+         <i class="fas fa-bell dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+           <!-- <button style="color:grey;font-size:16px;margin-top:-2%;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           </button> -->
+           <div style="min-width:23rem;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+             <!-- <a style="padding-top:2px;" class="dropdown-item" href="/users">Profile</a>
+             <a style="padding-top:2px;" class="dropdown-item" href="#">WanderList</a>
+             <a style="padding-top:2px;" class="dropdown-item" href="/users/logout">Logout</a> -->
+             <% if(user.notifications) {%>
+                 <div class="px-3 py-3">
+                   <h6 class="text-sm text-muted m-0">You have <strong class="text-primary"><%=user.notifications.length%></strong> notifications.</h6>
+                 </div>
+
+                 <div class="list-group list-group-flush" id="notifications">
+
+             <% for(i=0;i < user.notifications.length;i++ ){ %>
+                   <a href="#!" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
+                     <div class="row align-items-center">
+                       <div class="col-auto">
+                         <img alt="Image placeholder" src="<%=user.notifications[i].img %>" class="avatar rounded-circle">
+                       </div>
+                       <div class="col ml--2">
+                         <div class="d-flex justify-content-between align-items-center">
+                           <div>
+                             <h4 class="mb-0 text-sm"><%=user.notifications[i].username%></h4>
+                           </div>
+                           <div class="text-right text-muted">
+                             <small></small>
+                           </div>
+                         </div>
+                         <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
+                       </div>
+                     </div>
+                   </a>
+                     <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+                   <%} %>
+
+                 </div>
+                   <%}else{ %>
+                     <a href="#!" onclick="noti('')" class="list-group-item list-group-item-action">
+                       <div class="row align-items-center">
+                         <div class="col-auto">
+                           <img alt="Image placeholder" src="<%=user.img.path%>" class="avatar rounded-circle">
+                         </div>
+                         <div class="col ml--2">
+                           <div class="d-flex justify-content-between align-items-center">
+                             <div>
+                               <h4 class="mb-0 text-sm">Reddy</h4>
+                             </div>
+                             <div class="text-right text-muted">
+                               <small></small>
+                             </div>
+                           </div>
+                           <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
+                         </div>
+                       </div>
+                     </a>
+                   <%}%>
+
+           </div>
+       </li>
        <li class="dropdown" style="margin-left:-4%;">
            <button style="color:grey;font-size:16px;margin-top:-2%;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <i class="far fa-user-circle"><small><b><%= user.username %></b></small></i>
@@ -338,7 +238,7 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
              <a style="padding-top:2px;" class="dropdown-item" href="/users">Profile</a>
              <a style="padding-top:2px;" class="dropdown-item" href="#">WanderList</a>
-             <a style="padding-top:2px;" class="dropdown-item" href="/users/logout">Logout</a>
+             <a style="padding-top:2px;" class="dropdown-item" href="/guides/logout">Logout</a>
            </div>
        </li>
      </center>
@@ -366,7 +266,17 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
                   </div>
                   <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                     <div class="card-profile-actions py-4 mt-lg-0">
-                      <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-sm btn-info " style="background-color: #2DCE89;border-color:#2DCE89">add trip</a>
+                      <li class="dropdown" style="margin-left:-4%;">
+                          <button style="background-color: #2DCE89;border-color:#2DCE89" class="btn btn-sm btn-info  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ADD TRIP
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a style="padding-top:2px;" class="dropdown-item" href="/guides/newtrip/singleplace">Single Place</a>
+                            <a style="padding-top:2px;" class="dropdown-item" href="/guides/newtrip/daylong">Day Long</a>
+                            <a style="padding-top:2px;" class="dropdown-item" href="/tours/tour_plan">Own Tour</a>
+                          </div>
+                      </li>
+                      <!-- <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-sm btn-info " style="background-color: #2DCE89;border-color:#2DCE89">add trip</a> -->
                       <a href="/guides/editprofile" class="btn btn-sm btn-default " style="background-color: #2DCE89;border-color:#2DCE89">Edit profile</a>
                       <a href="#" data-toggle="modal" data-target="#NewsUpdate" class="btn btn-sm btn-default float-right" style="background-color: #2DCE89;border-color:#2DCE89">News</a>
 
@@ -669,14 +579,14 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
                         </tr>
                       </thead>
                       <tbody class="list">
-                        <%if(user.booking){ %>
+                          <%if(user.booking){ %>
                             <% for(i=0;i < user.booking.length;i++ ){ %>
                               <% if(user.booking[i].current){ %>
                         <tr>
                           <th scope="row">
                             <div class="media align-items-center">
                               <a href="#" class="avatar rounded-circle mr-3">
-                                <img alt="Image placeholder" src="<%=user.booking[i].img%>">
+                                <img style="height:9vh;width:9vh" alt="Image placeholder" src="<%=user.booking[i].img%>">
                               </a>
                               <div class="media-body">
                                 <span class="name mb-0 text-sm"><%=user.booking[i].users[0].username%></span>
@@ -684,7 +594,12 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
                             </div>
                           </th>
                           <td class="budget">
-                            <%=user.booking[i].date_n_time.time%>
+                            <%if(user.booking[i].date_n_time.time){%>
+                                <%=user.booking[i].phone_number%>
+                            <%}else{%>
+                              09:00
+                              <%}%>
+
                           </td>
                           <td>
                             <span class="badge badge-dot mr-4">
@@ -696,7 +611,11 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
                             <%=user.booking[i].phone_number%>
                           </td>
                           <td>
-                            <%=user.booking[i].tot_no_of_tourits%>
+                            <%if(user.booking[i].tot_no_of_tourits){%>
+                                <%=user.booking[i].phone_number%>
+                            <%}else{%>
+                              1
+                              <%}%>
                             <!-- <div class="d-flex align-items-center">
                               <span class="completion mr-2">60%</span>
                               <div>
@@ -758,82 +677,57 @@ data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference
 
 
 <br><br>
-<div class="wrapper">
+<div class="wrapper" id="wrapper">
           <div class="container" style="margin:50px auto !important">
             <div class="row">
+              <%if(booking){ %>
+                  <% for(i=0;i < booking.length;i++ ){ %>
+                    <% if(booking[i].current == false){ %>
+
               <div class="col-lg-4 col-md-6">
-                <%if(user.booking){ %>
-                    <% for(i=0;i < user.booking.length;i++ ){ %>
-                      <% if(user.booking[i].current == false){ %>
 
                 <div class="card card-profile" data-background="cover">
                   <img class="img pattern pattern-top" src="https://demos.creative-tim.com/argon-design-system-pro/assets/img/ill/linth3.svg" alt="cover">
                   <div class="card-header">
                     <div class="card-avatar">
                       <a href="javascript:;">
-                        <img class="img img-raised rounded-circle" src="<%=user.booking[i].img%>">
+                        <img class="img img-raised rounded-circle" src="<%=booking[i].img%>">
                       </a>
                     </div>
                   </div>
                   <div class="card-body pt-0">
                     <div class="text-center">
                       <h5 class="h5 mt-3">
-                        <%=user.booking[i].users[0].username%>
+                        <%=booking[i].users[0].username%>
                       </h5>
                       <div class="font-weight-300">
-                        <i class="ni location_pin mr-2"><%=user.booking[i].place%></i>
+                        <i class="ni location_pin mr-2"><%=booking[i].place%></i>
                       </div>
                     </div>
                     <div class="card-profile-stats d-flex justify-content-center">
                       <div>
-                        <span class="heading"><%=user.booking[i].tot_no_of_tourits%></span>
+                        <span class="heading"><%=booking[i].tot_no_of_tourits%></span>
                         <span class="description">Tourists</span>
                       </div>
                       <div>
-                        <span class="heading"><%=user.booking[i].type%></span>
+                        <span class="heading"><%=booking[i].type%></span>
                         <span class="description">Type</span>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-lg btn-success btn-block" onclick="testimonial('<%=user.booking[i].users[0].username%>')">Request Testimonial</button>
+                    <button type="button" class="btn btn-lg btn-success btn-block" onclick="testimonial('<%=booking[i].users[0].username%>')">Request Testimonial</button>
                   </div>
                 </div>
-                <%}%>
-                <%}%>
-                <%}%>
               </div>
+              <%}%>
+              <%}%>
+              <%}%>
+
             </div>
           </div>
+          <a href="/guides/guideprofile?pg=<%=p%>#wrapper" class="btn btn-success" style="float:right;margin-right:14%;background-color:#06b995!important"> more.. </a>
+          <a href="/guides/guideprofile#wrapper" class="btn btn-success" style="float:left;margin-left:14%;background-color:#06b995!important"> back  .. </a>
 </div>
 
-<div class="pagination-container justify-content-center">
-                <ul class="pagination pagination-success justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;" aria-label="Previous">
-                      <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;">2</a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="javascript:;">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;">4</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;">5</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:;" aria-label="Next">
-                      <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
 <br>
 <br>
 <div class="testimonials-3">
@@ -956,6 +850,21 @@ var divs = document.querySelectorAll('.currMonth');
 
 var alldays=[]
 console.log(days)
+var dd=<%-JSON.stringify(booked)%>;
+
+for(var m=0;m<divs.length;m++){
+  var a =divs[m].getAttribute('data-date')
+  var id=divs[m].getAttribute('id')
+  for(var n=0;n<dd.length;n++){
+    if(a==dd[n]){
+
+      document.getElementById(id).classList.add('booked');
+
+    }
+  }
+  console.log(a)
+}
+
 var k = function sel(d) {
 if (<%=user.plans.length%>!=0) {
 
@@ -1070,7 +979,7 @@ setInterval(function(){
     }
   });
 
-}, 30000);
+}, 60000);
 
 
 
@@ -1262,8 +1171,5 @@ $('#relationship-status-slider').on('change input', function() {
       }
     }
     </script>
-    <noscript>
-     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
-    </noscript>
   </body>
 </html>

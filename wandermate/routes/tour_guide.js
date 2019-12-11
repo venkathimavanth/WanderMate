@@ -69,32 +69,50 @@ router.post('/tour_plan',CheckGuide, urlencodedparser,verify, async (req,res) =>
               days = items[7]
             }
         }
+
+        console.log('finding guide')
         Guide.findOne({username:req.user.username})
         .then(async (guide)=>{
 if(guide.availabledates){
   var dates = req.body['dates'].split('-')
 
   if(guide.availabledates.length!=0){
-    var dates = req.body['dates'].split('-')
-
-          for (var j = dates.length; j < 0 ; j++) {
+    console.log('bjbj')
+    console.log(days)
+          for (var j = 0; j < dates.length ; j++) {
+            console.log('enteredhere')
             var m1=dates[j]
             if(m1 != '' || m1 != '-'){
             var m2=new Date(m1)
-            check=[]
-            for (var i = 0; i < days-1; i++) {
+            var check=[]
+            check.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+            console.log(m1)
+            for (var i1 = 0; i1 < days-1; i1++) {
+              console.log('collectiong dates1')
               m2.setDate(m2.getDate()+1)
-              check.append(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+              check.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
 
                     }
+              var m2=new Date(m1)
+              console.log(m2)
+                    for (var i2 = 0; i2 < days-1; i2++) {
+                      console.log('collectiong dates2')
+                      m2.setDate(m2.getDate()-1)
+                      check.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+
+                            }
+                            console.log('im check');
+            console.log(check)
 
             var clear=0
             for (var k = 0; k < check.length; k++) {
+              console.log('entered');
 
-
-            for (var i = 0; i < guide.availabledates.length; i++) {
-            if(check[k]==guide.availabledates[i].date && guide.availabledates.totalbookings!=0  ){
+            for (var a = 0; a < guide.availabledates.length; a++) {
+              console.log('dead')
+            if(check[k]==guide.availabledates[a].date && guide.availabledates[a].totalbookings!=0  ){
                   clear=1
+                  console.log('entered1');
             }
           }
 }
@@ -108,15 +126,21 @@ if(clear==1){
 
 }
 
-var result = arrayRemove(dates,m1);
+var result = arrayRemove(dates,m1.getFullYear() + '/' + (m1.getMonth()+1).toString().padStart(2, '0') + '/' + m1.getDate().toString().padStart(2, '0'));
 var dates=result
-
+console.log('jhvcbhjbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
+console.log(dates)
 }
 else{
-  for (var i = 0; i < check.length; i++) {
-    for (var k = 0; k < guide.availabledates.length; i++) {
-      if(guide.availabledates[i].date==check[i]){
-        guide.availabledates[i].plantype='tourplan'
+  console.log('check')
+  console.log(check)
+  for (var i10 = 0; i10 < check.length; i10++) {
+    console.log('jai')
+    for (var k = 0; k < guide.availabledates.length; k++) {
+console.log('hindi')
+      if(guide.availabledates[k].date==check[i10]){
+console.log('hind')
+        guide.availabledates[k].plantype='tourplan'
         await guide.save()
 
       }
@@ -125,24 +149,30 @@ else{
 }
 hold=[]
 for (var m=0;m<guide.booking.length;m++){
-  if(guide.booking[m].current==true && guide.booking[m].plantype=='tourplan' ){
+  console.log('enter heree......')
+  console.log(guide.booking)
+  if(guide.booking[m].current==true && guide.booking[m].plan=='tourplan' ){
+    console.log('pushed')
     hold.push(guide.booking[m].date_n_time.date)
     var t2=new Date(guide.booking[m].date_n_time.date)
 
     days1=guide.booking[m].days
     for (var i = 0; i < days1-1; i++) {
+      console.log('bnbj')
       t2.setDate(t2.getDate()+1)
-      hold.append(t2.getFullYear() + '/' + (t2.getMonth()+1).toString().padStart(2, '0') + '/' + t2.getDate().toString().padStart(2, '0'))
+      hold.push(t2.getFullYear() + '/' + (t2.getMonth()+1).toString().padStart(2, '0') + '/' + t2.getDate().toString().padStart(2, '0'))
 
             }
             var t2=new Date(guide.booking[m].date_n_time.date)
             for (var i = 0; i < days1-1; i++) {
+              console.log('cnbj')
               t2.setDate(t2.getDate()-1)
-              hold.append(t2.getFullYear() + '/' + (t2.getMonth()+1).toString().padStart(2, '0') + '/' + t2.getDate().toString().padStart(2, '0'))
+              hold.push(t2.getFullYear() + '/' + (t2.getMonth()+1).toString().padStart(2, '0') + '/' + t2.getDate().toString().padStart(2, '0'))
 
                     }
-
+console.log('all dates gathered')
   }
+  console.log('exit')
 }
 var booked= new Set(hold)
 var dated = new Set(dates)
@@ -156,27 +186,43 @@ console.log(dates)
         }
 
 
+console.log('removing available dates')
 
-
-removedate=[]
+var removedate=[]
 for (var i=0;i<guide.availabledates.length;i++){
-    if(guide.availabledates[i].plantype=='singleplace' || guides.availabledates[i].plantype=='daylong'){
-                if(guide.availabledates[i].totalbookings == 0){
+  console.log('entereduuu');
+    if(guide.availabledates[i].plantype=='singleplace' || guide.availabledates[i].plantype=='daylong'){
+console.log('ent');
+                if(guide.availabledates[i].totalbookings != 0){
+console.log('entereduuuuuuuuuuuu');
                   removedate.push(guide.availabledates[i])
                 }
     }
 }
+console.log(removedate)
 var myplans=guide.plans
+console.log(req.user._id)
+Guide.findOne({'_id':req.user._id})
+.then(async x=>{
+  console.log(x)
+  console.log('found')
 
-Guide.updateOne({"_id":req.user._id},{
-$pullAll: { availabledates: removedate ,plans:myplans},
+  x.availabledates = removedate;
+                  x.plans = myplans
+    await x.save()
+  console.log('done')}
+)
+// Guide.updateOne({'_id':req.user._id},{
+// $pullAll: { availabledates:removedate},
+//
+//
+// }).then(x=>{console.log(x);console.log('done')})
 
-}).then(x=>{console.log('done')})
 }
 else{
   hold=[]
   for (var m=0;m<guide.booking.length;m++){
-    if(guide.booking[m].current==true && guide.booking[m].plantype=='tourplan' ){
+    if(guide.booking[m].current==true && guide.booking[m].plan=='tourplan' ){
       hold.push(guide.booking[m].date_n_time.date)
       var t2=new Date(guide.booking[m].date_n_time.date)
 
@@ -224,7 +270,7 @@ console.log(dates)
             }
             tp.images = images
         }
-        console.log(tp)
+
         await tp.save()
         // console.log(tp)
         res.status(201).end()
