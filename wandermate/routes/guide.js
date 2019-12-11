@@ -186,7 +186,7 @@ passport.authenticate('local2',{
 
 router.get('/logout',(req,res)=>{
   req.logout()
-  res.redirect('/guides/login')
+  res.redirect('/')
 });
 
 router.get('/forgot', function(req, res) {

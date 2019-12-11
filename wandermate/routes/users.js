@@ -184,7 +184,7 @@ router.get('/dashboard',CheckUser,(req,res)=>{
 })
 router.get('/logout',(req,res)=>{
   req.logout()
-  res.redirect('/users/login')
+  res.redirect('/')
 })
 router.get('/forgot', function(req, res) {
   console.log(req.user)
