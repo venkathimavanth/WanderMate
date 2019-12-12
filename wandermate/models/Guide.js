@@ -15,13 +15,17 @@ const BookingSchema = new mongoose.Schema({
   plan:String,
   days:Number,
   planid:String,
-
+  rating:Number,
 });
 
 const GuideSchema = new mongoose.Schema({
   name:{
     type:String,
     required:true
+  },
+  myrating:{
+    type:Number,
+    default:0
   },
   usertype:{
     type:String,

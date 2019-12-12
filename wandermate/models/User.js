@@ -10,6 +10,7 @@ const BookingSchema = new mongoose.Schema({
   plan:String,
   days:Number,
   planid:String,
+  rating:Number
 });
 
 const UserSchema = new mongoose.Schema({

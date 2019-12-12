@@ -9,7 +9,7 @@
 
  <!-- Favicon -->
 
- <!-- <link rel="stylesheet" href="../css/guideprofile.css"> -->
+ <link rel="stylesheet" href="../css/guideprofile.css">
 <style >
 .rangeslider__fill{background:#2DCE89 !important}
 .rangeslider--horizontal{height: 5px !important;width:100% !important;}
@@ -19,7 +19,7 @@
 <script src="https://kit.fontawesome.com/ea0619ce99.js" crossorigin="anonymous"></script>
 
  <!-- <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png"> -->
- <link rel="stylesheet" href="https://demos.creative-tim.com/argon-design-system-pro/assets/css/argon-design-system.min.css?v=1.0.0">
+ <!-- <link rel="stylesheet" href="https://demos.creative-tim.com/argon-design-system-pro/assets/css/argon-design-system.min.css?v=1.0.0"> -->
 <!-- <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"> -->
  <!-- Fonts -->
  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
@@ -27,9 +27,18 @@
 .cld-day.booked{
   pointer-events: none;
   opacity: 0.5 !important;
-  background-color:white !important;
+  background-color:red !important;
+  color:white
 
 }
+.cld-day.disableDay{
+  opacity: 0.5;
+  background-color:#32325d;
+  color:white;
+
+
+}
+
 
 
   #wander {
@@ -78,12 +87,6 @@
     color: grey;
     font-size: 16px;
   }
-.btn-success {
-color: #fff;
-background-color: #2dce89;
-border-color: #2dce89;
-box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-}
 .blue-btn:hover,
 .blue-btn:active,
 .blue-btn:focus,
@@ -168,13 +171,13 @@ width: 100%;
   <div class="menu"  style="overflow:visible!important;">
     <ul id="ul" style="margin-left:60%;margin-top:1.7%;">
       <center>
-       <li><a class="items" href="/users/dashboard"><i class="fas fa-home"></i></a></li>
+       <li><a class="items" href="/guides/guideprofile"><i class="fas fa-home"></i></a></li>
        <li><a class="items" href="/blog"><i class="fas fa-blog"></i></a></li>
        <li class="dropdown">
          <i class="fas fa-bell dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
            <!-- <button style="color:grey;font-size:16px;margin-top:-2%;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            </button> -->
-           <div style="min-width:23rem;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+           <div style="min-width:20rem;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
              <!-- <a style="padding-top:2px;" class="dropdown-item" href="/users">Profile</a>
              <a style="padding-top:2px;" class="dropdown-item" href="#">WanderList</a>
              <a style="padding-top:2px;" class="dropdown-item" href="/users/logout">Logout</a> -->
@@ -186,7 +189,7 @@ width: 100%;
                  <div class="list-group list-group-flush" id="notifications">
 
              <% for(i=0;i < user.notifications.length;i++ ){ %>
-                   <a href="#!" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
+                   <a href="#!" style="margin-left:-2%!important;" onclick="noti('<%=user.notifications[i]._id%>')" class="list-group-item list-group-item-action">
                      <div class="row align-items-center">
                        <div class="col-auto">
                          <img alt="Image placeholder" src="<%=user.notifications[i].img %>" class="avatar rounded-circle">
@@ -231,16 +234,18 @@ width: 100%;
 
            </div>
        </li>
-       <li class="dropdown" style="margin-left:-4%;">
+       <li><a class="items" href="/blog"><i class="fas fa-sign-in-alt"><small>Logout</small></i></a></li>
+       <!-- <li class="dropdown" style="margin-left:-4%;">
            <button style="color:grey;font-size:16px;margin-top:-2%;" class="btn btn-outline-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <i class="far fa-user-circle"><small><b><%= user.username %></b></small></i>
            </button>
            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-             <a style="padding-top:2px;" class="dropdown-item" href="/users">Profile</a>
-             <a style="padding-top:2px;" class="dropdown-item" href="#">WanderList</a>
+             <a style="padding-top:2px;" class="dropdown-item" href="/guides/logout">Logout</a>
+             <a style="padding-top:2px;" class="dropdown-item" href="/guides/logout">Logout</a>
+             <a style="padding-top:2px;" class="dropdown-item" href="/guides/logout">Logout</a>
              <a style="padding-top:2px;" class="dropdown-item" href="/guides/logout">Logout</a>
            </div>
-       </li>
+       </li> -->
      </center>
     </ul>
   </div>
@@ -267,7 +272,7 @@ width: 100%;
                   <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                     <div class="card-profile-actions py-4 mt-lg-0">
                       <li class="dropdown" style="margin-left:-4%;">
-                          <button style="background-color: #2DCE89;border-color:#2DCE89" class="btn btn-sm btn-info  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <button style="background-color: #06B995;border-color:#06B995" class="btn btn-sm btn-info  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             ADD TRIP
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -277,23 +282,23 @@ width: 100%;
                           </div>
                       </li>
                       <!-- <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-sm btn-info " style="background-color: #2DCE89;border-color:#2DCE89">add trip</a> -->
-                      <a href="/guides/editprofile" class="btn btn-sm btn-default " style="background-color: #2DCE89;border-color:#2DCE89">Edit profile</a>
-                      <a href="#" data-toggle="modal" data-target="#NewsUpdate" class="btn btn-sm btn-default float-right" style="background-color: #2DCE89;border-color:#2DCE89">News</a>
+                      <a href="/guides/editprofile" class="btn btn-sm btn-default " style="background-color: #06B995;border-color:#06B995">Edit profile</a>
+                      <a href="#" data-toggle="modal" data-target="#NewsUpdate" class="btn btn-sm btn-default float-right" style="background-color: #06B995;border-color:#06B995">News</a>
 
                     </div>
                   </div>
                   <div class="col-lg-4 order-lg-1">
                     <div class="card-profile-stats d-flex justify-content-center">
                       <div>
-                        <span class="heading">22</span>
-                        <span class="description">Friends</span>
+                        <span class="heading"><%if(user.booking){var count = 0 ;for(var i=0;i< user.booking.length;i++){if(user.booking[i].current==true){count=count+1} }  }%><%=count%></span>
+                        <span class="description">Current</span>
                       </div>
                       <div>
-                        <span class="heading">10</span>
+                        <span class="heading"><%if(user.booking){%><%=user.booking.length %><%}%></span>
                         <span class="description">trips</span>
                       </div>
                       <div>
-                        <span class="heading">89</span>
+                        <span class="heading"><%=user.myrating %></span>
                         <span class="description">rating</span>
                       </div>
                     </div>
@@ -445,7 +450,7 @@ width: 100%;
   <form id="calform">
 <input type="text" name="finaldays" id="finaldays" hidden>
   </form>
-  <button type="button" style="margin-bottom:3%;margin-left:5%;margin-right:5%" class="btn btn-success" onclick="send()">Save</button>
+  <button type="button" style="margin-bottom:3%;margin-left:5%;margin-right:5%" class="btn btn-success" style="background-color:#06b995 !important;border-color: #06b995 !important" onclick="send()">Save</button>
 <%}%>
 </div>
 </div>
@@ -478,7 +483,7 @@ width: 100%;
         <thead class="thead-light">
           <tr>
             <th scope="col">Languages</th>
-            <th scope="col"><a href="#" data-toggle="modal" data-target="#addlanguage"  class="btn btn-sm btn-default float-right" style="background-color: #2DCE89;color:white;border-color:#2DCE89">Add language</a></th>
+            <th scope="col"><a href="#" data-toggle="modal" data-target="#addlanguage"  class="btn btn-sm btn-default float-right" style="background-color: #06B995;color:white;border-color: #06B995">Add language</a></th>
           </tr>
         </thead>
         <tbody>
@@ -595,7 +600,7 @@ width: 100%;
                           </th>
                           <td class="budget">
                             <%if(user.booking[i].date_n_time.time){%>
-                                <%=user.booking[i].phone_number%>
+                                <%=user.booking[i].date_n_time.time%>
                             <%}else{%>
                               09:00
                               <%}%>
@@ -639,7 +644,7 @@ width: 100%;
                       </tbody>
                     </table>
                   </div>
-                  <div class="card-footer py-4">
+                  <!-- <div class="card-footer py-4">
                     <nav aria-label="...">
                       <ul class="pagination justify-content-end mb-0">
                         <li class="page-item disabled">
@@ -663,7 +668,7 @@ width: 100%;
                         </li>
                       </ul>
                     </nav>
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
@@ -691,7 +696,7 @@ width: 100%;
                   <div class="card-header">
                     <div class="card-avatar">
                       <a href="javascript:;">
-                        <img class="img img-raised rounded-circle" src="<%=booking[i].img%>">
+                        <img class="img img-raised rounded-circle" style="height:17vh;width:17vh" src="<%=booking[i].img%>">
                       </a>
                     </div>
                   </div>
@@ -743,7 +748,7 @@ width: 100%;
             <p class="lead">
               Meet Wingman, a robust suite of styled pages and components, powered by Bootstrap 4. The ideal starting point for product landing pages, stylish web-apps and complete company websites.
             </p>
-            <a href="javascript:;" style="background-color: #2DCE89;border-color:#2DCE89" class="btn btn-primary mt-5">Contact us</a>
+            <a href="javascript:;" style="background-color: #06b995;border-color:#06b995" class="btn btn-primary mt-5">Contact us</a>
           </div>
           <div class="col-md-12 col-md-6">
 
@@ -759,7 +764,7 @@ width: 100%;
                       <% for(i=0;i < user.testimonials.length;i++ ){ %>
 
                   <li class="glide__slide " style="width: 265px; margin-left: 5px; margin-right: 5px;">
-                    <div class="info text-left" style="border: 1px solid #2dce89;">
+                    <div class="info text-left" style="border: 1px solid #06b995;">
                       <p class="description">
                         <%=user.testimonials[i].text%>
                       </p>

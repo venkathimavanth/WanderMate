@@ -25,6 +25,8 @@ function CheckUser(req, res, next) {
     if (req.isAuthenticated()){
       if(req.user.usertype == 'user'){
         return next();
+      }else if(req.user.usertype == 'admin'){
+        return res.redirect('/admin/cities')
       }
       else {
         return res.sendStatus(404)
@@ -161,7 +163,7 @@ router.post('/dashboard',CheckUser, (req,res)=>{
 });
 
 router.get('/dashboard',CheckUser,(req,res)=>{
-  const user_bookings = User.find({ _id:req.user._id},{'booking':1})  
+  const user_bookings = User.find({ _id:req.user._id},{'booking':1})
   console.log(user_bookings)
   bookings = []
   for(let i = 0; i < user_bookings.length;i++){
@@ -458,7 +460,23 @@ router.post('/', isLoggedIn, (req, res, next) =>{
     });
 });
 
-
+router.post('/st',async (req,res) => {
+  var guide = await Guide.findOne({'username':req.body.guide})
+  for(var i = 0;i<guide.booking.length;i++){
+    if(guide.booking[i].date_n_time.date == req.body.date && guide.booking[i].date_n_time.time == req.body.time){
+      guide.booking[i].rating = req.body.st
+    }
+  }
+  guide.myrating = (guide.myrating +  Number(req.body.st))/guide.booking.length
+  await guide.save()
+  var user = req.user
+  for(var i = 0;i<user.booking.length;i++){
+    if(user.booking[i]._id == req.body.id){
+      user.booking[i].rating = req.body.st
+    }
+  }
+  await req.user.save()
+})
 
 
 

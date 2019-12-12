@@ -16,13 +16,28 @@ const Placeinfo=require('../models/Placeinfo');
 const Guide=require('../models/Guide');
 const User=require('../models/User');
 
-router.get('/dashboard',(req,res)=>{
+function CheckUser(req, res, next) {
+    if (req.isAuthenticated()){
+      if(req.user.usertype == 'admin'){
+        return next();
+      }
+      else {
+        console.log('dcz')
+        return res.sendStatus(404)
+      }
+    }
+    res.redirect('/users/login');
+}
+
+
+router.get('/dashboard',CheckUser,(req,res)=>{
+  console.log('heyy')
 
   res.render('admin.ejs',{layout:'adminlayout'})
 
 });
 
-router.get('/cities',(req,res)=>{
+router.get('/cities',CheckUser,(req,res)=>{
   Placeinfo.find({})
   .then(x=>{
 
@@ -37,11 +52,11 @@ router.get('/cities',(req,res)=>{
 
 });
 
-router.get('/addcity',(req,res)=>{
+router.get('/addcity',CheckUser,(req,res)=>{
 res.render('adminaddcity',{layout:'adminlayout'})
 });
 
-router.post('/thingstodo',(req,res)=>{
+router.post('/thingstodo',CheckUser,(req,res)=>{
   console.log(req.query.id)
   console.log(req.body)
   console.log(req.files)
@@ -85,7 +100,7 @@ Placeinfo.findOne({_id:req.query.id})
 
 });
 
-router.post('/spots',(req,res)=>{
+router.post('/spots',CheckUser,(req,res)=>{
   console.log(req.query.id)
   console.log(req.body)
   console.log(req.files)
@@ -130,7 +145,7 @@ Placeinfo.findOne({_id:req.query.id})
 });
 
 
-router.post('/about',(req,res)=>{
+router.post('/about',CheckUser,(req,res)=>{
   console.log(req.query.id)
   console.log(req.body)
 
@@ -156,7 +171,7 @@ x.save().then(y=>{
 
 });
 
-router.post('/history',(req,res)=>{
+router.post('/history',CheckUser,(req,res)=>{
   console.log(req.query.id)
   console.log(req.body)
 
@@ -185,7 +200,7 @@ x.save().then(y=>{
 
 
 
-router.get('/cityinfo',(req,res)=>{
+router.get('/cityinfo',CheckUser,(req,res)=>{
   console.log(req.query)
 Placeinfo.findOne({_id:req.query.id})
 .then(x=>{
@@ -200,7 +215,7 @@ Placeinfo.findOne({_id:req.query.id})
 })
 });
 
-router.post('/addcity',(req,res)=>{
+router.post('/addcity',CheckUser,(req,res)=>{
   console.log(req.body)
   console.log(req.files)
   var bgimgs=[]
@@ -234,7 +249,7 @@ newPlace.save()
 
 });
 
-router.post('/images',(req,res)=>{
+router.post('/images',CheckUser,(req,res)=>{
   console.log(req.body)
 
   console.log(req.files)
@@ -270,7 +285,7 @@ Placeinfo.findOne({_id:req.body.city})
 
 });
 
-router.post('/delimgs',(req,res)=>{
+router.post('/delimgs',CheckUser,(req,res)=>{
   console.log(req.body)
 
   var bgimgs=[]
@@ -310,7 +325,7 @@ Placeinfo.findOne({_id:req.body.place})
 
 
 
-router.post('/delthings',(req,res)=>{
+router.post('/delthings',CheckUser,(req,res)=>{
   console.log(req.body)
 
   var bgimgs=[]
@@ -326,7 +341,7 @@ router.post('/delthings',(req,res)=>{
 
 });
 
-router.get('/allusers',(req,res)=>{
+router.get('/allusers',CheckUser,(req,res)=>{
 User.find({})
 .then(x=>{
   res.render('allusers',{users:x,layout:'adminlayout'});
@@ -336,7 +351,7 @@ User.find({})
 })
 });
 
-router.get('/allguides',(req,res)=>{
+router.get('/allguides',CheckUser,(req,res)=>{
 Guide.find({})
 .then(x=>{
   res.render('allguides',{users:x,layout:'adminlayout'});

@@ -473,8 +473,9 @@ console.log('-------------------------------------------------------------------
     console.log('==========================================================================================================');
     console.log(booking);
 
+    console.log('==========================================================================================================');
 
-
+console.log(user.booking[0].img)
 
 res.render('guideprofile',{user:user,tours:x,p:p,booking:booking,booked:currentbookings})
 
@@ -681,7 +682,7 @@ fordates(user);
 
 
 }
-return res.redirect('/guides/guideprofile')
+return res.redirect('/guides/guideprofile#caleandar')
 };
 return res.redirect('/guides/newtrip/singleplace')
 
@@ -1145,7 +1146,7 @@ router.post('/newtrip/daylong',CheckGuide,(req,res)=>{
 
 
   }
-  return res.redirect('/guides/guideprofile')
+  return res.redirect('/guides/guideprofile#caleandar')
   };
   return res.redirect('/guides/newtrip/daylong')
 
