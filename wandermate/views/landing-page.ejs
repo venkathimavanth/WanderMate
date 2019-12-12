@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img//apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img//favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     WanderMate - Home
@@ -45,6 +43,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   <link href="../reddy/css/style1.css" rel="stylesheet" />
   <link href="../reddy/css/style4.css" rel="stylesheet" />
+  <link href="../reddy/css/prev_book.css" rel="stylesheet" />
   <!-- <link href="https://demos.creative-tim.com/argon-design-system-pro/assets/css/argon-design-system.min.css?v=1.0.0" rel="stylesheet" /> -->
   <style>
   .shadow-effect {
@@ -134,8 +133,6 @@
   .dropdown-menu-right:before{right:20px;left:auto!important;}
   .dropdown-menu.show{display:block;}
   .dropdown.show .dropdown-menu.show{margin-top:10px;bottom:unset!important;top:100%!important;animation:j .3s cubic-bezier(.23,1,.32,1);transform:none!important;transition:height .35s ease;}
-
-
   </style>
 </head>
 
@@ -275,7 +272,6 @@
           <h1 class="logo cursive">
               WanderMate
           </h1>
-
           <div class="content">
               <h4 class="motto">Hire guides at your finger tips.</h4>
               <div class="subscribe">
@@ -297,7 +293,166 @@
       </div>
    </div>
 <br><br><br>
-<div class="cd-section" id="testimonials" style="margin-top:50%">
+
+<div class="container text-center my-3" style="margin-top: 50% !important">
+  <h2 class="font-weight-light">Bootstrap 4 - Multi Item Carousel</h2>
+  <div class="row mx-auto my-auto">
+      <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+          <div class="carousel-inner w-100" role="listbox">
+              <div class="cards">
+                  <div class="carousel-item active">
+                  <div class="col-md-4">
+                      <div class="card">
+                          <img class="card__image" src="https://source.unsplash.com/300x225/?wave" alt="wave" />
+                          <div class="card-title">
+                            <a href="#" class="toggle-info btn1">
+                              <span class="left"></span>
+                              <span class="right"></span>
+                            </a>
+                            <h2>
+                                Card title
+                                <small>Image from unsplash.com</small>
+                            </h2>
+                          </div>
+                          <div class="card-flap flap1">
+                            <div class="card-description">
+                              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+                            </div>
+                            <div class="card-flap flap2">
+                              <div class="card-actions">
+                                <a href="#" class="btn1">Read more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+              </div>
+              <div class="carousel-item">
+                  <div class="col-md-4">
+                      <div class="card">
+                          <img class="card__image" src="https://source.unsplash.com/300x225/?wave" alt="wave" />
+                          <div class="card-title">
+                            <a href="#" class="toggle-info btn1">
+                              <span class="left"></span>
+                              <span class="right"></span>
+                            </a>
+                            <h2>
+                                Card title
+                                <small>Image from unsplash.com</small>
+                            </h2>
+                          </div>
+                          <div class="card-flap flap1">
+                            <div class="card-description">
+                              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+                            </div>
+                            <div class="card-flap flap2">
+                              <div class="card-actions">
+                                <a href="#" class="btn1">Read more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                   </div>
+              </div>
+          </div>
+          <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+          </a>
+      </div>
+      </div>
+  </div>
+  <h5 class="mt-2">Advances one slide at a time</h5>
+</div>
+
+<div class="container text-center my-3" style="margin-top: 50% !important">
+  <h2 class="title" style="font-size:5em;margin-left:-70% !important">Your bookings:</h2><hr style="width:100%;margin-right:10% ;">
+  <div class="row mx-auto my-auto">
+      <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+        <% if(bookings.length > 0){%>
+          <div class="carousel-inner w-100" role="listbox">
+            <div class="cards">
+            <% bookings.forEach(function(item,index){ %>
+              <% if(index === 0){ %>
+            <div class="carousel-item active">
+                  <div class="col-md-4">
+                      <div class="card">
+                          <img class="card__image" src="https://source.unsplash.com/300x225/?wave" alt="wave" />
+                          <div class="card-title">
+                            <a href="#" class="toggle-info btn">
+                              <span class="left"></span>
+                              <span class="right"></span>
+                            </a>
+                            <h2>
+                                Card title
+                                <small>Image from unsplash.com</small>
+                            </h2>
+                          </div>
+                          <div class="card-flap flap1">
+                            <div class="card-description">
+                              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+                            </div>
+                            <div class="card-flap flap2">
+                              <div class="card-actions">
+                                <a href="#" class="btn1">Read more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+              </div>
+              <% } else {%>
+              <div class="carousel-item">
+                  <div class="col-md-4">
+                      <div class="card">
+                          <img class="card__image" src="https://source.unsplash.com/300x225/?wave" alt="wave" />
+                          <div class="card-title">
+                            <a href="#" class="toggle-info btn">
+                              <span class="left"></span>
+                              <span class="right"></span>
+                            </a>
+                            <h2>
+                                Card title
+                                <small>Image from unsplash.com</small>
+                            </h2>
+                          </div>
+                          <div class="card-flap flap1">
+                            <div class="card-description">
+                              This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+                            </div>
+                            <div class="card-flap flap2">
+                              <div class="card-actions">
+                                <a href="#" class="btn1">Read more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+              </div>
+              <% } %>
+             <% }) %>
+          </div>
+        </div>
+          <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+          </a>
+          <% } else {%>
+            <h2>You have no bookings yet.</h2>
+          <% } %>
+      </div>
+  </div>
+</div>
+
+<div class="cd-section" id="testimonials" style="margin-top:5%">
    <div class="testimonials-1" style="background-image: url('https://demos.creative-tim.com/argon-design-system-pro/assets/img/ill/testimonial_bg.svg');">
      <div class="container1">
        <div class="loc_row">
@@ -305,7 +460,6 @@
            <h2 class="title" style="font-size:5em;font-weight:bold;padding-bottom:10% !important">Popular Tours</h2>
          </div>
        </div>
-
        <!-- Tour Plans -->
        <div id="loc-carousel-testimonials" class="carousel slide carousel-team">
          <div class="loc-carousel-inner">
@@ -330,7 +484,7 @@
                      </div>
                      <div class="col-md-5 p-5 ml-auto">
                        <div class="p-3">
-                         <img style="width:50vh;height:70vh" class="img-fluid rounded shadow transform-perspective-right" src="<%= item.images[0].img %>" alt="First slide" >
+                         <img style="width:50vh;height:70vh" class="img-fluid rounded shadow transform-perspective-right" src="<%= item.images[0].img %>" alt="No image provided!" >
                        </div>
                      </div>
                    </div>
@@ -364,31 +518,6 @@
                </div>
              <% } %>
            <% }) %>
-
-           <div class="carousel-item">
-             <div class="container1">
-               <div class="loc_row">
-                 <div class="col-md-5 ml-auto">
-                   <h3 class="card-title" style="font-size:2.75em;font-weight:400 !important"> Sarah Smith</h3>
-                   <h3 class="text-danger" style="font-size:4em;font-weight:300 !important">• • •</h3>
-                   <h4 class="lead">
-                     <ul>
-                       <li>City</li>
-                       <li>Place</li>
-                       <li>Cost</li>
-                       <li>Rating</li>
-                     </ul>
-                   </h4>
-                   <a href="javascript:void(0)" class="btn btn-danger mt-3">Read more</a>
-                 </div>
-                 <div class="col-md-5 p-5 ml-auto">
-                   <div class="p-3">
-                     <img  class="img-fluid rounded shadow transform-perspective-right" src="https://demos.creative-tim.com/argon-design-system-pro/assets/img/faces/fezbot.jpg" alt="First slide" >
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </div>
 
          </div>
          <a class="loc-carousel-control-prev" href="#loc-carousel-testimonials" role="button" data-slide="prev" style="width:0%">
@@ -442,7 +571,7 @@
                         </div>
                         <div class="content">
                             <div class="main2">
-                                <h4 class="text-center" style="font-weight:">Languages:</h4>
+                                <h4 class="text-center">Languages:</h4>
                                 <p class="text-center">
                                   <% for(var i=0;i < item.languages.length;i++){ %>
                                     <%= item.languages[i].language %>, <%= item.languages[i].eff %>% <br>
@@ -469,7 +598,7 @@
                 </div> <!-- end card -->
             </div> <!-- end card-container -->
             </div>
-            <div class="testimonial-name"><a href="/"><span style="color:white;font-size:1.3em !important">BOOK</span></a></div>
+            <div class="testimonial-name"><a href=""><span style="color:white;font-size:1.3em !important">BOOK</span></a></div>
           </div>
         <% }) %>
         <!--END OF TESTIMONIAL 5 -->
@@ -510,17 +639,73 @@
 </section>
 </div>
 
-<!-- Enter a star rating 0-5: <input onkeyup="rating(this.value)" value="4.3">
-<div id="rating1" class="rating"></div> -->
+<footer class="ftco-footer ftco-bg-dark ftco-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">Adventure</h2>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+          <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4 ml-md-4">
+          <h2 class="ftco-heading-2">Information</h2>
+          <ul class="list-unstyled">
+            <li><a href="#" class="py-2 d-block">About Us</a></li>
+            <li><a href="#" class="py-2 d-block">Online enquiry</a></li>
+            <li><a href="#" class="py-2 d-block">Call Us</a></li>
+            <li><a href="#" class="py-2 d-block">General enquiries</a></li>
+            <li><a href="#" class="py-2 d-block">Booking Conditions</a></li>
+            <li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
+            <li><a href="#" class="py-2 d-block">Refund policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md">
+         <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">Experience</h2>
+          <ul class="list-unstyled">
+            <li><a href="#" class="py-2 d-block">Beach</a></li>
+            <li><a href="#" class="py-2 d-block">Adventure</a></li>
+            <li><a href="#" class="py-2 d-block">Wildlife</a></li>
+            <li><a href="#" class="py-2 d-block">Honeymoon</a></li>
+            <li><a href="#" class="py-2 d-block">Nature</a></li>
+            <li><a href="#" class="py-2 d-block">Party</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="ftco-footer-widget mb-4">
+          <h2 class="ftco-heading-2">Have a Questions?</h2>
+          <div class="block-23 mb-3">
+            <ul>
+              <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+              <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+              <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
 
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-
-
-</div>
-../reddy/js/video-background/
 <script src="../reddy/js/paperkit2/jquery.min.js" type="text/javascript"></script>
 <script src="../reddy/js/paperkit2/popper.min.js" type="text/javascript"></script>
 <script src="../reddy/js/paperkit2/bootstrap.min.js" type="text/javascript"></script>
+<script src="../reddy/js/prev_book.js" type="text/javascript"></script>
 <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
 <script src="../reddy/js/paperkit2/paper-kit.js?v=2.2.0" type="text/javascript"></script>
 <!-- fa -->
@@ -541,41 +726,9 @@
 <script src="https://demos.creative-tim.com/argon-design-system-pro/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
 <script src="https://demos.creative-tim.com/argon-design-system-pro/assets/js/argon-design-system.min.js?v=1.0.0" type="text/javascript"></script> <!-- Sharrre libray -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.1/owl.carousel.min.js"></script>
-<script type="text/javascript">
-  var cw = window.rating1.clientWidth; // save original 100% pixel width
-
-  function rating( stars ) {
-    window.rating1.style.width = Math.round(cw * (stars / 5)) + 'px';
-                            }
-
-rating(4.3);
-</script>
-<script type="text/javascript">
-document.getElementById("stars").innerHTML = getStars(1.7);
-
-function getStars(rating) {
-
-  // Round to nearest half
-  rating = Math.round(rating * 2) / 2;
-  let output = [];
-
-  // Append all the filled whole stars
-  for (var i = rating; i >= 1; i--)
-    output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-
-  // If there is a half a star, append it
-  if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-
-  // Fill the empty stars
-  for (let i = (5 - rating); i >= 1; i--)
-    output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-
-  return output.join('');
-
-}
-</script>
 <script type="text/javascript">
 function noti(x,img){
   console.log(x)

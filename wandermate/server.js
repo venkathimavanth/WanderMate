@@ -12,7 +12,7 @@ let Tour_plans = require('./models/tour_plans');
 let Guides = require('./models/Guide');
 let News = require('./models/News');
 let WishList = require('./models/WishList')
-let Chatdata = require('./models/Chatdata');
+let Chatdata = require('./models/chatdata');
 const socketio = require('socket.io');
 const http = require('http');
 let User = require('./models/User');
@@ -311,7 +311,9 @@ console.log('kjbkb')
    res.redirect('/places/'+cityName);
  });
 
-
+app.get('/exp',function (req,res){
+  res.render('exp')
+})
 
  var count=0;
 
@@ -418,8 +420,38 @@ console.log('heyy')
 
  app.get('/viewprofile/:guidename',function(req,res){
    Guides.find({name:req.params.guidename}, function(err, guide){
+     var currentbookings=[]
+     if (guide[0].booking.length !=0){
+       console.log(',nmn')
+         for (var i = 0; i < guide[0].booking.length; i++) {
+           if(guide[0].booking[i].current==true && guide[0].booking[i].plan=='tourplan' ){
+     console.log(',nmnddd')
+             var m2=new Date(guide[0].booking[i].date_n_time.date)
+             currentbookings.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+             console.log(guide[0].booking[i].days)
+             for (var j1 = 0; j1 < guide[0].booking[i].days-1; j1++) {
+               console.log('working')
+               m2.setDate(m2.getDate()+1)
+               currentbookings.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+
+                     }
+                     var m2=new Date(guide[0].booking[i].date_n_time.date)
+
+                     for (var j2 = 0; j2 < guide[0].booking[i].days-1; j2++) {
+                        console.log('working2')
+                       m2.setDate(m2.getDate()-1)
+                       currentbookings.push(m2.getFullYear() + '/' + (m2.getMonth()+1).toString().padStart(2, '0') + '/' + m2.getDate().toString().padStart(2, '0'))
+
+                             }
+
+
+           }
+         }
+
+     }
+
      Tour_plans.find({guide:req.params.guidename}, function(req, tours){
-       res.render('guideinfo', {user:guide[0], tours:tours[0]})
+       res.render('guideinfo', {user:guide[0], tours:tours[0],booked:currentbookings})
      })
    })
  })
@@ -475,4 +507,4 @@ app.get("*", function(req, res){
  server.listen(8000, function(){
    console.log("Connected to server")
  });
-console.log('you are listening to port 3000');
+console.log('you are listening to port 8000');

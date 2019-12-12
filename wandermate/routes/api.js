@@ -1,7 +1,7 @@
 const Api = require('../models/apis')
 const express = require('express')
 const Guide = require('../models/Guide')
-
+const News = require('../models/News')
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { check, validationResult } = require('express-validator');
@@ -11,6 +11,24 @@ const TP = require('../models/tour_plans')
 const nodemailer = require('nodemailer')
 const axios = require('axios')
 const router = new express.Router()
+
+router.get('/checkAPI',async (req,res) =>{
+try{
+    let api_key = req.query.api
+    let result = Api.checkAPI(api_key)
+    console.log(result)
+    api = await API.find({ token:api_key })
+    if(result.result === true && result.isexpired === false){
+        res.status(200).send(api)
+    }
+    else{
+        throw "Please check your api and it's expiry date"
+    }
+    }catch(e){
+        res.status(400).send({e})
+    }
+})
+
 
 router.post('/API', urlencodedparser, [check('plan').not().isEmpty().withMessage('Please select a plan i'),
                                       check('cost').not().isEmpty().withMessage('Please select a plan i'),
@@ -48,13 +66,44 @@ router.post('/API', urlencodedparser, [check('plan').not().isEmpty().withMessage
                   console.log(api)
                   await api.save()
                   // let result = await api.completeAPI()
-
+                  var smtpTransport = nodemailer.createTransport({
+                    host: 'smtp.gmail.com',
+                    port: 465,
+                    secure: true, // use SSL
+                    auth: {
+                        user: 'koushiks666@gmail.com',
+                        pass: '***********'
+                        }
+                    });
+            
+                    var mailOptions = {
+                        to: api.email,
+                        from: 'koushiks666@gmail.com',
+                        subject: 'API Conformation',
+                        text: `The request for your API is successful.\n These are the details of your API:\n
+                                API:${api.token}\n
+                                Subscription Date:${api.subscription_date}\n
+                                Expiry Date:${api.expiry}\n
+                                Type:${api.type}\n
+                                Plan:${api.plan}\n
+                                Price:${api.price}\n`
+                    };
+                    smtpTransport.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                          console.log(error);
+                          errors.errors.push(error)
+                          return res.status(400).json(errors.array())
+                        } else {
+                          console.log('Email sent: ' + info.response);
+                        }
+                      });            
                   res.status(201).end()
                 }
         }catch(e){
-            console.log('------hello------')
+            errors={}
+            console.log('------entered catch------')
             console.log(e)
-            res.status(400).json(e['error'].message)
+            res.status(400).json([{msg:e.errmsg.toString()}])
         }
 })
 
@@ -176,7 +225,6 @@ router.post('/guides/book', async(req,res) =>{
                         if (error) {
                           console.log(error);
                         } else {
-                          var text="name:".concat(guide.phone_number)
                           console.log('Email sent: ' + info.response);
                         }
                       });
@@ -233,6 +281,27 @@ router.post('/tour/book', async(req,res) =>{
     }
 })
 
+router.get('/news',async (req,res) => {
+    try{
+        if(req.query.api){
+            let api_key = req.query.api
+            let result = await Api.checkAPI(api_key)
+            console.log(result)
+            if(result.result === true && result.isexpired === false){
+                const news =  await News.find({ "time": { $gt: new Date(Date.now() - 48*60*60 * 1000) } }).sort({ 'array_length':-1})
+                return res.status(200).send(news)
+            }
+            else{
+                throw "Please check your api and it's expiry date"
+            }
+
+        }
+    }catch(e){
+        res.status(400).send([{
+            error:e,
+        }])
+    }
+})
 // router.get('/guides_place',async (req,res) => {
 //     try{
 //     let place = req.query.city
