@@ -6,6 +6,10 @@
 
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!-- <link rel="stylesheet" href="../css/guideprofile.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <style >
@@ -142,6 +146,7 @@ body {
   color: #fff;
   display: block;
   text-decoration: none;
+  padding:20px;
 }
 
 #sidebar header a:hover {
@@ -168,6 +173,8 @@ body {
 #sidebar .nav a i{
   margin-right: 16px;
 }
+
+
     </style>
   </head>
   <body>
@@ -178,46 +185,27 @@ body {
       <a href="#">Wandermate Admin</a>
     </header>
     <ul class="nav">
-      <li>
-        <a href="/admin/cities">
+      <li style="margin-right:10%">
+        <a href="/admin/cities" >
           <i class="zmdi zmdi-view-dashboard"></i> Cities
         </a>
       </li>
-      <li>
-        <a href="/admin/allusers">
-          <i class="zmdi zmdi-link"></i> Guides
-        </a>
-      </li>
-      <li>
+      <hr>
+      <li style="margin-right:10%">
         <a href="/admin/allguides">
+           <i class="zmdi zmdi-link"></i> Guides
+        </a>
+      </li>
+      <li style="margin-right:10%">
+        <a href="/admin/allusers">
           <i class="zmdi zmdi-widgets"></i> Users
-        </a>
-      </li>
-      <li>
-        <a href="/admin/addcity">
-          <i class="zmdi zmdi-calendar"></i> Add city
-        </a>
-      </li>
-      <li>
-        <a href="/users/logout">
-          <i class="zmdi zmdi-info-outline"></i> Logout
         </a>
       </li>
     </ul>
   </div>
   <!-- Content -->
   <div id="content">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="#"><i class="zmdi zmdi-notifications text-danger"></i>
-            </a>
-          </li>
-          <li><a href="#">Test User</a></li>
-        </ul>
-      </div>
-    </nav>
+
     <div class="container-fluid">
 <%-body%>
     </div>

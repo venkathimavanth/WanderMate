@@ -19,13 +19,30 @@
 </head>
 
 <body>
-  <form method="POST" enctype="multipart/form-data">
-            <div id="dropzone" class="dropzone">
-            <!-- <input type="file" name="photos" multiple> -->
+  <center>
+  <h2 style="padding-top:5%;padding-bottom:1%">Enter Details to Add to DB</h2>
+</center>
+<hr>
+  <div style="padding-left:25%;padding-right:25%;padding-top:7%">
+
+    <form method="POST" enctype="multipart/form-data">
+      <center>
+        <div class="form-group" style="margin-bottom:6%">
+            <label for="exampleInputEmail1">Place Name : </label>
+            <input type="text" id="city" name="city">
           </div>
-          <input type="text" id="city" name="city">
-          <button type="submit" id="submit-all" name="button">submit</button>
-  </form>
+        </center>
+              <!-- <input type="text" id="city" name="city"> -->
+              <div id="dropzone" class="dropzone">
+              <!-- <input type="file" name="photos" multiple> -->
+            </div>
+            <br>
+            <button style="float:right;background-color:#525f7f;font-size:15px"type="submit" id="submit-all" name="button" class="btn btn-primary btn-lg">Submit</button>
+
+            <!-- <button type="submit" id="submit-all" name="button">submit</button> -->
+    </form>
+  </div>
+
   <!--   Core JS Files   -->
   <script src="https://demos.creative-tim.com/material-kit-pro/assets/js/core/jquery.min.js" type="text/javascript"></script>
   <!-- <script src="./JS/guides.js"></script> -->

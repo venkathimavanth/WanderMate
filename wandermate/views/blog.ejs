@@ -82,7 +82,13 @@
    </style>
   </head>
 
+  <% if(second){%>
+
   <body style="font-family: 'Muli', 'Helvetica', Arial, sans-serif;font-size:16px;" onload="displayfunc('<%= first.text %>','<%= second.text %>')">
+  <%}else{%>
+    <body style="font-family: 'Muli', 'Helvetica', Arial, sans-serif;font-size:16px;">
+      <%}%>
+
     <nav id="nav" style="z-index:5;padding-top:0.2%;padding-bottom:0.05%;border:none;" class="navpic">
       <div class="logo">
         <span id="wander">WANDERMATE</span>
@@ -468,7 +474,7 @@
         <%= first.heading %> </a>
     </h4>
     <p class="card-description" >
-      <div id="display1"></div>
+      <!-- <div id="display1"></div> -->
 
     </p>
 
@@ -627,4 +633,5 @@
 
 
   </body>
+
 </html>

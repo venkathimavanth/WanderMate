@@ -1,8 +1,35 @@
 
+    <center><h1 style="padding-top:3%;padding-bottom:1%;color:#525f7f;">Currently Avalilable cities</h1></center>
+    <hr>
+    <a href="/admin/addcity" style="margin-left:85%;margin-top:1%;background-color:#525f7f;font-size:15px" class="btn btn-primary btn-lg" role="button">Add place</a>
 
-<h1>Currently Avalilable in this cities</h1>
-<%if(places.length!=0){%>
-  <% for(i=0;i < places.length;i++){%>
-    <a href="/admin/cityinfo?id=<%=places[i].id%>" ><%=places[i].name%></a>
+    <div id="cities" style="padding-left:12%;padding-right:10%;padding-top:2%">
+
+      <%if(places){%>
+
+    <%if(places.length!=0){%>
+      <% for(i=0;i < places.length;i++){%>
+        <div style="float:left;margin-top:3%;margin-left:3%">
+          <div class="card" style="width: 30rem;height:18rem">
+            <div class="card-body">
+            <h2 class="card-title"><%=places[i].name%></h2>
+            <h4 style="margin-top:1%" class="card-subtitle mb-2 text-muted"><%=places[i]._id%></h4><br>
+            <p class="card-text" style="font-size:15px;"><%=places[i].about.substring(0,50)%></p>
+            <a style="font-size:15px;float:right" href="/admin/cityinfo?id=<%=places[i].id%>" >check more..</a>
+           </div>
+          </div>
+        </div>
+
+        <%}%>
+
+          </div>
+
+
+            <a href="/admin/cities?pgg=<%=p%>#cities" style="margin-left:15%;margin-top:5%;background-color:#525f7f;font-size:15px" class="btn btn-primary btn-lg" role="button">back</a>
+            <a href="/admin/cities?pg=<%=p%>#cities" style="margin-left:55%;margin-top:5%;background-color:#525f7f;font-size:15px" class="btn btn-primary btn-lg" role="button">next</a>
+  <%}else{%>
+    <a href="/admin/cities?pgg=<%=p%>#cities" style="margin-left:15%;margin-top:5%;background-color:#525f7f;font-size:15px" class="btn btn-primary btn-lg" role="button">back</a>
     <%}%>
     <%}%>
+
+  <br><br><br>

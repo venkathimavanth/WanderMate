@@ -37,11 +37,25 @@ router.get('/dashboard',CheckUser,(req,res)=>{
 
 });
 
+var p=0
 router.get('/cities',CheckUser,(req,res)=>{
-  Placeinfo.find({})
+
+
+    if(req.query.pg){
+      p=p+1
+    }
+    else{
+      if(req.query.pgg){
+        p=p-1
+      }
+      else{
+        p=0
+      }
+    }
+  Placeinfo.find({}).limit(9).skip(p*9)
   .then(x=>{
 
-    res.render('admin.ejs',{layout:'adminlayout',places:x})
+    res.render('admin.ejs',{layout:'adminlayout',places:x,p:p})
 
   })
 .catch(x=>{
@@ -341,24 +355,51 @@ router.post('/delthings',CheckUser,(req,res)=>{
 
 });
 
-router.get('/allusers',CheckUser,(req,res)=>{
-User.find({})
+var p=0
+router.get('/allusers',(req,res)=>{
+
+  if(req.query.pg){
+    p=p+1
+  }
+  else{
+    if(req.query.pgg){
+      p=p-1
+    }
+    else{
+      p=0
+    }
+  }
+User.find({}).limit(9).skip(p*9)
 .then(x=>{
-  res.render('allusers',{users:x,layout:'adminlayout'});
+  res.render('allusers',{users:x,layout:'adminlayout',p:p});
 })
 .catch(err=>{
   console.log(err)
 })
 });
 
+var p=0
 router.get('/allguides',CheckUser,(req,res)=>{
-Guide.find({})
+
+  if(req.query.pg){
+    p=p+1
+  }
+  else{
+    if(req.query.pgg){
+      p=p-1
+    }
+    else{
+      p=0
+    }
+  }
+Guide.find({}).limit(9).skip(p*9)
 .then(x=>{
-  res.render('allguides',{users:x,layout:'adminlayout'});
+  res.render('allguides',{users:x,layout:'adminlayout',p:p});
 })
 .catch(err=>{
   console.log(err)
 })
 });
+
 
 module.exports = router;

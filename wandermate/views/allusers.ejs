@@ -1,8 +1,27 @@
 
 
-<h1>Currently Avalilable users</h1>
+<center><h1 style="padding-top:3%;padding-bottom:1%;color:#525f7f;">Currently Avalilable users</h1></center>
+<hr>
+<div id="users" style="padding-left:12%;padding-right:10%;padding-top:2%">
+
 <%if(users.length!=0){%>
   <% for(i=0;i < users.length;i++){%>
-    <a href="#" ><%=users[i].username%></a>
+    <div style="float:left;margin-top:3%;margin-left:3%">
+      <div class="card" style="width: 30rem;height:18rem">
+        <div class="card-body">
+        <h2 class="card-title"><%=users[i].username%></h2>
+        <h4 style="margin-top:3%" class="card-subtitle mb-2 text-muted"><%=users[i]._id%></h4><br>
+        <p class="card-text" style="font-size:15px;%">Contact details:
+          <%=users[i].email%></p>
+        <%# <a style="font-size:15px;float:right" href="/admin/cityinfo?id=<%=users[i].id%>" >check more..</a> %>
+       </div>
+      </div>
+    </div>
     <%}%>
     <%}%>
+
+</div>
+
+        <a href="/admin/allusers?pgg=<%=p%>#users" style="margin-left:15%;margin-top:5%;background-color:#525f7f;font-size:15px" class="btn btn-primary btn-lg" role="button">back</a>
+        <a href="/admin/allusers?pg=<%=p%>#users" style="margin-left:55%;margin-top:5%;background-color:#525f7f;font-size:15px" class="btn btn-primary btn-lg" role="button">next</a>
+    <br><br><br>
