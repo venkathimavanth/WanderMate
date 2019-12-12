@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 var wishListSchema = mongoose.Schema({
   username:{
     type:String,
-    required: true
+    required: true,
+lowercase:true
   },
   boards:{type:[
     {
@@ -15,8 +16,8 @@ var wishListSchema = mongoose.Schema({
         {
           comment:{type:String},
           img:{type:String},
-          city:{type:String},
-          name:{type:String}
+          city:{type:String,lowercase:true},
+          name:{type:String,lowercase:true}
         }
       ], default:undefined}
     }

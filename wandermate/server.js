@@ -12,7 +12,7 @@ let Tour_plans = require('./models/tour_plans');
 let Guides = require('./models/Guide');
 let News = require('./models/News');
 let WishList = require('./models/WishList')
-let Chatdata = require('./models/chatdata');
+let Chatingdata = require('./models/Chatingdata');
 const socketio = require('socket.io');
 const http = require('http');
 let User = require('./models/User');
@@ -98,6 +98,7 @@ mongoose.connect(db,{   useNewUrlParser: true,
 app.use('/admin',require('./routes/admin'))
 app.use('/',require('./routes/landing'));
 app.use('/wanderlist',require('./routes/wishlist'))
+
 
 const Suggestions = require('./models/Suggestion')
 
@@ -259,7 +260,7 @@ console.log("cgdjgvjywegdvjgwekvgbwevbwekugvuegviegvegvukgewkug");
                if(err){
                  console.log(err);
                }else{
-                 News.find({}, function(err, news){
+                 News.find({place:req.params.name}, function(err, news){
                    if(err){
                      console.log(err);
                    }else{
@@ -281,10 +282,106 @@ console.log('kjbkb')
                          }
                          console.log(boardslist);
                          console.log(placenames);
-                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boardslist, placenames:placenames});
+                         var citynames = []
+                         var mat = []
+                         console.log("_________");
+                         console.log(citynames);
+                        Placeinfo.find({},function(err, places){
+                           //console.log(places)
+                           for(var i=0;i<places.length;i++){
+                             citynames.push(places[i].name);
+                           }
+                         })
+                         console.log("_________");
+                         console.log(citynames);
+                         var ind;
+                        User.find({}, function(err, users){
+                           //console.log(users);
+                           for(var i=0;i<users.length;i++){
+                             var temp = new Array(citynames.length).fill(0)
+                             if(req.user.name === users[i].name){
+                               ind = i
+                             }
+                             for(var j=0;j<users[i].booking.length;j++){
+                               if(users[i].booking[j].plan === "daylong"){
+                                 if(citynames.includes(users[i].booking[j].place)){
+                                   temp[citynames.indexOf(users[i].booking[j].place)] = 1
+                                 }
+                               }
+                             }
+                             mat.push(temp)
+                             console.log("_________");
+                             console.log(temp);
+                           }
+                           // const result = recommend.cFilter(mat, ind);
+                           var recomendations = []
+                           console.log("_________");
+                           console.log(citynames);
+                           for(var i=0;i<result.length;i++){
+                             recomendations.push(citynames[result[i]])
+                           }
+                           console.log(recomendations);
+                           for(var i=0;i<citynames.length;i++){
+                             if(recomendations.includes(citynames[i])){
+                               arr.splice(i, 1);
+                               i--;
+                             }
+                           }
+                           res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boardslist, placenames:placenames,recomendations:recomendations,citynames:citynames});
+                         })
+
+
                        }else{
-                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:[]});
-                         console.log(places)
+                         var placenames = []
+                         var mat = []
+                         console.log("_________");
+                         console.log(placenames);
+                        Placeinfo.find({},function(err, places){
+                           //console.log(places)
+                           for(var i=0;i<places.length;i++){
+                             placenames.push(places[i].name);
+                           }
+                         })
+                         console.log("_________");
+                         console.log(placenames);
+                         var ind;
+                        User.find({}, function(err, users){
+                           //console.log(users);
+                           for(var i=0;i<users.length;i++){
+                             var temp = new Array(placenames.length).fill(0)
+                             if(req.user.name === users[i].name){
+                               ind = i
+                             }
+                             for(var j=0;j<users[i].booking.length;j++){
+                               if(users[i].booking[j].plan === "daylong" || users[i].booking[j].plan === "daylong"){
+                                 if(placenames.includes(users[i].booking[j].place)){
+                                   temp[placenames.indexOf(users[i].booking[j].place)] = 1
+                                 }
+                               }
+                             }
+                             mat.push(temp)
+                             console.log("_________");
+                             console.log(temp);
+                           }
+                           const result = recommend.cFilter(mat, ind);
+                           var recomendations = []
+                           console.log("_________");
+                           console.log(placenames);
+                           for(var i=0;i<result.length;i++){
+                             recomendations.push(placenames[result[i]])
+                           }
+                           console.log(recomendations);
+                           // for(var i=0;i<citynames.length;i++){
+                           //   if(recomendations.includes(citynames[i])){
+                           //     arr.splice(i, 1);
+                           //     i--;
+                           //   }
+                           // }
+                           res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:[],placenames:[],recomendations:recomendations,citynames:citynames});
+                         })
+                       }
+                       })
+                      //   console.log(places)
                        }
                      })
                    }
@@ -293,13 +390,14 @@ console.log('kjbkb')
             })
           }
        })
-     }
+
+
    });
 
 
 
 
- });
+
 
  app.get('/places/', function(req, res){
    res.render('form');
@@ -307,6 +405,7 @@ console.log('kjbkb')
 
  app.post('/places', urlencodedparser, function (req, res) {
    var cityName = req.body.city;
+   cityName = cityName.toLowerCase();
    res.redirect('/places/'+cityName);
  });
 
@@ -322,12 +421,12 @@ app.get('/exp',function (req,res){
    var usertype = req.user.usertype;
    count=count+1;
 
-   Chatdata.find({username:username, guidename:guidename}, function(err, places){
+   Chatingdata.find({username:username, guidename:guidename}, function(err, places){
      if(err){
        console.log(err);
      } else {
        console.log(places)
-       Chatdata.find({username:username}, function(err, chats){
+       Chatingdata.find({username:username}, function(err, chats){
          if(err){
            console.log(err)
          }else{
@@ -358,7 +457,7 @@ console.log('heyy')
                var type = coords.type;
                var time = coords.time;
                var msg = 'https://www.google.com/maps/place/'+coords.lat+','+coords.lng;
-               Chatdata.updateOne(
+               Chatingdata.updateOne(
                  { username: username, guidename:guidename},
                  { $push: {messages: {text: msg, time: time, sentby: type}} },
                  function(){
@@ -386,7 +485,7 @@ console.log('heyy')
 
 
 
-                 Chatdata.updateOne(
+                 Chatingdata.updateOne(
                    { username: username, guidename:guidename},
                    { $push: {messages: {text: msg, time: time, sentby: type}} },
                    function(){
@@ -488,7 +587,7 @@ await User.find({}, function(err, users){
       console.log("_________");
       console.log(temp);
     }
-    const result = recommend.cFilter(mat, ind);
+    // const result = recommend.cFilter(mat, ind);
     var recomendations = []
     console.log("_________");
     console.log(placenames);
@@ -499,6 +598,9 @@ await User.find({}, function(err, users){
   })
 })
 
+app.get("*", function(req, res){
+  res.render('error');
+});
 
  server.listen(8000, function(){
    console.log("Connected to server")

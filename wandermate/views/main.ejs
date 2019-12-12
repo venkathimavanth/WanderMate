@@ -1875,7 +1875,7 @@
               </div>
               <div class="modal-body">
                 <div class="row" style="padding:3%;">
-                  <div class="col-6" id="boardmodalbgimg" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);background-size:cover;background-image:url('<%= places.spots[j].img %>');"></div>
+                  <div class="col-6" id="boardmodalbgimg" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);background-size:cover;"></div>
                   <div class="col-6">
                     <form action="/wanderlist/addnewboard" method="POST">
                       <div class="form-group">
@@ -1969,16 +1969,17 @@
       <p class="news">TOURS OFFERED</p>
       <div class="row" style="width:80%;margin-left:10%;margin-top:3%;">
           <% plans.forEach(function(item,index){ %>
+            <% if(item.dates.length>0){ %>
             <div class="col-4" style="margin-top:2.5%;">
               <div class="card9 card9-pricing1 card9-coin" style="background-color:rgba(255,255,255,1);">
                 <div class="card9-header bg-transparent">
-                  <img src="/uploads/suriya1.jpg1573825247106.jpeg" class="img-center shadow1">
+                  <img src="<%= item.images[0].img %>" style="border-radius:3px;margin-left:-3%;width:45vh;height:30vh;" class="img-center">
                 </div>
                 <div class="card9-body" style="margin-top:-7%;">
                   <div class="row">
                     <div class="col-md-12 text-center">
-                      <p style="padding-bottom:2%;font-size:25px;margin-top:2%;margin-bottom: 1%;color:#818283;"><%= item.name %></p>
-                      <h5 style="margin-top:4%;margin-bottom:4%;" class="text-uppercase">by <%= item.guide %></h5>
+                      <h5 style="margin-top:4%;margin-bottom:4%;" class="text-uppercase"><%= item.name %></h5>
+                      <p style="padding-bottom:2%;font-size:25px;margin-top:2%;margin-bottom: 1%;color:#818283;">by <%= item.guide %></p>
                       <span style="font-size:40px;color:#616263;text-align:center;margin-left:-22%;"><%= item.cost %> &#8377;</span>
                       <hr class="bg-info">
                     </div>
@@ -2017,6 +2018,7 @@
                 </div>
               </div>
             </div>
+            <% } %>
           <% }) %>
         </div>
     </div>
@@ -2558,109 +2560,7 @@
         </div>
       </div>
     </div>
-    <div id="ymal">
-      <p class="news">YOU MAY ALSO LIKE</p>
-      <center>
-      <table style="width:75%;">
-        <tr>
-          <td style="padding:0.75%;width:46%;">
-            <div class="cards" style="width:100%;">
-              <h2>Chennai</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <!-- <div class="social">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-github"></i>
-              </div> -->
-              <button>
-              </button>
-            </div>
-          </td>
-          <td style="padding:0.75%;width:27%;">
-            <div class="cards" style="width:100%;">
-              <h2>Mumbai</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <!-- <div class="social">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-github"></i>
-              </div> -->
-              <button>
-              </button>
-            </div>
-          </td style="padding:0.75%;width:27%;">
-          <td>
-            <div class="cards" style="width:100%;">
-              <h2>Delhi</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <!-- <div class="social">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-github"></i>
-              </div> -->
-              <button>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </table>
-      <table style="width:75%;">
-        <tr>
-          <td style="padding:0.75%;width:27%;">
-            <div class="cards" style="width:100%;">
-              <h2>Kolkata</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <!-- <div class="social">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-github"></i>
-              </div> -->
-              <button>
-              </button>
-            </div>
-          </td>
-          <td style="padding:0.75%;width:27%;">
-            <div class="cards" style="width:100%;">
-              <h2>Jaipur</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <!-- <div class="social">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-github"></i>
-              </div> -->
-              <button>
-              </button>
-            </div>
-          </td>
-          <td style="padding:0.75%;width:46%;">
-            <div class="cards" style="width:100%;">
-              <h2>Tirupati</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <button>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </center>
-    </div>
+
     <p id="address" style="display:none;"><%= places.name %>, India</p>
     <div id="map" style="width:100%; height:500px;">
     </div>
@@ -2695,6 +2595,7 @@
       },
     });
     text_editor.setContents(x);
+    text_editor.enable(false);
   };
   </script>
   <script>

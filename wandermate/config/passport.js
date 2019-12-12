@@ -64,7 +64,7 @@ module.exports=function(passport){
 passport.deserializeUser(function(id, done) {
   usertype=id.split(',')[1]
   id1=id.split(',')[0]
-  if (usertype=='user') {
+  if (usertype=='user' || usertype=='admin' ) {
     User.findById(id1, function(err, user) {
       done(err, user);
     });

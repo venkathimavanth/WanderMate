@@ -33,7 +33,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
                           </div>
-                          <input class="form-control" name="cost" placeholder="Cost" type="text">
+                          <input class="form-control" name="cost" placeholder="Cost" type="text" required>
                           <div class="input-group-append">
                             <span class="input-group-text"><small class="font-weight-bold">USD</small></span>
                           </div>
@@ -46,7 +46,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-globe"></i></span>
                           </div>
-                          <input class="form-control" placeholder="City" name="city" type="text">
+                          <input class="form-control" placeholder="City" name="city" type="text" required>
                         </div>
                       </div>
 
@@ -58,7 +58,7 @@
                     <div class="col-6 col-md-6">
                       <div class="form-group">
                         <div class="input-group input-group-merge">
-                          <input class="form-control" name="opentime"  type="time" list="limittimeslist" step="600">
+                          <input class="form-control" name="opentime"  type="time" list="limittimeslist" step="600" required>
                           <datalist id="limittimeslist">
                             <option open time</option>
                               <option value="00:00"></option>
@@ -123,7 +123,7 @@
                     <div class="col-6 col-md-6">
                       <div class="form-group">
                         <div class="input-group input-group-merge">
-                          <input class="form-control" name="closetime"  type="time" list="limittimeslist" step="600">
+                          <input class="form-control" name="closetime"  type="time" list="limittimeslist" step="600" required>
                           <datalist id="limittimeslist">
                             <option open time</option>
                               <option value="00:00"></option>
@@ -192,7 +192,7 @@
                     <div class="col">
                       <div class="fileUpload blue-btn btn width100">
   <span>Upload your Location Picture</span>
-  <input type="file" name="photo" class="uploadlogo" />
+  <input type="file" name="photo" class="uploadlogo" required>
 </div>
 
                     </div>

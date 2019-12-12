@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const BookingSchema = new mongoose.Schema({
-  guide:String,
+  guide:{type:String,lowercase:true},
   date_n_time:{'date':String,'slot':String,'time':String},
   type:String,
   place:String,
@@ -10,12 +10,14 @@ const BookingSchema = new mongoose.Schema({
   plan:String,
   days:Number,
   planid:String,
+  rating:Number
 });
 
 const UserSchema = new mongoose.Schema({
   name:{
     type:String,
-    required:true
+    required:true,
+    lowercase:true
   },
   email:{
     type:String,
@@ -29,7 +31,8 @@ const UserSchema = new mongoose.Schema({
 
   username:{
     type:String,
-    required:true
+    required:true,
+    lowercase:true
   },
   password:{
     type:String,

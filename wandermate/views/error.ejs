@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Page Not Found</title>
+    <style>
+      *,:after,:before{box-sizing:border-box;}
+h1,h4{margin-top:0;margin-bottom:.5rem;}
+p{margin-top:0;margin-bottom:1rem;}
+h1,h4{margin-bottom:.5rem;font-family:inherit;font-weight:400;line-height:1.5;color:#32325d;}
+h1{font-size:2.5rem;}
+h4{font-size:1.5rem;}
+.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;}
+@media (min-width:576px){
+.container{max-width:540px;}
+}
+@media (min-width:768px){
+.container{max-width:720px;}
+}
+@media (min-width:992px){
+.container{max-width:960px;}
+}
+@media (min-width:1200px){
+.container{max-width:1040px;}
+}
+.row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px;}
+.col-md-12{position:relative;width:100%;padding-right:15px;padding-left:15px;}
+@media (min-width:768px){
+.col-md-12{flex:0 0 100%;max-width:100%;}
+}
+.text-center{text-align:center!important;}
+.text-default{color:#172b4d!important;}
+@media print{
+*,:after,:before{text-shadow:none!important;box-shadow:none!important;}
+p{orphans:3;widows:3;}
+.container{min-width:992px!important;}
+}
+p{font-size:1rem;}
+.lead,p{font-weight:300;line-height:1.7;}
+.lead{font-size:1.25rem;margin-top:1.5rem;}
+.description{font-size:.875rem;}
+.page-header{overflow:visible!important;}
+.error-page>.container .title{font-size:12em;color:#172b4d;letter-spacing:14px;font-weight:700;}
+@media (max-width:991.98px){
+.error-page>.container .title{font-size:9em;}
+}
+.page-header{position:relative;}
+.page-header{min-height:100vh;max-height:999px;padding:0;overflow:hidden;display:flex;align-items:center;}
+.page-header>.container{padding-top:12vh;padding-bottom:40px;}
+.page-header .page-header-image{position:absolute;background-size:cover;background-position:50%;width:100%;height:100%;z-index:-1;}
+.page-header .container{height:100%;z-index:1;}
+.page-header .description{color:#f4f5f7;}
+.page-header .title{margin-bottom:15px;}
+    </style>
+  </head>
+  <body style="overflow-y:hidden;">
+    <div class="wrapper">
+    <div class="page-header error-page">
+      <div class="page-header-image" style="background-image: url('https://demos.creative-tim.com/argon-design-system-pro/assets/img/ill/404.svg');"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h1 class="title">404</h1>
+            <p class="lead">Page not found :(</p>
+            <h4 class="description text-default">Ooooups! Looks like you got lost.</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

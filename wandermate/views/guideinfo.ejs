@@ -28,7 +28,7 @@
   opacity: 0.5;
   background-color:#32325d;
   color:white;
-  
+
 
 }
 
@@ -208,15 +208,16 @@ width: 100%;
                   <div class="col-lg-4 order-lg-1">
                     <div class="card-profile-stats d-flex justify-content-center">
                       <div>
-                        <span class="heading">22</span>
-                        <span class="description">Friends</span>
+                        <span class="heading"><%if(user.booking){var count = 0 ;for(var i=0;i< user.booking.length;i++){if(user.booking[i].current==true){count=count+1} }  }%><%=count%></span>
+                        <span class="description">Current</span>
                       </div>
                       <div>
-                        <span class="heading">10</span>
+                        <span class="heading">
+                          <%if(user.booking){%><%=user.booking.length %><%}%></span>
                         <span class="description">trips</span>
                       </div>
                       <div>
-                        <span class="heading">89</span>
+                        <span class="heading"><%=user.myrating %></span>
                         <span class="description">rating</span>
                       </div>
                     </div>
