@@ -128,16 +128,16 @@ small{font-size:80%;font-weight:400;}
 .btn:hover{color:#525f7f;text-decoration:none;}
 .btn:focus{outline:0;box-shadow:0 7px 14px rgba(50,50,93,.1),0 3px 6px rgba(0,0,0,.08);}
 .btn:disabled{opacity:.65;box-shadow:none;}
-.btn-primary{color:#fff;background-color:#2dce89;border-color:#2dce89;box-shadow:0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08);}
-.btn-primary:hover{color:#fff;background-color:#2dce89;border-color:#2dce89;}
+.btn-primary{color:#fff;background-color:#06b995;border-color:#06b995;box-shadow:0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08);}
+.btn-primary:hover{color:#fff;background-color:#06b995;border-color:#06b995;}
 .btn-primary:focus{box-shadow:0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08),0 0 0 0 rgba(118,135,232,.5);}
 .btn-primary:disabled{color:#fff;background-color:#2dce89;border-color:#2dce89;}
 .btn-danger{color:#fff;background-color:#f5365c;border-color:#f5365c;box-shadow:0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08);}
 .btn-danger:hover{color:#fff;background-color:#f3123e;border-color:#ec0c38;}
 .btn-danger:focus{box-shadow:0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08),0 0 0 0 rgba(247,84,116,.5);}
 .btn-danger:disabled{color:#fff;background-color:#f5365c;border-color:#f5365c;}
-.btn-outline-primary{color:#2dce89;border-color:#2dce89;}
-.btn-outline-primary:hover{color:#fff;background-color:#2dce89;border-color:#2dce89;}
+.btn-outline-primary{color:#06b995;border-color:#06b995;}
+.btn-outline-primary:hover{color:#fff;background-color:#06b995;border-color:#06b995;}
 .btn-outline-primary:focus{box-shadow:0 0 0 0 rgba(94,114,228,.5);}
 .btn-outline-primary:disabled{color:#2dce89;background-color:transparent;}
 .btn-sm{padding:.25rem .5rem;line-height:1.5;border-radius:.25rem;}
@@ -356,7 +356,7 @@ label{display:inline-block;margin-bottom:.5rem;font-size:.875rem;}
 .icon-shape{padding:12px;text-align:center;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;}
 .icon-shape i{font-size:1.25rem;}
 .nav-link{color:#525f7f;}
-.nav-link.active,.nav-link:hover{color:#2dce89;}
+.nav-link.active,.nav-link:hover{color:#06b995;}
 .nav-link i:not(.fa){position:relative;top:2px;}
 .navbar-nav .nav-link{font-size:.9rem;font-family:"Open Sans",sans-serif;font-weight:400;text-transform:normal;letter-spacing:0;transition:all .15s linear;}
 @media (prefers-reduced-motion:reduce){

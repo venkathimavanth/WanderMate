@@ -90,7 +90,12 @@
       <div class="menu"  style="overflow:visible!important;">
         <ul id="ul" style="margin-left:60%;margin-top:1.7%;">
           <center>
+            <%if(user.usertype=='user'){%>
            <li><a class="items" href="/users/dashboard"><i class="fas fa-home"></i></a></li>
+           <%}else{%>
+             <li><a class="items" href="/guides/guideprofile"><i class="fas fa-home"></i></a></li>
+
+             <%}%>
            <li><a class="items" href="/blog"><i class="fas fa-blog"></i></a></li>
            <li class="dropdown">
              <i class="fas fa-bell dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
@@ -141,9 +146,15 @@
                  <i class="far fa-user-circle"><small><b><%= user.username %></b></small></i>
                </button>
                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                 <%if(user.usertype=='user'){%>
                  <a style="padding-top:2px;" class="dropdown-item" href="/users">Profile</a>
                  <a style="padding-top:2px;" class="dropdown-item" href="/wanderlist/<%= user.username %>">WanderList</a>
+
                  <a style="padding-top:2px;" class="dropdown-item" href="/users/logout">Logout</a>
+                 <%}else{%>
+                   <a style="padding-top:2px;" class="dropdown-item" href="/guides/logout">Logout</a>
+
+                   <%}%>
                </div>
            </li>
          </center>
@@ -283,13 +294,14 @@
       <a href="/blog/<%=first._id%>">
          <%= first.heading %> </a>
     </h4>
-    <p class="card-description" >
-      <%= first.text.substring(0,100) %>...
+    <p id="ml1" class="card-description" >
+
     </p>
      <div class="card-footer">
        <div class="author">
          <img alt="..." style="width:5vh;height:5vh" class="avatar img-raised" src="<%=first.images%>">
          <span style="color:#d1d2d3"><%= first.name%>  </span>
+         <span id="ml1hidden" stlye="display:hidden"><%= first.text %></span>
        </div>
 
       </div>
@@ -308,13 +320,14 @@
       <a href="/blog/<%=second._id%>">
          <%= second.heading%> </a>
     </h4>
-    <p class="card-description" >
-      <%= second.text.substring(0,100) %>...
+    <p id=ml2 class="card-description" >
+
     </p>
      <div class="card-footer">
        <div class="author">
          <img alt="..." style="width:5vh;height:5vh" class="avatar img-raised" src="<%=second.images%>">
          <span> <%= second.name %> </span>
+
        </div>
        <div class="stats stats-right opacity-8">
          <i class="ni ni-watch-time"></i>
@@ -364,6 +377,39 @@
     </script>
 
     <script>
+
+    function ml1(x){
+      var delta = x;
+      var elm = document.getElementById('ml1')
+      if(elm){
+        var text_editor = new Quill('#ml1', {
+          modules: {
+            toolbar: false,
+          },
+        });
+        console.log(x)
+
+        text_editor.setContents(delta);
+        text_editor.enable(false);
+      }
+    }
+      function ml2(x){
+        var delta = x;
+        console.log(x)
+        var elm = document.getElementById('ml2')
+        if(elm){
+          var text_editor = new Quill('#ml2', {
+            modules: {
+              toolbar: false,
+            },
+          });
+
+          text_editor.setContents(delta);
+          text_editor.enable(false);
+        }
+      }
+
+
       function editorFunc(x){
         var delta = x;
         console.log(x)
@@ -374,8 +420,9 @@
         });
 
         text_editor.setContents(delta);
-quill.enable(false);
-
+text_editor.enable(false);
+     ml1(document.getElementById('ml1hidden').innerHTML)
+    //  ml2(<%= first.text %>)
       };
     </script>
     <script type="text/javascript">

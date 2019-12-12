@@ -1875,7 +1875,7 @@
               </div>
               <div class="modal-body">
                 <div class="row" style="padding:3%;">
-                  <div class="col-6" id="boardmodalbgimg" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);background-size:cover;background-image:url('<%= places.spots[j].img %>');"></div>
+                  <div class="col-6" id="boardmodalbgimg" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);background-size:cover;"></div>
                   <div class="col-6">
                     <form action="/wanderlist/addnewboard" method="POST">
                       <div class="form-group">
@@ -2560,109 +2560,7 @@
         </div>
       </div>
     </div>
-    <div id="ymal">
-      <p class="news">YOU MAY ALSO LIKE</p>
-      <center>
-      <table style="width:75%;">
-        <tr>
-          <td style="padding:0.75%;width:46%;">
-            <div class="cards" style="width:100%;">
-              <h2>Chennai</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <!-- <div class="social">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-github"></i>
-              </div> -->
-              <button>
-              </button>
-            </div>
-          </td>
-          <td style="padding:0.75%;width:27%;">
-            <div class="cards" style="width:100%;">
-              <h2>Mumbai</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <!-- <div class="social">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-github"></i>
-              </div> -->
-              <button>
-              </button>
-            </div>
-          </td style="padding:0.75%;width:27%;">
-          <td>
-            <div class="cards" style="width:100%;">
-              <h2>Delhi</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <!-- <div class="social">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-github"></i>
-              </div> -->
-              <button>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </table>
-      <table style="width:75%;">
-        <tr>
-          <td style="padding:0.75%;width:27%;">
-            <div class="cards" style="width:100%;">
-              <h2>Kolkata</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <!-- <div class="social">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-github"></i>
-              </div> -->
-              <button>
-              </button>
-            </div>
-          </td>
-          <td style="padding:0.75%;width:27%;">
-            <div class="cards" style="width:100%;">
-              <h2>Jaipur</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <!-- <div class="social">
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-github"></i>
-              </div> -->
-              <button>
-              </button>
-            </div>
-          </td>
-          <td style="padding:0.75%;width:46%;">
-            <div class="cards" style="width:100%;">
-              <h2>Tirupati</h2>
-              <i class="sidearrow fas fa-arrow-right"></i>
-              <p>Take a  Trip.</p>
-              <div class="pic"></div>
-              <button>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </center>
-    </div>
+
     <p id="address" style="display:none;"><%= places.name %>, India</p>
     <div id="map" style="width:100%; height:500px;">
     </div>
@@ -2697,6 +2595,7 @@
       },
     });
     text_editor.setContents(x);
+    text_editor.enable(false);
   };
   </script>
   <script>
