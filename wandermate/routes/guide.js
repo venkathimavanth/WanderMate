@@ -1273,6 +1273,7 @@ router.post('/news',CheckGuide,(req,res)=>{
   img = '/uploads/'+req.files[0].filename
 }
   var news=new News({
+    place:req.body.place,
     news:req.body.hiddenfield,
     guide:req.user.username,
     title:req.body.title,

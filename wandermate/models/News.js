@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const newsSchema = mongoose.Schema({
 
   guide:{type:String},
+  place:{type:String},
   img:{type:String},
   guideimg:{type:String},
   title:{type:String},

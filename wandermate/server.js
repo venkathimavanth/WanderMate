@@ -260,7 +260,7 @@ console.log("cgdjgvjywegdvjgwekvgbwevbwekugvuegviegvegvukgewkug");
                if(err){
                  console.log(err);
                }else{
-                 News.find({}, function(err, news){
+                 News.find({place:req.params.name}, function(err, news){
                    if(err){
                      console.log(err);
                    }else{
