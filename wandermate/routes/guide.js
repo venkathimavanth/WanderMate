@@ -400,10 +400,10 @@ console.log('-------------------------------------------------------------------
 
 
         await User.findOne({"username":req.user.booking[i].users[0].username}).lean()
-        .then(x=>{
+        .then(async x=>{
           console.log(x)
-        Object.assign(user.booking[i],{'img':x.img.path,'phone_number':x.phone_number})
-
+        await Object.assign(user.booking[i],{'img':x.img.path,'phone_number':x.phone_number})
+        console.log(user.booking[i].img)
         }
 
         )
@@ -443,6 +443,9 @@ console.log('-------------------------------------------------------------------
       }
 
   }
+  console.log('----------------')
+  console.log(user.booking)
+
 
   Tp.find({guide:req.user.username}).then(x=>
   {
@@ -474,7 +477,7 @@ console.log('-------------------------------------------------------------------
     console.log(booking);
 
     console.log('==========================================================================================================');
-
+    console.log(user.booking)
 
 
 res.render('guideprofile',{user:user,tours:x,p:p,booking:booking,booked:currentbookings})

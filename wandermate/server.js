@@ -12,7 +12,7 @@ let Tour_plans = require('./models/tour_plans');
 let Guides = require('./models/Guide');
 let News = require('./models/News');
 let WishList = require('./models/WishList')
-let Chatdata = require('./models/chatdata');
+let Chatingdata = require('./models/Chatingdata');
 const socketio = require('socket.io');
 const http = require('http');
 let User = require('./models/User');
@@ -313,7 +313,7 @@ console.log('kjbkb')
                              console.log("_________");
                              console.log(temp);
                            }
-                           const result = recommend.cFilter(mat, ind);
+                           // const result = recommend.cFilter(mat, ind);
                            var recomendations = []
                            console.log("_________");
                            console.log(citynames);
@@ -371,12 +371,12 @@ console.log('kjbkb')
                              recomendations.push(placenames[result[i]])
                            }
                            console.log(recomendations);
-                           for(var i=0;i<citynames.length;i++){
-                             if(recomendations.includes(citynames[i])){
-                               arr.splice(i, 1);
-                               i--;
-                             }
-                           }
+                           // for(var i=0;i<citynames.length;i++){
+                           //   if(recomendations.includes(citynames[i])){
+                           //     arr.splice(i, 1);
+                           //     i--;
+                           //   }
+                           // }
                            res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:[],placenames:[],recomendations:recomendations,citynames:citynames});
                          })
                        }
@@ -405,6 +405,7 @@ console.log('kjbkb')
 
  app.post('/places', urlencodedparser, function (req, res) {
    var cityName = req.body.city;
+   cityName = cityName.toLowerCase();
    res.redirect('/places/'+cityName);
  });
 
@@ -420,12 +421,12 @@ app.get('/exp',function (req,res){
    var usertype = req.user.usertype;
    count=count+1;
 
-   Chatdata.find({username:username, guidename:guidename}, function(err, places){
+   Chatingdata.find({username:username, guidename:guidename}, function(err, places){
      if(err){
        console.log(err);
      } else {
        console.log(places)
-       Chatdata.find({username:username}, function(err, chats){
+       Chatingdata.find({username:username}, function(err, chats){
          if(err){
            console.log(err)
          }else{
@@ -456,7 +457,7 @@ console.log('heyy')
                var type = coords.type;
                var time = coords.time;
                var msg = 'https://www.google.com/maps/place/'+coords.lat+','+coords.lng;
-               Chatdata.updateOne(
+               Chatingdata.updateOne(
                  { username: username, guidename:guidename},
                  { $push: {messages: {text: msg, time: time, sentby: type}} },
                  function(){
@@ -484,7 +485,7 @@ console.log('heyy')
 
 
 
-                 Chatdata.updateOne(
+                 Chatingdata.updateOne(
                    { username: username, guidename:guidename},
                    { $push: {messages: {text: msg, time: time, sentby: type}} },
                    function(){
@@ -586,7 +587,7 @@ await User.find({}, function(err, users){
       console.log("_________");
       console.log(temp);
     }
-    const result = recommend.cFilter(mat, ind);
+    // const result = recommend.cFilter(mat, ind);
     var recomendations = []
     console.log("_________");
     console.log(placenames);

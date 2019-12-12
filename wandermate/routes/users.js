@@ -24,7 +24,9 @@ const validatePhoneNumber = require('validate-phone-number-node-js');
 
 function CheckUser(req, res, next) {
     if (req.isAuthenticated()){
+      console.log('loged');
       if(req.user.usertype == 'user'){
+        console.log('logging');
         return next();
       }else if(req.user.usertype == 'admin'){
         return res.redirect('/admin/cities')
