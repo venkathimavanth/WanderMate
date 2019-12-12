@@ -282,10 +282,106 @@ console.log('kjbkb')
                          }
                          console.log(boardslist);
                          console.log(placenames);
-                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boardslist, placenames:placenames});
+                         var citynames = []
+                         var mat = []
+                         console.log("_________");
+                         console.log(citynames);
+                        Placeinfo.find({},function(err, places){
+                           //console.log(places)
+                           for(var i=0;i<places.length;i++){
+                             citynames.push(places[i].name);
+                           }
+                         })
+                         console.log("_________");
+                         console.log(citynames);
+                         var ind;
+                        User.find({}, function(err, users){
+                           //console.log(users);
+                           for(var i=0;i<users.length;i++){
+                             var temp = new Array(citynames.length).fill(0)
+                             if(req.user.name === users[i].name){
+                               ind = i
+                             }
+                             for(var j=0;j<users[i].booking.length;j++){
+                               if(users[i].booking[j].plan === "daylong"){
+                                 if(citynames.includes(users[i].booking[j].place)){
+                                   temp[citynames.indexOf(users[i].booking[j].place)] = 1
+                                 }
+                               }
+                             }
+                             mat.push(temp)
+                             console.log("_________");
+                             console.log(temp);
+                           }
+                           const result = recommend.cFilter(mat, ind);
+                           var recomendations = []
+                           console.log("_________");
+                           console.log(citynames);
+                           for(var i=0;i<result.length;i++){
+                             recomendations.push(citynames[result[i]])
+                           }
+                           console.log(recomendations);
+                           for(var i=0;i<citynames.length;i++){
+                             if(recomendations.includes(citynames[i])){
+                               arr.splice(i, 1);
+                               i--;
+                             }
+                           }
+                           res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boardslist, placenames:placenames,recomendations:recomendations,citynames:citynames});
+                         })
+
+
                        }else{
-                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:[],placenames:[]});
-                         console.log(places)
+                         var placenames = []
+                         var mat = []
+                         console.log("_________");
+                         console.log(placenames);
+                        Placeinfo.find({},function(err, places){
+                           //console.log(places)
+                           for(var i=0;i<places.length;i++){
+                             placenames.push(places[i].name);
+                           }
+                         })
+                         console.log("_________");
+                         console.log(placenames);
+                         var ind;
+                        User.find({}, function(err, users){
+                           //console.log(users);
+                           for(var i=0;i<users.length;i++){
+                             var temp = new Array(placenames.length).fill(0)
+                             if(req.user.name === users[i].name){
+                               ind = i
+                             }
+                             for(var j=0;j<users[i].booking.length;j++){
+                               if(users[i].booking[j].plan === "daylong" || users[i].booking[j].plan === "daylong"){
+                                 if(placenames.includes(users[i].booking[j].place)){
+                                   temp[placenames.indexOf(users[i].booking[j].place)] = 1
+                                 }
+                               }
+                             }
+                             mat.push(temp)
+                             console.log("_________");
+                             console.log(temp);
+                           }
+                           const result = recommend.cFilter(mat, ind);
+                           var recomendations = []
+                           console.log("_________");
+                           console.log(placenames);
+                           for(var i=0;i<result.length;i++){
+                             recomendations.push(placenames[result[i]])
+                           }
+                           console.log(recomendations);
+                           for(var i=0;i<citynames.length;i++){
+                             if(recomendations.includes(citynames[i])){
+                               arr.splice(i, 1);
+                               i--;
+                             }
+                           }
+                           res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:[],placenames:[],recomendations:recomendations,citynames:citynames});
+                         })
+                       }
+                       })
+                      //   console.log(places)
                        }
                      })
                    }
@@ -294,13 +390,14 @@ console.log('kjbkb')
             })
           }
        })
-     }
+
+
    });
 
 
 
 
- });
+
 
  app.get('/places/', function(req, res){
    res.render('form');

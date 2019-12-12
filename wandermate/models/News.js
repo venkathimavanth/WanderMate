@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const newsSchema = mongoose.Schema({
 
-  guide:{type:String},
+  guide:{type:String,lowercase:true,},
   img:{type:String},
   guideimg:{type:String},
   title:{type:String},

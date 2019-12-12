@@ -16,6 +16,7 @@ const recommend = require('collaborative-filter');
 const Guide=require('../models/Guide')
 let Placeinfo = require('../models/Placeinfo');
 let Tour_plans = require('../models/tour_plans');
+let WishList = require('../models/WishList');
 bodyParser = require('body-parser').json();
 router.get('/login',(req,res)=>res.render('guidelogin'));
 router.get('/signup',(req,res)=>res.render('usersignup',{errors:[]}));
@@ -116,6 +117,12 @@ router.post('/signup',urlencodedparser,[check('name').not().isEmpty().withMessag
       booking:new Array()
 
     });
+
+let userlist = new WishList({
+  username:name,
+  boards:[]
+})
+
     console.log(req.files)
     if(req.files[0]){
 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-  username:String,
+  username:{type:String,lowercase:true},
   no_of_tourists:Number
 });
 
@@ -21,7 +21,8 @@ const BookingSchema = new mongoose.Schema({
 const GuideSchema = new mongoose.Schema({
   name:{
     type:String,
-    required:true
+    required:true,
+    lowercase:true,
   },
   myrating:{
     type:Number,
@@ -38,7 +39,8 @@ const GuideSchema = new mongoose.Schema({
   },
   username:{
     type:String,
-    required:true
+    required:true,
+    lowercase:true,
   },
   password:{
     type:String,
@@ -74,12 +76,12 @@ const GuideSchema = new mongoose.Schema({
   booking:[BookingSchema],
   languages:{type:[{language:{type:String},eff:{type:Number}}],default:void 0},
   notifications:{type:[{senderid:{type:String},typeid:{type:String},img:{type:String},username:{type:String},unread:{type:Boolean,default:false}}],default:void 0},
-  availabledates:{type:[{date:{type:String},plantype:{type:String},totalbookings:{type:Number,default:0},location:{type:String},planid:{type:String},time:{type:[{slot:String,timeslot:String,count:Number}]}}],default:undefined},
+  availabledates:{type:[{date:{type:String},plantype:{type:String},totalbookings:{type:Number,default:0},location:{type:String,lowercase:true,},planid:{type:String},time:{type:[{slot:String,timeslot:String,count:Number}]}}],default:undefined},
   notavailabledates:{type:Array,default: void 0},
   timeslots:{type:Array,default: void 0},
-  plans:{type:[{plantype:{type:String},cost:{type:String},location:{type:String},place:{type:String},opentime:{type:String},closetime:{type:String},slotduration:{type:String},img:
+  plans:{type:[{plantype:{type:String},cost:{type:String},location:{type:String,lowercase:true,},place:{type:String,lowercase:true,},opentime:{type:String},closetime:{type:String},slotduration:{type:String},img:
     { type:String}}],default:undefined},
-  testimonials:{type:[{username:{type:String},text:{type:String}}]},
+  testimonials:{type:[{username:{type:String,lowercase:true,},text:{type:String}}]},
 rating:{type:String},
   img:
     { path: String, contentType: String },

@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 let placesSchema = mongoose.Schema({
   name:{
     type: String,
-    required: true
+    required: true,
+    lowercase:true,
   },
   bgimgs:{
     type: Array,
@@ -27,7 +28,7 @@ let placesSchema = mongoose.Schema({
   spots:{type:[
     {
       img:{type:String},
-      name:{type:String},
+      name:{type:String,lowercase:true,},
       description:{type:String},
     }
   ],default:undefined}

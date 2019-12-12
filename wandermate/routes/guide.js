@@ -475,7 +475,7 @@ console.log('-------------------------------------------------------------------
 
     console.log('==========================================================================================================');
 
-console.log(user.booking[0].img)
+
 
 res.render('guideprofile',{user:user,tours:x,p:p,booking:booking,booked:currentbookings})
 

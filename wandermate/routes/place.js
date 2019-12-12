@@ -8,7 +8,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const Guides=require('../models/Guide')
 const User=require('../models/User')
 const Tour_plans = require('../models/tour_plans');
-
+// const Chatdata = require('../models/Chatdata');
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
 
@@ -77,7 +77,12 @@ router.post('/tripplan',CheckUser,urlencodedParser, function(req,res){
       planid:data._id
     };
 
-
+//     var chat = new Chatdata({
+//       username:req.user.username,
+//       guidename:data.guide,
+//       messages:[]
+//     })
+// chat.save()
       Guides.updateOne({ username: data.guide },
                       {$push:{booking:itemOne}},function(){})
 
@@ -163,6 +168,7 @@ router.post('/tripplan',CheckUser,urlencodedParser, function(req,res){
        })
 
  })
+
 
 
 
@@ -305,6 +311,12 @@ router.post('/booked',CheckUser,function(req,res){
          if(err){
              console.log(err);
          }else{
+           // var chat = new Chatdata({
+           //   username:req.user.username,
+           //   guidename:guides[0].username,
+           //   messages:[]
+           // })
+           // chat.save()
 
              var guide=guides[0];
              var check
@@ -355,6 +367,7 @@ router.post('/booked',CheckUser,function(req,res){
               console.log(req.user.username);
                User.updateOne({username:req.user.username},
                                {$push:{booking:itemOne}},function(){})
+
 
               var myquery = { username: guide_info.name };
               var newvalues = { $set: guides[0] };
@@ -436,6 +449,14 @@ router.post('/booked',CheckUser,function(req,res){
               tot_no_of_tourits:value_form.number,
               current:true,
               plan:'singleplace'};
+
+              // var chat = new Chatdata({
+              //   username:req.user.username,
+              //   guidename:guide.username,
+              //   messages:[]
+              // })
+              // chat.save()
+
 
              User.updateOne({username:req.user.username},
                              {$push:{booking:itemOne}},function(){})
