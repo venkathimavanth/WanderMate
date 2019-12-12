@@ -171,15 +171,18 @@ router.post('/dashboard',CheckUser, (req,res)=>{
   res.redirect('/places/'+cityName);
 });
 
-router.get('/dashboard',CheckUser,(req,res)=>{
-  const user_bookings = User.find({ _id:req.user._id},{'booking':1})
+
+router.get('/dashboard',CheckUser,async (req,res)=>{
+  const user_bookings = await User.find({ _id:req.user._id})
+  const bookings = []  
   console.log(user_bookings)
-  bookings = []
-  for(let i = 0; i < user_bookings.length;i++){
-     if(user_bookings[i].current === true){
-        bookings.append(user_bookings[i])
+  // console.log(user_bookings[0].booking)
+  for(let i = 0; i < user_bookings[0].booking.length;i++){
+     if(user_bookings.booking[i].current === true){
+        bookings.append(user_bookings[0].booking[i])
      }
   }
+  // console.log(bookings)
   Guide.find({}, function(err, guides){
     if(err){
       console.log(err);
