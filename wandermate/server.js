@@ -99,6 +99,7 @@ app.use('/admin',require('./routes/admin'))
 app.use('/',require('./routes/landing'));
 app.use('/wanderlist',require('./routes/wishlist'))
 
+
 const Suggestions = require('./models/Suggestion')
 
  app.get('/places/:name', function(req, res){
@@ -283,7 +284,7 @@ console.log('kjbkb')
                          console.log(placenames);
                          res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:boardslist, placenames:placenames});
                        }else{
-                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:[]});
+                         res.render('main', {user:req.user,places:places, plans:plans, guides:guides, news:news,sugg:item,boards:[],placenames:[]});
                          console.log(places)
                        }
                      })
@@ -467,6 +468,9 @@ await User.find({}, function(err, users){
   })
 })
 
+app.get("*", function(req, res){
+  res.render('error');
+});
 
  server.listen(8000, function(){
    console.log("Connected to server")
