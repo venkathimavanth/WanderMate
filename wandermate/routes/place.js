@@ -314,7 +314,7 @@ router.post('/booked',CheckUser,function(req,res){
            var chat = new Chatingdata({
              username:req.user.username,
              guidename:guides[0].username,
-             messages:[]
+             messages:[{text:'Hello this is '+req.user.username,sentby:'user',time:new Date()}]
            })
            chat.save()
 
