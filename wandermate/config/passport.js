@@ -66,12 +66,16 @@ passport.deserializeUser(function(id, done) {
   id1=id.split(',')[0]
   if (usertype=='user' || usertype=='admin' ) {
     User.findById(id1, function(err, user) {
+      console.log('onion');
       done(err, user);
+
     });
 
   }else {
     Guide.findById(id1, function(err, user) {
+      console.log('onion');
       done(err, user);
+
     });
 
   }

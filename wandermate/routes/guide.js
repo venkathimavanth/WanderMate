@@ -402,11 +402,13 @@ console.log('-------------------------------------------------------------------
         await User.findOne({"username":req.user.booking[i].users[0].username}).lean()
         .then(async x=>{
           console.log(x)
+
         await Object.assign(user.booking[i],{'img':x.img.path,'phone_number':x.phone_number})
         console.log(user.booking[i].img)
         }
 
         )
+        .catch(async y=>{await Object.assign(user.booking[i],{'img':'/uploads/765-default-avatar.png','phone_number':'no number'})})
 
 
 
